@@ -567,5 +567,4 @@ Meteor.startup(() => {
 
     data.forEach(crop => Crops.insert(crop));
   }
-
 });
