@@ -10,4 +10,7 @@ Template.Carousel.helpers({
   slides: function() {
     return Slides.find({});
   },
+  isActive: function () {
+    return (this.rank === 1) ? 'active': '';
+  }
 });

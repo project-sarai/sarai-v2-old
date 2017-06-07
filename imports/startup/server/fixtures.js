@@ -135,13 +135,42 @@ Meteor.startup(() => {
   if (Slides.find().count() == 0) {
   const data = [
     {
-      title: 'Smarter Crop Management',
+      title: 'Smarter Crop Management # 1',
       subtitle: 'Helping farmers to produce with less',
-      text: 'Know the right amount of nutrient...',
+      text: 'Know the right amount of nutrient...',  
       buttonText: 'More',
       buttonURL: '#',
-      rank: 1
+      rank: 1,
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      title: 'Smarter Crop Management # 2',
+      subtitle: 'Helping farmers to produce with less',
+      text: 'Know the right amount of nutrient...',  
+      buttonText: 'More',
+      buttonURL: '#',
+      rank: 2,
+      image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg'
+    },
+    {
+      title: 'Smarter Crop Management # 3',
+      subtitle: 'Helping farmers to produce with less',
+      text: 'Know the right amount of nutrient...',  
+      buttonText: 'More',
+      buttonURL: '#',
+      rank: 3,
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      title: 'Smarter Crop Management # 4',
+      subtitle: 'Helping farmers to produce with less',
+      text: 'Know the right amount of nutrient...',  
+      buttonText: 'More',
+      buttonURL: '#',
+      rank: 4,
+      image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg'
     }
+    
   ]
 
     data.forEach(slide => Slides.insert(slide));
