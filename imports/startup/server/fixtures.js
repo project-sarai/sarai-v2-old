@@ -270,7 +270,7 @@ Meteor.startup(() => {
   ];
     data.forEach(services => Services.insert(services));
   }
-  
+
   if (Logos.find().count() === 0) {
     const data = [
       {
