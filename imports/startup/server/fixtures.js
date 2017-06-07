@@ -366,4 +366,31 @@ Meteor.startup(() => {
 
     data.forEach(projects => Projects.insert(projects));
   }
+
+  if (Logos.find().count() === 0) {
+    const data = [
+      {
+        name: 'SARAi',
+        value: 'img/sarai.png',
+        url: '/',
+      },
+      {
+        name: 'DOST',
+        value: 'img/dost.png',
+        url: 'http://www.dost.gov.ph/',
+      },
+      {
+        name: 'PCAARRD',
+        value: 'img/pcaarrd.png',
+        url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
+      },
+      {
+        name: 'UPLB',
+        value: 'img/uplb.png',
+        url: 'http://www.uplb.edu.ph/',
+      },
+    ];
+
+    data.forEach(logo => Logos.insert(logo));
+  }
 });
