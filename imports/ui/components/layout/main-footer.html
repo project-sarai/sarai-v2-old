@@ -3,18 +3,23 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="col-md-4 col-sm-3 col-xs-12">
         <h3 class="title">About SARAI</h3>
         <br/>
         Project SARAI aims to develop a national crop forecasting and monitoring system for first six priority crops: rice, corn, banana, coconut, coffee, cacao.<br />
-        <a href="http://www.dost.gov.ph/" title="DOST">
-          <img src="/../../../../public/img/dost-pcaarrd-uplb.png" class="logos-class">
-        </a>
+        
+        {{#each logos}}
+          {{#unless isMainLogo}}
+            <a href="{{url}}" title="{{name}}">
+              <img src="{{value}}" class="logos-class">
+            </a>
+          {{/unless}}
+        {{/each}}
         
       </div>
 
-      <div class="col-md-4 col-sm-3 hidden-xs">
-        <h3 class="title">Stay Connected</h3>
+      <div class="col-md-3 col-sm-3 hidden-xs">
+        <h3 class="title">Connect With Us</h3>
         <br/>
 
         <div class="footer-contact-line">
@@ -46,19 +51,19 @@
         </div>
 
         <a href="https://www.facebook.com/projectsarai/">
-          <div class="get-involved-icon">
+          <div id="facebook" class="get-involved-icon">
             <i class="fa fa-facebook"></i>
           </div>
         </a>
 
         <a href="https://twitter.com/ProjectSARAI">
-          <div class="get-involved-icon">
+          <div id="twitter" class="get-involved-icon">
             <i class="fa fa-twitter"></i>
           </div>
         </a>
 
         <a href="https://www.youtube.com/channel/UCJtzNfVmoqFZGCF326VaTZw">
-          <div class="get-involved-icon">
+          <div id="youtube" class="get-involved-icon">
             <i class="fa fa-youtube-play"></i>
           </div>
         </a>
@@ -69,14 +74,14 @@
         <h3 class="title">Site Map</h3>
         <br/>
 
-          <ul class="col-md-2">
+          <ul class="col-md-3">
             <li><a class="links" href="/about-us">SARAi</a></li>
             <li><a class="links" href="/">Crops</a></li>
             <li><a class="links" href="http://maps.sarai.ph/">Maps</a></li>
             <li><a class="links" href="/">Services</a></li>
           </ul>
 
-          <ul class="col-md-6">
+          <ul class="col-md-5">
             <li><a class="links" href="/advisories">Alerts and Advisories</a></li>
             <li><a class="links" href="http://pests.sarai.ph/">SPId Tech</a></li>
             <li><a class="links" href="/weather-monitoring">Monitoring</a></li>
