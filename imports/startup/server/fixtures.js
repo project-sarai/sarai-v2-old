@@ -200,7 +200,6 @@ Meteor.startup(() => {
       rank: 4,
       image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
-
   ];
     data.forEach(slide => Slides.insert(slide));
   }
@@ -270,7 +269,6 @@ Meteor.startup(() => {
   ];
     data.forEach(services => Services.insert(services));
   }
-
   if (Logos.find().count() === 0) {
     const data = [
       {
