@@ -5,21 +5,22 @@ import { check } from 'meteor/check';
 import { Projects } from './projects.js';
 
 Meteor.methods({
-  'projects.insert'(title, subtitle, text, challenge, solution, image) {
+  'projects.insert'(url, title, subtitle, text, text2, text3, image) {
     check(url, String);
     check(title, String);
-    check(text, String);
-    check(buttonText, String);
-    check(button, String);
+    check(subtitle, String);
+    check(text1, String);
+    check(text2, String);
+    check(text3, String);
     check(image, String);
 
     return Slides.insert({
+      url,
       title,
       subtitle,
-      text,
-      buttonText,
-      buttonURL,
-      rank,
+      text1,
+      text2,
+      text3,
       image,
       createdAt: new Date(),
     });

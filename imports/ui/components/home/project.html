@@ -10,11 +10,20 @@
   </div>
 
   <div class="card">
-    <div class="row">
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-      <div class="col-sm-4">.col-sm-4</div>
-    </div>
+      <div class="row">
+        {{#each projects}}
+          <div class="col-sm-4">
+
+            <figure class="figure">
+              <a href="{{url}}">
+                <img src="{{image}}" class="figure-img img-fluid rounded" alt="...">
+                <figcaption class="figure-caption">{{title}}</figcaption>
+              </a>
+            </figure>
+
+          </div>
+        {{/each}}
+      </div>
   </div>
 
 </template>
