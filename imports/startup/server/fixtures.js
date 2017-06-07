@@ -17,150 +17,149 @@ Meteor.startup(() => {
       {
         title: 'mainHeader',
         links: [
-            {
-              title: 'SARAi',
-              url: '/about',
-              links: [],
-              rank: '1',
-              createdAt: new Date(),
-            },
-            {
-              title: 'Crops',
-              url: '',
-              rank: '2',
-              links: [
-                {
-                  title: 'Rice',
-                  url: '/crops/rice',
-                  rank: '1',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Corn',
-                  url: '/crops/corn',
-                  rank: '2',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Banana',
-                  url: '/crops/banana',
-                  rank: '3',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Coconut',
-                  url: '/crops/coconut',
-                  rank: '4',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Coffee',
-                  url: '/crops/coffee',
-                  rank: '5',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Cacao',
-                  url: '/crops/cacao',
-                  rank: '6',
-                  createdAt: new Date(),
-                },
-              ],
-              createdAt: new Date(),
-            },
-            {
-              title: 'Maps',
-              url: '',
-              rank: '3',
-              links: [
-                {
-                  title: 'Suitability Maps',
-                  url: 'http://maps.sarai.ph/suitability-maps',
-                  rank: '1',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Crop Production Area',
-                  url: 'http://maps.sarai.ph/crop-production-area',
-                  rank: '2',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Normalized Difference Vegetation Index (NDVI)',
-                  url: 'http://maps.sarai.ph/ndvi',
-                  rank: '3',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Rainfall Map',
-                  url: 'http://maps.sarai.ph/rainfall-maps',
-                  rank: '4',
-                  createdAt: new Date(),
-                },
-              ],
-              createdAt: new Date(),
-            },
-            {
-              title: 'Services',
-              url: '',
-              rank: '4',
-              links: [
-                {
-                  title: 'Alerts and Advisories',
-                  url: 'http://sarai.ph/advisories',
-                  rank: '1',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Monitoring',
-                  url: 'http://sarai.ph/weather-monitoring',
-                  rank: '2',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Planting Guide',
-                  url: 'http://sarai.ph/rainfall-distribution',
-                  rank: '3',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'SPIDTech',
-                  url: 'http://pests.sarai.ph/',
-                  rank: '4',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'Open Data',
-                  url: 'http://opendata.sarai.ph/',
-                  rank: '5',
-                  createdAt: new Date(),
-                },
-                {
-                  title: 'SARAi Eskwela',
-                  url: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319',
-                  rank: '6',
-                  createdAt: new Date(),
-                },
-              ],
-              createdAt: new Date(),
-            },
-            {
-              title: 'Contact Us',
-              url: '',
-              rank: '5',
-              links: [
-                {
-                  title: 'Subscribe',
-                  url: 'https://goo.gl/forms/i4jW7LshCSQpuyZ23',
-                  rank: '1',
-                  createdAt: new Date(),
-                },
-              ],
-              createdAt: new Date(),
-            },
-          ],
-        };
-
+          {
+            title: 'SARAi',
+            url: '/about',
+            links: [],
+            rank: '1',
+            createdAt: new Date(),
+          },
+          {
+            title: 'Crops',
+            url: '',
+            rank: '2',
+            links: [
+              {
+                title: 'Rice',
+                url: '/crops/rice',
+                rank: '1',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Corn',
+                url: '/crops/corn',
+                rank: '2',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Banana',
+                url: '/crops/banana',
+                rank: '3',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Coconut',
+                url: '/crops/coconut',
+                rank: '4',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Coffee',
+                url: '/crops/coffee',
+                rank: '5',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Cacao',
+                url: '/crops/cacao',
+                rank: '6',
+                createdAt: new Date(),
+              },
+            ],
+            createdAt: new Date(),
+          },
+          {
+            title: 'Maps',
+            url: '',
+            rank: '3',
+            links: [
+              {
+                title: 'Suitability Maps',
+                url: 'http://maps.sarai.ph/suitability-maps',
+                rank: '1',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Crop Production Area',
+                url: 'http://maps.sarai.ph/crop-production-area',
+                rank: '2',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Normalized Difference Vegetation Index (NDVI)',
+                url: 'http://maps.sarai.ph/ndvi',
+                rank: '3',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Rainfall Map',
+                url: 'http://maps.sarai.ph/rainfall-maps',
+                rank: '4',
+                createdAt: new Date(),
+              },
+            ],
+            createdAt: new Date(),
+          },
+          {
+            title: 'Services',
+            url: '',
+            rank: '4',
+            links: [
+              {
+                title: 'Alerts and Advisories',
+                url: 'http://sarai.ph/advisories',
+                rank: '1',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Monitoring',
+                url: 'http://sarai.ph/weather-monitoring',
+                rank: '2',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Planting Guide',
+                url: 'http://sarai.ph/rainfall-distribution',
+                rank: '3',
+                createdAt: new Date(),
+              },
+              {
+                title: 'SPIDTech',
+                url: 'http://pests.sarai.ph/',
+                rank: '4',
+                createdAt: new Date(),
+              },
+              {
+                title: 'Open Data',
+                url: 'http://opendata.sarai.ph/',
+                rank: '5',
+                createdAt: new Date(),
+              },
+              {
+                title: 'SARAi Eskwela',
+                url: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319',
+                rank: '6',
+                createdAt: new Date(),
+              },
+            ],
+            createdAt: new Date(),
+          },
+          {
+            title: 'Contact Us',
+            url: '',
+            rank: '5',
+            links: [
+              {
+                title: 'Subscribe',
+                url: 'https://goo.gl/forms/i4jW7LshCSQpuyZ23',
+                rank: '1',
+                createdAt: new Date(),
+              },
+            ],
+            createdAt: new Date(),
+          },
+        ],
+      };
     Links.insert(data);
   }
 
@@ -202,7 +201,6 @@ Meteor.startup(() => {
       rank: 4,
       image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
-
   ];
     data.forEach(slide => Slides.insert(slide));
   }
