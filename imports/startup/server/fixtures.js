@@ -8,7 +8,6 @@ import { Story } from '../../api/story/story.js';
 import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 
-
 Meteor.startup(() => {
   // if the Links collection is empty
   if (Links.find().count() === 0) {
@@ -176,7 +175,6 @@ Meteor.startup(() => {
       image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
   ];
-
     data.forEach(slide => Slides.insert(slide));
   }
 
@@ -319,5 +317,32 @@ Meteor.startup(() => {
     ];
 
     data.forEach(projects => Projects.insert(projects));
+  }
+
+  if (Logos.find().count() === 0) {
+    const data = [
+      {
+        name: 'SARAi',
+        value: 'img/sarai.png',
+        url: '/',
+      },
+      {
+        name: 'DOST',
+        value: 'img/dost.png',
+        url: 'http://www.dost.gov.ph/',
+      },
+      {
+        name: 'PCAARRD',
+        value: 'img/pcaarrd.png',
+        url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
+      },
+      {
+        name: 'UPLB',
+        value: 'img/uplb.png',
+        url: 'http://www.uplb.edu.ph/',
+      },
+    ];
+
+    data.forEach(logo => Logos.insert(logo));
   }
 });
