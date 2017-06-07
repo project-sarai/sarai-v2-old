@@ -1,0 +1,61 @@
+<template name="ForecastView">
+  <div class="mdl-grid mdl-grid--no-spacing">
+    <div id="main-preview" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-cell mdl-cell--12-col preview-title"><h3>Expected Rainfall</h3>
+
+      <!-- <button title="Download" type="button" class="mdl-button mdl-js-button mdl-button- -fab mdl-button- -mini-fab download">
+          <i class="material-icons md-36">get_app</i>
+      </button> -->
+      <!-- <a href="/weather-monitoring" id="view-weather-monitoring">Click here to view more details</a> -->
+      <h6><strong>Be proactive! Know the expected amount of rainfall on your farm for today and for the next seven days.</strong><br/>
+          Maging handa! Alamin ang inaasahang dami ng ulan sa iyong taniman ngayon at sa susunod na pitong araw.<br/>
+          Source: SARAI AWS; WU</h6>
+
+      <!-- <div id="download-container">
+      </div> -->
+
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-offset-desktop mdl-cell--4-col-desktop mdl-cell--1-offset-tablet mdl-cell--6-col-tablet mdl-cell--4-col-phone " id="preview-controls">
+        <!-- <a href="" style="text-decoration: none; color: #333;"><strong>Rain</strong></a> | <a href="" style="text-decoration: none; color: #333;">Temp</a> -->
+        <div class="select-container">
+          <select class="mdl-select" id="preview-select-station">
+            {{#each station in weatherStations}}
+              <optgroup label="{{station.region}}">
+                {{#each option in station.options}}
+                  <option value="{{option.id}}">{{option.label}}</option>
+                {{/each}}
+              </optgroup>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone forecast-grid">
+        {{#with forecastToday}}
+          {{> PreviewCol}}
+        {{/with}}
+
+        {{#each forecastFirst3}}
+          {{> PreviewCol}}
+        {{/each}}
+      </div>
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell--6-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone forecast-grid">
+        {{#each forecastNext4}}
+          {{> PreviewCol}}
+        {{/each}}
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col preview-more">
+        <button class="mdl-button mdl-js-button mdl-button--raised">
+          More
+        </button>
+      </div>
+
+      <!-- <div class="mdl-cell mdl-cell- -12-col" id="preview-controls">
+        <a href="/weather-monitoring" id="view-weather-monitoring">10-day forecast by hour</a> | <a href="" id="view-accumulated-rainfall">30-day accumulated rainfall</a>
+      </div> -->
+
+    </div>
+  </div>
+</template>

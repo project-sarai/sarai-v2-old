@@ -1,0 +1,42 @@
+<template name="Testimonials">
+	{{#if testimonialsMain.enabled}}
+		<div class="mdl-grid" style="margin-left: 5%; margin-right:5%;">
+			<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+				<h3 id="bolgtext">{{testimonialsMain.title}}</h3>
+				<hr />
+			</div>
+			{{> TestimonialSlider}}
+			<div class="testimonialsection mdl-cell mdl-cell--3-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-tablet">
+				{{#if testimonialsMain.imgenabled}}
+				<img src="{{testimonialsMain.img}}" class="testimonial-image"/>
+				{{/if}}
+			</div>
+			<div class="testimonialsection mdl-cell mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+				<h3>{{testimonialsMain.mainTestimonial}}</h3>
+				<p id="textgreen">{{testimonialsMain.author}}</p>
+			</div>
+		</div>
+	{{/if}}
+</template>
+
+<template name="TestimonialSlider">
+  <div id="testimonial-carousel" class="testimonial-carousel mdl-cell mdl-cell--5-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-tablet">
+    {{#each entry in testimoniallist}}
+      {{> TestimonialContent entry=entry index=@index}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="TestimonialContent">
+  <div id="banner-testimonial-{{entry._id}}" class="mdl-grid testimonial-slide">
+
+    <div class="testimonial-slide-content">
+      <div class="testimonialtextclass">
+        <p id="testimonyid">"{{entry.testimony}}"</p>
+        <p id="textbordergreen"><strong>{{entry.author}}</strong> | {{{entry.authorInfo}}}</p>
+      </div>
+    </div>
+
+
+  </div>
+</template>

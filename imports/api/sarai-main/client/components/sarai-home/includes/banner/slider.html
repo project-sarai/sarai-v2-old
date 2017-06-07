@@ -1,0 +1,23 @@
+<template name="Slider">
+  <div id="main-carousel" class="main-carousel add-remove">
+    {{#each entry in slides}}
+      {{> SliderContent entry=entry index=@index}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="SliderContent">
+  <div id="banner-slider-{{entry._id}}" class="mdl-grid banner-slide" style="background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{entry.image}}');">
+
+    <div {{positionClasses entry.textPosition}}>
+      <div class="bannertextclass">
+        <h2 class="title">{{entry.title}}</h2>
+        <div class="subTitle">{{entry.subTitle}}</div>
+        <div class="text">{{{entry.text}}}</div>
+        <div class="banner-slider-button-container"><a href="{{entry.buttonLink}}" class="banner-slider-button">{{entry.buttonText}}</a></div>
+      </div>
+    </div>
+
+
+  </div>
+</template>

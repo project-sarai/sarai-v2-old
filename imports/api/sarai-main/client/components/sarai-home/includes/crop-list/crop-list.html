@@ -1,0 +1,11 @@
+<template name="Croplist">
+	{{#if crop.enabled}}
+		<div class="mdl-grid" id="crop-list-id">
+			{{#each crops}}
+				<div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+				  	<a href="{{href}}" id="croplabel"><img src="{{img}}" id="crop-images-id" /><br /><h6 id="croptext">{{text}}</h6></a>
+				</div>
+			{{/each}}
+		</div>
+	{{/if}}
+</template>

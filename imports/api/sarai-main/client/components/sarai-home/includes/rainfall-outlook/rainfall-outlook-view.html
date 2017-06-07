@@ -1,0 +1,73 @@
+<template name="RainfallOutlookView">
+  <div class="mdl-grid mdl-grid--no-spacing">
+    <div id="main-preview" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-cell mdl-cell--12-col preview-title"><h3>Rainfall Outlook for 2017</h3>
+        
+        <!-- <a href="/heat-map-rainfall-outlook">
+        <button title="View Heat Map" type="button" class="mdl-button mdl-js-button mdl-button- -fab mdl-button- -mini-fab view">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </button>
+        </a> -->
+        
+        <h6><strong>Know the 5-month rainfall forecast of municipalities with arable and cultivated land based on land cover classification of DA-BAR.</strong><br/>
+            Source: SEAMS; NOAA-Climate Prediction Center</h6>
+      </div>
+      
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="preview-controls">
+      
+      <div class="mdl-cell mdl-cell--1-offset-desktop mdl-cell--4-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+       <label for="preview-select-region">REGION</label><br/>
+       <div class="select-container">
+          <select class="mdl-select" id="preview-select-region">
+            {{#each region in regions}}
+              <option value="{{region.region}}">{{region.region}}</option>
+              {{currentlySelectedRegion}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+       <label for="preview-select-province">PROVINCE</label><br/>
+       <div class="select-container">
+          <select class="mdl-select" id="preview-select-province">
+            {{#each province in provinces}}
+              <option value="{{province.[@index]}}">{{province[@index]}}</option>
+              {{currentlySelectedProvince}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <label for="preview-select-municipality">MUNICIPALITY</label><br/>
+        <div class="select-container">
+          <select class="mdl-select" id="preview-select-municipality">          
+            {{#each municipality in municipalities}}
+              <option value="{{municipality.[@index]}}">{{municipality[@index]}}</option>
+              {{currentlySelectedMunicipality}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      </div>
+
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--1-offset-tablet mdl-cell--10-col-tablet mdl-cell--1-offset-phone mdl-cell--10-col-phone">
+        <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--7-col-tablet">
+        </div>
+        {{#each monthlyRainfall}}
+          {{> PreviewRainfallOutlookCol}}
+        {{/each}}
+        <div class="mdl-cell mdl-cell--1-col-desktop mdl-cell--7-col-tablet">
+        </div>
+      </div>
+      
+      <div class="mdl-cell mdl-cell--12-col rainfall-outlook-more">
+        <button class="mdl-button mdl-js-button mdl-button--raised">
+          More
+        </button>
+      </div>
+
+    </div>
+  </div>
+</template>

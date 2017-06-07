@@ -1,0 +1,23 @@
+<template name="Bloglist">
+	<div class="mdl-grid" id="bloglistid">
+		{{#if blogMain.enabled}}
+			<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+				<a href="http://202.92.144.44/index.php?option=com_content&view=article&id=38&Itemid=319"><h3 class="titleblog">{{blogMain.title}}</h3></a>
+				<h6>{{blogMain.text}}</h6>
+			</div>
+		{{/if}}
+		{{#each blogs}}
+			<div class="mdl-cell mdl-cell--4-col-dektop mdl-cell--8-col-tablet mdl-cell--4-col-phone" id="blogsection">
+				<div id="eachblog">
+			  		<a href="http://202.92.144.44/index.php?option=com_content&view=article&id=38&Itemid=319"><img src="{{img}}" class="blog-image"/><br />
+			  		<!-- <a href="{{pathFor '/blog/:_id' _id=_id}}"><img src="{{img}}" class="blog-image"/><br /> -->
+			  		<p id="eachtitleid">{{title}}</p></a>
+			  	</div>
+			  	<div id="blogdateid">
+				  	<span>{{makeString date}}</span>
+				  	<i class="material-icons md-15">chat_bubble_outline</i>{{count comments}}
+			  	</div>
+			</div>
+		{{/each}}
+	</div>
+</template>

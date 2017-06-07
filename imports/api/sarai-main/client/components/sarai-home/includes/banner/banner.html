@@ -1,0 +1,17 @@
+<template name="Homebanner">
+	{{#if isEnabled}}
+	<div id="banner">
+  		<img class="banner-image" src="{{banner.img}}">
+  		<div class="banner-content-top">
+  			<div class="mdl-grid" >
+				<div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone banner-text" id="{{button.align}}">
+					<h1 class="title">{{banner.title}}</h1>
+					<h3 class="title">{{banner.text}}</h3>
+					<h4 class="title-desc">{{banner.subtext}}</h4>
+					<button type="button" class= "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: green; color: white;">{{banner.buttonText}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+</template>

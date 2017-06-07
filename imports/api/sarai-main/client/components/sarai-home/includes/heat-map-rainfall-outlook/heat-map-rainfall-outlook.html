@@ -1,0 +1,44 @@
+<template name="HeatMapRainfallOutlook">
+  <div class="mdl-grid mdl-grid--no-spacing">
+    <div id="main-preview" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-cell mdl-cell--12-col preview-title"><h3>Rainfall Outlook for 2017</h3>
+        <!-- <h6><strong>Monthly rainfall forecast extracted from the ensemble mean of seasonal precipitation anomalies of CPC</strong></h6> -->
+        <h6><strong>Know the 5-month rainfall forecast of municipalities with arable and cultivated land based on land cover classification of DA-BAR.</strong><br/>
+            Source: SEAMS; NOAA-Climate Prediction Center</h6>
+      </div>
+      
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="preview-controls">
+      
+      <div class="mdl-cell mdl-cell--2-offset-desktop mdl-cell--4-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+       <label for="heat-map-select-region">REGION</label><br/>
+       <div class="select-container">
+          <select class="mdl-select" id="heat-map-select-region">
+            {{#each region in regions}}
+              <option value="{{region.region}}">{{region.region}}</option>
+              {{currentlySelectedRegion}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+       <label for="heat-map-select-province">PROVINCE</label><br/>
+       <div class="select-container">
+          <select class="mdl-select" id="heat-map-select-province">
+            {{#each province in provinces}}
+              {{#if @index $eq 0 false}}            <!-- if all province except "All" option which is the first element (province[0]) -->
+              <option value="{{province.[@index]}}">{{province[@index]}}</option>
+              {{/if}}
+              {{currentlySelectedProvince}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col preview-title"><h4 id="heat-map-rainfall-outlook-preview-title"></h4></div>
+      <div class="mdl-grid mdl-grid--no-spacing mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone"><div id="heat-map-rainfall-container"></div></div>
+      
+    </div>
+  </div>
+</template>
