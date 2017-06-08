@@ -1,8 +1,8 @@
 // Import client startup through a single index entry point
 
-import './routes.js';
-
 import { Accounts } from 'meteor/accounts-base';
+
+import './routes.js';
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
