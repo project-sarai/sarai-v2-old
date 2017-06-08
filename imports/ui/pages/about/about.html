@@ -1,3 +1,37 @@
 <template name="About">
-  This is the About page
+  <div id="main-content">
+
+    <div id="header" class="page-header">
+      <h1 id="header-text">About</h1>
+    </div><hr/>
+    
+    <div id="banner">
+      <img src="img/about-banner.jpg">
+    </div><hr/>
+
+    <div class="about-content">
+      <iframe frameborder="0" width="350" height="240" allowfullscreen="" src="https://www.youtube.com/embed/Esn_y5fIwY0?feature=oembed"></iframe>
+
+       <iframe frameborder="0" width="350" height="240" allowfullscreen="" src="https://www.youtube.com/embed/7q3FxS1aE_0?feature=oembed"></iframe>
+
+       <iframe frameborder="0" width="350" height="240" allowfullscreen="" src="https://www.youtube.com/embed/wSWTvv-Wcqw?feature=oembed"></iframe>
+    </div><hr/>
+
+    <div class="about-content">
+      {{> OurStory}}
+    </div><hr/>
+
+    <div class="about-content" id="projects">
+      {{> Projects}}
+    </div><hr/>
+
+    <div class="about-content">
+      {{> ProjectLeaders}}
+    </div><hr/>
+    
+    <div class="about-content">
+      {{> PartnerInstitutions}}
+    </div>
+    
+  </div>
 </template>
