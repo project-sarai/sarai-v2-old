@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Links } from '../../api/links/links.js';
 import { Slides } from '../../api/slides/slides.js';
 import { Projects } from '../../api/projects/projects.js';
+import { Logos } from '../../api/logos/logos.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -13,7 +14,7 @@ Meteor.startup(() => {
         title: 'SARAi',
         url: '/about-us',
         links: [],
-        createdAt: new Date()
+        createdAt: new Date(),
       },
       {
         title: 'Crops',
@@ -22,35 +23,35 @@ Meteor.startup(() => {
           {
             title: 'Rice',
             url: '/icm-rice',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Corn',
             url: '/icm-corn',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Banana',
             url: '/icm-banana',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Coconut',
             url: '/icm-coconut',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Coffee',
             url: '/icm-coffee',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Cacao',
             url: '/icm-cacao',
-            createdAt: new Date()
-          }
+            createdAt: new Date(),
+          },
         ],
-        createdAt: new Date()
+        createdAt: new Date(),
       },
       {
         title: 'Maps',
@@ -59,23 +60,23 @@ Meteor.startup(() => {
           {
             title: 'Suitability Maps',
             url: 'http://maps.sarai.ph/suitability-maps',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Crop Production Area',
             url: 'http://maps.sarai.ph/crop-production-area',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Normalized Difference Vegetation Index (NDVI)',
             url: 'http://maps.sarai.ph/ndvi',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Rainfall Map',
             url: 'http://maps.sarai.ph/rainfall-maps',
-            createdAt: new Date()
-          }
+            createdAt: new Date(),
+          },
         ],
         createdAt: new Date(),
       },
@@ -86,35 +87,35 @@ Meteor.startup(() => {
           {
             title: 'Alerts and Advisories',
             url: 'http://sarai.ph/advisories',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Monitoring',
             url: 'http://sarai.ph/weather-monitoring',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Planting Guide',
             url: 'http://sarai.ph/rainfall-distribution',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'SPIDTech',
             url: 'http://pests.sarai.ph/',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'Open Data',
             url: 'http://opendata.sarai.ph/',
-            createdAt: new Date()
+            createdAt: new Date(),
           },
           {
             title: 'SARAi Eskwela',
             url: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319',
-            createdAt: new Date()
-          }
+            createdAt: new Date(),
+          },
         ],
-        createdAt: new Date()
+        createdAt: new Date(),
       },
       {
         title: 'Contact Us',
@@ -123,26 +124,26 @@ Meteor.startup(() => {
           {
             title: 'Subscribe',
             url: 'https://goo.gl/forms/i4jW7LshCSQpuyZ23',
-            createdAt: new Date()
-          }
+            createdAt: new Date(),
+          },
         ],
-        createdAt: new Date()
+        createdAt: new Date(),
       },
     ];
 
     data.forEach(link => Links.insert(link));
   }
 
-  if (Slides.find().count() == 0) {
+  if (Slides.find().count() === 0) {
   const data = [
     {
       title: 'Smarter Crop Management # 1',
       subtitle: 'Helping farmers to produce with less',
-      text: 'Know the right amount of nutrient...',  
+      text: 'Know the right amount of nutrient...',
       buttonText: 'More',
       buttonURL: '#',
       rank: 1,
-      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
     },
     {
       title: 'Smarter Crop Management # 2',
@@ -151,27 +152,27 @@ Meteor.startup(() => {
       buttonText: 'More',
       buttonURL: '#',
       rank: 2,
-      image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg'
+      image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
     {
       title: 'Smarter Crop Management # 3',
       subtitle: 'Helping farmers to produce with less',
-      text: 'Know the right amount of nutrient...',  
+      text: 'Know the right amount of nutrient...',
       buttonText: 'More',
       buttonURL: '#',
       rank: 3,
-      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
     },
     {
       title: 'Smarter Crop Management # 4',
       subtitle: 'Helping farmers to produce with less',
-      text: 'Know the right amount of nutrient...',  
+      text: 'Know the right amount of nutrient...',
       buttonText: 'More',
       buttonURL: '#',
       rank: 4,
-      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
-  ]
+  ];
 
     data.forEach(slide => Slides.insert(slide));
   }
@@ -217,5 +218,33 @@ Meteor.startup(() => {
   ]
 
     data.forEach(project => Projects.insert(project));
+
+  }
+  
+  if (Logos.find().count() === 0) {
+    const data = [
+      {
+        name: 'SARAi',
+        value: 'img/sarai.png',
+        url: '/',
+      },
+      {
+        name: 'DOST',
+        value: 'img/dost.png',
+        url: 'http://www.dost.gov.ph/',
+      },
+      {
+        name: 'PCAARRD',
+        value: 'img/pcaarrd.png',
+        url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
+      },
+      {
+        name: 'UPLB',
+        value: 'img/uplb.png',
+        url: 'http://www.uplb.edu.ph/',
+      },
+    ];
+
+    data.forEach(logo => Logos.insert(logo));
   }
 });
