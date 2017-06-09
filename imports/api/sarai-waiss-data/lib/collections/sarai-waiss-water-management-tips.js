@@ -1,0 +1,1 @@
+WaterManagementTips = new Mongo.Collection('water-management-tips');

@@ -1,0 +1,54 @@
+<template name="WeatherMonitoringV2">
+
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col-desktop">
+      <select class="form-control" id="monitoring-station-select">
+        <!-- {{#each station in stations}}
+          <option value="{{station.id}}">{{station.label}}</option>
+        {{/each}} -->
+      </select>
+      <div id="weather-map-v2"></div>
+    </div>
+    <div class="mdl-cell mdl-cell--9-col-desktop">
+
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div id="forecast" class="btn-group" role="group">
+          <button type="button" class="btn btn-default">
+            10-Day Forecast
+          </button>
+        </div>
+        <div id="accumulated" class="btn-group" role="group">
+          <button type="button" class="btn btn-default">
+            Accumulated Rainfall
+          </button>
+        </div>
+        <div id="year" class="btn-group" role="group">
+          <button type="button" class="btn btn-default">
+            Past Year's Data
+          </button>
+        </div>
+      </div>
+
+      <div id="meteogram-container">
+
+      </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col-desktop">
+      <hr>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col-desktop">
+      {{> TemperatureHeatmap }}
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col-desktop">
+      {{> RainHeatmap }}
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col-desktop">
+      {{> WeatherStations }}
+    </div>
+
+  </div>
+</template>

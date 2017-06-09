@@ -6,6 +6,7 @@ import { Slides } from '../../api/slides/slides.js';
 import { Logos } from '../../api/logos/logos.js';
 import { Story } from '../../api/story/story.js';
 import { Projects } from '../../api/projects/projects.js';
+import { Services } from '../../api/services/services.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -178,26 +179,70 @@ Meteor.startup(() => {
     data.forEach(slide => Slides.insert(slide));
   }
 
+  if (Services.find().count() == 0) {
+  const data = [
+    {
+      url: '#',
+      title: 'Integrated Crop Management',
+      subtitle: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      text1: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',  
+      text2: 'Nutrient Management is a vital process in farming. It pertains...',
+      text3: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      url: '#',
+      title: 'Integrated Crop Management # 2',
+      subtitle: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      text1: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',  
+      text2: 'Nutrient Management is a vital process in farming. It pertains...',
+      text3: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      url: '#',
+      title: 'Integrated Crop Management # 3',
+      subtitle: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      text1: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',  
+      text2: 'Nutrient Management is a vital process in farming. It pertains...',
+      text3: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      url: '#',
+      title: 'Integrated Crop Management # 4',
+      subtitle: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      text1: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',  
+      text2: 'Nutrient Management is a vital process in farming. It pertains...',
+      text3: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      image: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    }
+  ]
+
+    data.forEach(project => Services.insert(project));
+
+  }
+
   if (Logos.find().count() === 0) {
     const data = [
       {
         name: 'SARAi',
-        value: 'img/sarai.png',
+        value: 'img/logos/sarai.png',
         url: '/',
       },
       {
         name: 'DOST',
-        value: 'img/dost.png',
+        value: 'img/logos/dost.png',
         url: 'http://www.dost.gov.ph/',
       },
       {
         name: 'PCAARRD',
-        value: 'img/pcaarrd.png',
+        value: 'img/logos/pcaarrd.png',
         url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
       },
       {
         name: 'UPLB',
-        value: 'img/uplb.png',
+        value: 'img/logos/uplb.png',
         url: 'http://www.uplb.edu.ph/',
       },
     ];
@@ -219,15 +264,57 @@ Meteor.startup(() => {
     const data = [
       {
         title: 'Project 1. Model Development and Crop Forecasting',
-        description: 'Project 1 aims to develop and evaluate crop models to launch a crop forecasting platform available for the entire country for the six priority crops. In order to achieve these, the project is composed of the following research areas:\n\n– Climate risk assessment in key production areas\n– Validated crop models for priority crops\n– Integrated Crop Management System (ICMS)\n– Optimal nutrient management\n– Crop advisories on crop protection and crop forecasts\n– Crop early warning systems (EWS)\n– Adaptive planting calendar\n– Database, validated crop models and forecasts per crop',
+        description: 'Project 1 aims to develop and evaluate crop models to launch a crop forecasting platform available for the entire country for the six priority crops. In order to achieve these, the project is composed of the following research areas:',
+        subDescription: [
+          'Climate risk assessment in key production areas',
+          'Validated crop models for priority crops',
+          'Integrated Crop Management System (ICMS)',
+          'Optimal nutrient management',
+          'Crop advisories on crop protection and crop forecasts',
+          'Crop early warning systems (EWS)',
+          'Adaptive planting calendar',
+          'Database, validated crop models and forecasts per crop',
+        ],
       },
       {
         title: 'Project 2. Environmental Characterization and Development of Integrated Crop Management',
-        description: 'Project 2 aims to provide the near real-time, empirical field data as inputs to the crop models simulated by Project 1. It also aims to provide site-specific nutrient management advisories for the perennials.\n\n– Updated land use and crop suitability maps\n– Real time and edaphic data from Automatic Weather Stations (AWS) and sensors\n– Integrated Crop Management System (ICMS)\n– Vulnerability Studies',
+        description: 'Project 2 aims to provide the near real-time, empirical field data as inputs to the crop models simulated by Project 1. It also aims to provide site-specific nutrient management advisories for the perennials.',
+        subDescription: [
+          'Updated land use and crop suitability maps',
+          'Real time and edaphic data from Automatic Weather Stations (AWS) and sensors',
+          'Integrated Crop Management System (ICMS)',
+          'Vulnerability Studies',
+        ],
       },
       {
         title: 'Project 3. SARAi Knowledge Portal',
-        description: 'Project 3 is the online infrastructure of Project SARAi which serves as the database, and the online go-to site of various stakeholders.\n\n– Database platform for Project SARAi outputs\n– Crop advisories, crop forecasts, crop EWS\n– Information/learning tools\n– Planting calendar, ICM, and integrated water management IPM',
+        description: 'Project 3 is the online infrastructure of Project SARAi which serves as the database, and the online go-to site of various stakeholders.',
+        subDescription: [
+          'Database platform for Project SARAi outputs',
+          'Crop advisories, crop forecasts, crop EWS',
+          'Information/learning tools',
+          'Planting calendar, ICM, and integrated water management IPM',
+        ],
+      },
+      {
+        title: 'Project 4: Capacity and Knowledge-Building',
+        description: 'Project 4 makes sure that the system and the outputs of the research program are shared with the stakeholders through conducting technical trainings, seminars, workshops; developing training modules; and designing various IEC materials.',
+        subDescription: [
+          'Analyzed training needs',
+          'New and complementary training tools and activities',
+          'Conduct of trainings, IEC ad joint learning activities on smarter farming techniques, ICM, DSS, AWS/Sensors',
+        ],
+      },
+      {
+        title: 'Project 5: SARAi Mainstreaming',
+        description: 'Project 5 is in charge of the formulation of science-based recommendations for the agricultural sector. It also makes sure that the partner SUCs are committed into contributing to the consortium, and that the relevant government agencies will take part in building and improving the system.',
+        subDescription: [
+          'Identification of policy issues and formulation of policy papers',
+          'Publication of research results',
+          'Organization of planning and scientific meetings',
+          'Establish: Crop-climate forecasting and modelling laboratory',
+          'Build consortium to ensure sustainability',
+        ],
       },
     ];
 

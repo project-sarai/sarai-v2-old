@@ -1,0 +1,1 @@
+HeatMapData = new Mongo.Collection('heat-map-data')

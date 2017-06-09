@@ -1,0 +1,18 @@
+<template name="TwitterFeed">
+  <div id="twitter-feed" {{heightClass}}>
+    <span id="toggle-visibility">
+      {{#if max}}
+        <i class="material-icons">expand_more</i>
+        {{else}}
+        <i class="material-icons">expand_less</i>
+        <span class="header">Twitter Feed</span>
+      {{/if}}
+    </span>
+
+    {{#if max}}
+      <a class="twitter-timeline" href="https://twitter.com/projectsarai_ph">Tweets by projectsarai_ph</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      {{else}}
+
+    {{/if}}
+  </div>
+</template>

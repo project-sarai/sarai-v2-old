@@ -5,13 +5,14 @@ import { check } from 'meteor/check';
 import { Projects } from './projects.js';
 
 Meteor.methods({
-  'projects.insert'(title, description) {
+  'projects.insert'(title, description, subDescription) {
     check(title, String);
     check(description, String);
 
-    return Projects.insert({
+    return Slides.insert({
       title,
       description,
+      subDescription,
       createdAt: new Date(),
     });
   },

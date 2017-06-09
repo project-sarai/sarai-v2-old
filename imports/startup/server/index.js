@@ -9,8 +9,7 @@ Meteor.startup(function() {
 
   UploadServer.init({
       tmpDir: '/opt/uploads/tmp',
-      uploadDir: '/opt/uploads/',
-      checkCreateDirectories: true, //create the directories for you
+      uploadDir: '/opt/uploads',
       getFileName: function(fileInfo, formData) {
         return Random.id()+".jpg";
       }

@@ -1,0 +1,26 @@
+<template name="WeatherMonitoring">
+  <div id="weather-map"></div>
+    <div id="weather-monitoring-splash">
+      <h3 class="text">Please click on any blue marker</h3>
+      <h4 class="text">
+        SARAi weather stations constantly monitor these locations to produce 10-day weather forecasts
+      </h4>
+    </div>
+
+    <dialog id="weather-monitoring-dialog" class="mdl-dialog">
+
+      <h4 id="weather-monitoring-dialog-title" class="mdl-dialog__title"></h4>
+
+      <div class="mdl-dialog__content">
+
+        <div id="meteogram-container">
+
+        </div>
+      </div>
+
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button cancel">Close</button>
+      </div>
+    </dialog>
+
+</template>

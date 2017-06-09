@@ -1,0 +1,34 @@
+<template name="Serviceslist">
+	<div class="mdl-grid" id="servicescontainer">
+		{{#if servicesMain.enabled}}
+			<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-desktop" style="text-align: center;">
+				<h5 class="maintitle">{{servicesMain.title}}</h5>
+				<h6>{{servicesMain.description}}</h6>
+				<p>{{servicesMain.subtext}}</p>
+			</div>
+		{{/if}}
+		{{#each service in services}}
+			<div class="servicessection mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+				{{#if hasAppLink service.media.subtitleLink}}
+					<div class="titlediv">
+			  		<a href="{{service.media.subtitleLink}}"><img src="{{service.thumbnail}}" class="services-image"/></a><br /><br />
+			  		<a href="{{service.media.subtitleLink}}" id="titleservices">{{service.title}}</a><br /><br />
+			  	</div>
+					{{else}}
+					<div class="titlediv">
+			  		<a href="{{pathFor '/services/:_id' _id=service._id}}"><img src="{{service.thumbnail}}" class="services-image"/></a><br /><br />
+			  		<a href="{{pathFor '/services/:_id' _id=service._id}}" id="titleservices">{{service.title}}</a><br /><br />
+			  	</div>
+				{{/if}}
+			  	<div class="servicesdesc">
+			  		<br />
+					{{service.text}}
+					<br />
+				</div>
+			</div>
+		{{/each}}
+		<!-- {{#if servicesMain.buttonEnabled}}
+			<div class="mdl-cell mdl-cell-12-col"><button type="button" class="mdl-button mdl-js-button mdl-button-raised mdl-js-ripple-effect" id="moreprojectsbutton">MORE PROJECTS</button></div>
+		{{/if}} -->
+	</div>
+</template>

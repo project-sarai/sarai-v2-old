@@ -1,0 +1,15 @@
+<template name="Preview">
+<!--   <div class="preview-controls">
+    <a href="#" class="link" id="forecast-view" title="Expected weather for today and for the next 7 days">Forecast View</a> <span class="pipe">|</span> <a href="#" class="link" id="concise-view" title="Past 30-day rainfall from the 18 Automatic Weather Stations of SARAi">Rainfall View</a>
+  </div> -->
+
+  {{#if forecastViewSelected}}
+    {{> ForecastView}}
+  {{else}}
+    {{#if conciseViewSelected}}
+      <!-- {{> ConciseView}} -->
+      {{> GraphView}}
+    {{/if}}
+  {{/if}}
+
+</template>

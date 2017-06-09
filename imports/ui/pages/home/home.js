@@ -1,4 +1,6 @@
 import './home.html';
 
 import '../../components/home/carousel.js';
-import '../../components/home/weather.js';
+import '../../components/home/rainfall-forecast.js';
+import '../../components/home/rainfall-outlook.js';
+import '../../components/home/services.js';

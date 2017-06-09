@@ -1,0 +1,1 @@
+WeatherStations = new Mongo.Collection('weather-stations');

@@ -1,0 +1,13 @@
+<template name="WeatherAdvisory">
+	<div class="mdl-grid mdl-grid--no-spacing" id="weatheradvisorycontainer">
+    <div id="main-preview" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--1-offset-desktop mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+		{{#if weatherAdvisoryMain.enabled}}
+			<div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-desktop">
+				<h5 style="font-weight: bold;">{{weatherAdvisoryMain.title}}</h5>
+				<h7>{{weatherAdvisoryMain.description}}</h7>
+				<p>{{weatherAdvisoryMain.subtext}}</p>
+			</div>
+		{{/if}}
+	</div>
+	</div>
+</template>

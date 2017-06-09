@@ -14,3 +14,6 @@ import '../../api/story/server/publications.js';
 
 import '../../api/projects/methods.js';
 import '../../api/projects/server/publications.js';
+
+import '../../api/services/methods.js';
+import '../../api/services/server/publications.js';
