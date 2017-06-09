@@ -3,10 +3,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Links } from '../../api/links/links.js';
 import { Slides } from '../../api/slides/slides.js';
+<<<<<<< HEAD
 import { Logos } from '../../api/logos/logos.js';
 import { Story } from '../../api/story/story.js';
 import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
+=======
+import { Projects } from '../../api/projects/projects.js';
+import { Logos } from '../../api/logos/logos.js';
+>>>>>>> upstream/master
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -179,7 +184,11 @@ Meteor.startup(() => {
     data.forEach(slide => Slides.insert(slide));
   }
 
+<<<<<<< HEAD
   if (Services.find().count() == 0) {
+=======
+  if (Projects.find().count() == 0) {
+>>>>>>> upstream/master
   const data = [
     {
       url: '#',
@@ -219,10 +228,17 @@ Meteor.startup(() => {
     }
   ]
 
+<<<<<<< HEAD
     data.forEach(project => Services.insert(project));
 
   }
 
+=======
+    data.forEach(project => Projects.insert(project));
+
+  }
+  
+>>>>>>> upstream/master
   if (Logos.find().count() === 0) {
     const data = [
       {
