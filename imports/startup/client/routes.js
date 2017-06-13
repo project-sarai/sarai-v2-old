@@ -12,6 +12,7 @@ import '../../ui/layouts/main/main-layout.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/cms/cms.js';
+import '../../ui/pages/crops/rice/rice.js';
 
 
 // Set up all routes in the app
@@ -28,6 +29,14 @@ FlowRouter.route('/about', {
   name: 'about',
   action() {
     BlazeLayout.render('MainLayout', { main: 'About' });
+  },
+});
+
+// RICE
+FlowRouter.route('/crops/rice', {
+  name: 'rice',
+  action() {
+    BlazeLayout.render('MainLayout', { main: 'Rice' });
   },
 });
 

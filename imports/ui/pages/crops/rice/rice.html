@@ -1,0 +1,17 @@
+<template name="Rice">
+
+  {{#each getCrop 'rice'}}
+    <div class="crops-banner">
+      <img class="crops-banner" src="{{bannerImg}}" alt="rice banner image">
+      <div class="crops-title">
+        <h1 class="crops-title">RICE</h1>
+      </div>
+    </div><hr>
+    <div class="container crops-about">
+      <div class="col-md-9">
+        {{{about}}}
+      </div>
+    </div>
+  {{/each}}
+
+</template>

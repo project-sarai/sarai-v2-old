@@ -9,7 +9,7 @@ Meteor.methods({
     check(title, String);
     check(description, String);
 
-    return Slides.insert({
+    return Projects.insert({
       title,
       description,
       subDescription,
