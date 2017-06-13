@@ -25,6 +25,7 @@ import '../../ui/pages/cms/services/services-cms-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-button.js';
 import '../../ui/pages/cms/services/services-cms-delete-button.js';
+import '../../ui/pages/crops/rice/rice.js';
 
 
 // Set up all routes in the app
@@ -41,6 +42,14 @@ FlowRouter.route('/about', {
   name: 'about',
   action() {
     BlazeLayout.render('MainLayout', { main: 'About' });
+  },
+});
+
+// RICE
+FlowRouter.route('/crops/rice', {
+  name: 'rice',
+  action() {
+    BlazeLayout.render('MainLayout', { main: 'Rice' });
   },
 });
 
