@@ -29,6 +29,7 @@ import '../../ui/pages/cms/services/services-cms-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-button.js';
 import '../../ui/pages/cms/services/services-cms-delete-button.js';
+import '../../ui/pages/crops/rice/rice.js';
 
 import '../../ui/pages/crops/rice/rice.js';
 import '../../ui/pages/crops/corn/corn.js';
