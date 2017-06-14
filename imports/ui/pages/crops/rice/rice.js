@@ -13,5 +13,4 @@ Template.Rice.helpers({
   getCrop: function(crop) {
     return Crops.find({"name":crop});
   }
-
 });

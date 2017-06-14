@@ -1,0 +1,31 @@
+<template name="Corn">
+
+  {{#each getCrop 'corn'}}
+    <div class="crops-banner">
+      <img class="crops-banner" src="{{bannerImg}}" alt="corn banner image">
+      <div class="crops-title">
+        <h1 class="crops-title">CORN</h1>
+      </div>
+    </div><hr>
+
+    <div class="crops-main-content">
+      
+      {{> CornLinks}}
+
+      <div class="container crops-about">
+        <div class="col-md-7">
+          {{{about}}}
+        </div>
+        <div class="col-md-5">
+          <h2>Trivia</h2>
+          {{> CornTrivia}}
+        </div>
+      </div>
+      <div class="container crops-about">
+        {{> CornNutrient}}
+      </div>
+
+    </div>
+  {{/each}}
+
+</template>
