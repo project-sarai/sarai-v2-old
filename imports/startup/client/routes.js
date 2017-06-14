@@ -13,7 +13,8 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/cms/cms.js';
 import '../../ui/pages/crops/rice/rice.js';
-
+import '../../ui/pages/crops/corn/corn.js';
+import '../../ui/pages/crops/banana/banana.js';
 
 // Set up all routes in the app
 // HOMEPAGE
@@ -37,6 +38,22 @@ FlowRouter.route('/crops/rice', {
   name: 'rice',
   action() {
     BlazeLayout.render('MainLayout', { main: 'Rice' });
+  },
+});
+
+// CORN
+FlowRouter.route('/crops/corn', {
+  name: 'corn',
+  action() {
+    BlazeLayout.render('MainLayout', { main: 'Corn' });
+  },
+});
+
+// BANANA
+FlowRouter.route('/crops/banana', {
+  name: 'banana',
+  action() {
+    BlazeLayout.render('MainLayout', { main: 'Banana' });
   },
 });
 
