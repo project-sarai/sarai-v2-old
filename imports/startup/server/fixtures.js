@@ -18,7 +18,7 @@ Meteor.startup(() => {
         links: [
             {
               title: 'SARAi',
-              url: '/about-us',
+              url: '/about',
               links: [],
               rank: '1',
               createdAt: new Date(),
@@ -30,37 +30,37 @@ Meteor.startup(() => {
               links: [
                 {
                   title: 'Rice',
-                  url: '/icm-rice',
+                  url: '/crops/rice',
                   rank: '1',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Corn',
-                  url: '/icm-corn',
+                  url: '/crops/corn',
                   rank: '2',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Banana',
-                  url: '/icm-banana',
+                  url: '/crops/banana',
                   rank: '3',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Coconut',
-                  url: '/icm-coconut',
+                  url: '/crops/coconut',
                   rank: '4',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Coffee',
-                  url: '/icm-coffee',
+                  url: '/crops/coffee',
                   rank: '5',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Cacao',
-                  url: '/icm-cacao',
+                  url: '/crops/cacao',
                   rank: '6',
                   createdAt: new Date(),
                 },
@@ -283,22 +283,22 @@ Meteor.startup(() => {
     const data = [
       {
         name: 'SARAi',
-        value: 'img/logos/sarai.png',
+        value: '/img/logos/sarai.png',
         url: '/',
       },
       {
         name: 'DOST',
-        value: 'img/logos/dost.png',
+        value: '/img/logos/dost.png',
         url: 'http://www.dost.gov.ph/',
       },
       {
         name: 'PCAARRD',
-        value: 'img/logos/pcaarrd.png',
+        value: '/img/logos/pcaarrd.png',
         url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
       },
       {
         name: 'UPLB',
-        value: 'img/logos/uplb.png',
+        value: '/img/logos/uplb.png',
         url: 'http://www.uplb.edu.ph/',
       },
     ];

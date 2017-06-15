@@ -4,13 +4,13 @@ import { Meteor } from 'meteor/meteor';
 import './main-navbar.html';
 
 Template.MainNavbar.onCreated(function() {
-  Meteor.subscribe('links.all');
-  Meteor.subscribe('logos.all');
+  Meteor.subscribe('links');
+  Meteor.subscribe('logos');
 });
 
 Template.MainNavbar.helpers({
   links: function() {
-    return Links.find({});
+    return Links.findOne({title:'mainHeader'});
   },
   logos: function() {
     return Logos.find({});
