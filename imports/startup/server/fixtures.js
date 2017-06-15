@@ -572,22 +572,22 @@ Meteor.startup(() => {
     const data = [
       {
         name: 'SARAi',
-        value: 'img/logos/sarai.png',
+        value: '/img/logos/sarai.png',
         url: '/',
       },
       {
         name: 'DOST',
-        value: 'img/logos/dost.png',
+        value: '/img/logos/dost.png',
         url: 'http://www.dost.gov.ph/',
       },
       {
         name: 'PCAARRD',
-        value: 'img/logos/pcaarrd.png',
+        value: '/img/logos/pcaarrd.png',
         url: 'http://www.pcaarrd.dost.gov.ph/home/portal/',
       },
       {
         name: 'UPLB',
-        value: 'img/logos/uplb.png',
+        value: '/img/logos/uplb.png',
         url: 'http://www.uplb.edu.ph/',
       },
     ];
