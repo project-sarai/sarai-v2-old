@@ -14,6 +14,7 @@ import '../../ui/layouts/cms/cms-layout.js';
 // PAGES
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/about/about.js';
+
 import '../../ui/pages/cms/cms.js';
 import '../../ui/pages/cms/cms-home/cms-home.js';
 import '../../ui/pages/cms/about-us/about-us.js';
@@ -25,6 +26,7 @@ import '../../ui/pages/cms/services/services-cms-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-form.js';
 import '../../ui/pages/cms/services/services-cms-edit-button.js';
 import '../../ui/pages/cms/services/services-cms-delete-button.js';
+
 import '../../ui/pages/crops/rice/rice.js';
 import '../../ui/pages/crops/corn/corn.js';
 import '../../ui/pages/crops/banana/banana.js';
