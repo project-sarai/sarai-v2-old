@@ -11,24 +11,24 @@
       </div>
       <div class="input-group" id="cms-service-crops">
         <span class="input-group-addon">Crops</span>
-        <input id="cms-service-crops-input" value="{{service.info.crops}}" type="text" class="form-control" name="msg" placeholder="Enter Crops Here">
+        <input id="cms-service-crops-input" value="{{service.crops}}" type="text" class="form-control" name="msg" placeholder="Enter Crops Here">
       </div>
       <div class="input-group" id="cms-service-experts">
         <span class="input-group-addon">Experts</span>
-        <input id="cms-service-experts-input" value="{{arrayToCSV service.info.experts}}" type="text" class="form-control" name="msg" placeholder="Enter Experts Here" data-toggle="tooltip" title="{{tooltip}}">
+        <input id="cms-service-experts-input" value="{{service.experts}}" type="text" class="form-control" name="msg" placeholder="Enter Experts Here" data-toggle="tooltip" title="{{tooltip}}">
       </div>
       <div class="input-group" id="cms-service-ura">
         <span class="input-group-addon">URA</span>
-        <input id="cms-service-ura-input" value="{{arrayToCSV service.info.ura}}" type="text" class="form-control" name="msg" placeholder="Enter URA Here" data-toggle="tooltip" title="{{tooltip}}">
+        <input id="cms-service-ura-input" value="{{service.ura}}" type="text" class="form-control" name="msg" placeholder="Enter URA Here" data-toggle="tooltip" title="{{tooltip}}">
       </div>
       <div class="input-group" id="cms-service-leaders">
         <span class="input-group-addon">Project Leaders</span>
-        <input id="cms-service-leaders-input" value="{{arrayToCSV service.info.projectLeaders}}" type="text" class="form-control" name="msg" placeholder="Enter Project Leaders Here" data-toggle="tooltip" title="{{tooltip}}">
+        <input id="cms-service-leaders-input" value="{{ service.projectLeaders}}" type="text" class="form-control" name="msg" placeholder="Enter Project Leaders Here" data-toggle="tooltip" title="{{tooltip}}">
       </div>
     </form>
 
     <div width="50px" align="center">
-      <img id="cms-service-thumbnail" class="cms-service-form-thumbnail" src="{{service.thumbnail}}">
+      <img id="cms-service-thumbnail" width="25%" height="auto" class="cms-service-form-thumbnail" src="{{service.thumbnail}}">
       {{> upload_bootstrap multiple=false }}
 
       <div  id="cms-service-subtitle" class="input-group">
@@ -48,12 +48,12 @@
 
     <div>
       <h3>The Challenge</h3>
-      <div id="cms-service-col1text-editor">{{col1Text}}</div>
+      <!-- <div id="cms-service-col1text-editor">{{col1Text}}</div> -->
     </div>
 
     <div>
       <h3>Solution</h3>
-      <div id="cms-service-col2text-editor">{{col2Text}}</div>
+      <!-- <div id="cms-service-col2text-editor">{{col2Text}}</div> -->
     </div>
 
     <div align="right">

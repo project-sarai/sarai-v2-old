@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 import { Story } from './story.js';
 
 Meteor.methods({
-  'story.insert'(content) {
+  'story.insert': (content) => {
     check(content, String);
 
     return Story.insert({
@@ -13,4 +13,17 @@ Meteor.methods({
       createdAt: new Date(),
     });
   },
+
+  'cms-about-us-content-update': (title, content) => {
+    Story.update(
+      { name: 'origin' },
+      {
+        $set : {
+          title,
+          content
+        }
+      },
+      { upsert: true }
+    )
+  }
 });

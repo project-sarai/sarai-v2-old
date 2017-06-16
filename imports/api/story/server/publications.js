@@ -3,6 +3,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Story } from '../story.js';
 
-Meteor.publish('story.all', function() {
+Meteor.publish('story', function() {
   return Story.find();
 });

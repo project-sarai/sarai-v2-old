@@ -3,7 +3,7 @@ import './services-cms-edit-form.html'
 
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
-
+import { Services } from '../../../../api/services/services.js';
 
 Template.CMSServicesForm.onCreated(() => {
   Meteor.subscribe('services')

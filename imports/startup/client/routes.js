@@ -17,7 +17,10 @@ import '../../ui/pages/about/about.js';
 
 import '../../ui/pages/cms/cms.js';
 import '../../ui/pages/cms/cms-home/cms-home.js';
-import '../../ui/pages/cms/about-us/about-us.js';
+import '../../ui/pages/cms/about-us/about-us-content.js';
+import '../../ui/pages/cms/about-us/about-us-title.js';
+import '../../ui/pages/cms/about-us/about-us-partners.js';
+import '../../ui/pages/cms/about-us/about-us-leaders.js';
 import '../../ui/pages/cms/services/services.js';
 import '../../ui/pages/cms/main/main.js';
 import '../../ui/pages/cms/weather/weather.js';
@@ -125,10 +128,28 @@ FlowRouter.route('/admin/main-banner', {
     BlazeLayout.render('CMSLayout', { main: 'BannerOptions' });
   },
 });
-FlowRouter.route('/admin/about-us', {
-  name: 'admin.about-us',
+FlowRouter.route('/admin/about-us-content', {
+  name: 'admin.about-us-content',
   action() {
-    BlazeLayout.render('CMSLayout', { main: 'CMSAboutUs' });
+    BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsContent' });
+  },
+});
+FlowRouter.route('/admin/about-us-title', {
+  name: 'admin.about-us-title',
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsTitle' });
+  },
+});
+FlowRouter.route('/admin/about-us-partners', {
+  name: 'admin.about-us-partners',
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsPartners' });
+  },
+});
+FlowRouter.route('/admin/about-us-leaders', {
+  name: 'admin.about-us-leaders',
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsLeaders' });
   },
 });
 FlowRouter.route('/admin/services', {
