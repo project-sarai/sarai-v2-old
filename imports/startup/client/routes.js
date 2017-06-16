@@ -34,6 +34,8 @@ import '../../ui/pages/crops/coconut/coconut.js';
 import '../../ui/pages/crops/coffee/coffee.js';
 import '../../ui/pages/crops/cacao/cacao.js';
 
+import '../../ui/pages/services-page/services-page.js';
+
 // Set up all routes in the app
 // HOMEPAGE
 FlowRouter.route('/', {
@@ -149,15 +151,32 @@ FlowRouter.route("/admin/services/:_id", {
     BlazeLayout.render("CMSLayout", {main: "CMSServicesForm"});
   },
 });
+
 FlowRouter.route('/admin/weather', {
   name: 'admin.weather',
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSWeather' });
   },
 });
+
 // 404
 FlowRouter.notFound = {
   action() {
     BlazeLayout.render('App_body', { main: 'App_notFound' });
   },
 };
+
+FlowRouter.route("/services/:_id", {
+  name: 'servicespage',
+  //triggersEnter: [ isAdminRedirect ],
+  action: (params, queryParams) => {
+    BlazeLayout.reset();
+    BlazeLayout.render('MainLayout', {main: 'ServicesPage'});
+  },
+});
+
+// FlowRouter.route('/services/:_id', function () {
+//   this.render('ServicesPage', {
+//     data: function () { return Services.findOne({_id: this.params._id}); }
+//   });
+// });

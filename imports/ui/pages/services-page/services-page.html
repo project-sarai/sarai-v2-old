@@ -1,0 +1,69 @@
+<template name="ServicesPage">
+  <div id="servicespageid" class="container">
+    <div>
+      <hr/>
+        <h2 id="service-page-title">{{title}}</h2>
+      <hr />
+    </div>
+    <div class="col-md-6">
+      <h3 class='servicetextid'>{{tagline}}</h3>
+      <div>
+        {{#if crops}}
+          <p><strong>Crops: </strong><br />
+          <span>{{crops}}</span></p>
+        {{/if}}
+
+        {{#if experts}}
+          <p><strong>Experts: </strong><br />
+          {{#each expert in experts}}
+            <span>
+              {{expert}}<br />
+            </span>
+          {{/each}}
+          </p>
+        {{/if}}
+
+        {{#if ura}}
+          <p><strong>URA: </strong><br />
+          {{#each item in ura}}
+            <span>
+              {{item}}<br />
+            </span>
+          {{/each}}
+          </p>
+        {{/if}}
+
+        <br />
+        <p>
+          <strong>{{projectLeaders}}</strong><br/>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      {{#if mediaIsYoutubeVideo}}
+          <div class="videomarginclass">
+              <iframe src="{{mediaLink}}" class="videoclass" frameborder="0" allowfullscreen></iframe><br />
+              <div class='projlinkdiv'>
+              <a href="{{mediaSubtitleLink}}" class="projlink"><i class='material-icons'>info_outline</i> {{mediaSubtitle}}</a>
+              </div>
+          </div>
+      {{else}}
+          <div class="videomarginclass">
+              <img src="{{thumbnail}}" class="imageclass" /><br />
+              <div class='projlinkdiv'>
+              <a href="{{mediaSubtitleLink}}" class="projlink"><i class='material-icons'>info_outline</i> {{mediaSubtitle}} </a>
+              </div>
+          </div>
+      {{/if}}
+    </div>
+    <div class="col-md-5">
+      <h3 class="servicetextid">The Challenge</h3>
+      {{{challenge}}}
+    </div>
+    <div class="col-md-7">
+      <h3 class="servicetextid">The Solution</h3>
+      {{{solution}}}
+    </div>
+
+  </div>
+</template>

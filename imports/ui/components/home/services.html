@@ -1,29 +1,19 @@
 <template name="Services">
-  
   <div class="divider"></div>
-
-  <div class="card">
-    <div class="text-center">
-      <h1>Our Projects</h1>
+  <div class="mdl-grid" id="servicescontainer">
+     <div class="mdl-cell mdl-cell- -12-col-desktop mdl-cell- -8-col-tablet mdl-cell- -4-col-desktop card" style="text-align: center;">
+      <h1  id="maintitle">Our Projects</h1>
       <p>Project SARAi uses precision agriculture and advances in technology to determine what, when, and where to plant.</p>
     </div>
-  </div>
 
-  <div class="card">
-      <div class="row">
-        {{#each services}}
-          <div class="col-md-4">
-
-            <figure class="figure">
-              <a href="{{url}}">
-                <img src="{{image}}" class="figure-img img-fluid rounded" alt="...">
-                <figcaption class="figure-caption">{{title}}</figcaption>
-              </a>
-            </figure>
-
-          </div>
-        {{/each}}
+   {{#each services}}
+      <div id="{{this._id}}" class="servicessection mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone card">
+        <div class="titlediv" style="float: left; width: 32%; margin-right: 1%; margin-bottom:5em;">
+          <a id="services-image"><img src="{{thumbnail}}" class="services-image" />{{title}}</a><br /><br />
+          <a href="" id="titleservices"></a><br /><br />
+        </div>    
       </div>
+    {{/each}}
+    <p style="clear: both;"></p>
   </div>
-
 </template>
