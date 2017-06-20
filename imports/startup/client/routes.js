@@ -302,5 +302,5 @@ FlowRouter.route("/monitoring", {
   name: 'monitoring',
   action() {
     BlazeLayout.render('MainLayout', {main: 'Monitoring'});
-  }
+  },
 });
