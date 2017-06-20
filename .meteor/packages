@@ -31,3 +31,6 @@ fortawesome:fontawesome
 tomi:upload-jquery
 tomi:upload-server
 twbs:bootstrap
+momentjs:moment
+kurounin:pagination-blaze
+navybits:pagination

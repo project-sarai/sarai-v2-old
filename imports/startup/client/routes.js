@@ -40,6 +40,8 @@ import '../../ui/pages/crops/cacao/cacao.js';
 
 import '../../ui/pages/services-page/services-page.js';
 
+import '../../ui/pages/advisories/advisories.js';
+
 // Set up all routes in the app
 // HOMEPAGE
 FlowRouter.route('/', {
@@ -102,6 +104,14 @@ FlowRouter.route('/crops/cacao', {
   name: 'cacao',
   action() {
     BlazeLayout.render('MainLayout', { main: 'Cacao' });
+  },
+});
+
+// ADVISORIES
+FlowRouter.route('/advisories', {
+  name: 'advisories',
+  action() {
+    BlazeLayout.render('MainLayout', { main: 'Advisories' });
   },
 });
 
@@ -200,7 +210,6 @@ FlowRouter.notFound = {
 
 FlowRouter.route("/services/:_id", {
   name: 'servicespage',
-  //triggersEnter: [ isAdminRedirect ],
   action: (params, queryParams) => {
     BlazeLayout.reset();
     BlazeLayout.render('MainLayout', {main: 'ServicesPage'});

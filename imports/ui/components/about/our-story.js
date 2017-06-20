@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import './our-story.html';
 
 Template.OurStory.onCreated(function() {
-  Meteor.subscribe('story.all');
+  Meteor.subscribe('story');
 });
 
 Template.OurStory.helpers({

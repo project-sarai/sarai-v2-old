@@ -9,6 +9,7 @@ import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 import { Crops } from '../../api/crops/crops.js';
 import { About } from '../../api/about/about.js';
+import { Advisories } from '../../api/advisories/advisories.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -692,5 +693,4 @@ Meteor.startup(() => {
 
     data.forEach(crop => Crops.insert(crop));
   }
-
 });

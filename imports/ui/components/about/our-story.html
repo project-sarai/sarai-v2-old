@@ -1,18 +1,18 @@
 <template name="OurStory">
 
-  <h3 class="about-title"><b>Our Story</b></h3>
+  {{#each story}}
+    <h3 class="about-title"><b>{{title}}</b></h3>
 
-  <div id="story-content" class="container">
-    <div id="content" class="col-md-6">
-      {{#each story}}
+    <div id="story-content" class="container">
+      <div id="content" class="col-md-6">
         <p id="story-body">
           {{content}}
         </p>
-      {{/each}}
+      </div>
+      <div class="col-md-6">
+        <img id="story-img" src="img/about-sarai-consult.jpg">
+      </div>
     </div>
-    <div class="col-md-6">
-      <img id="story-img" src="img/about-sarai-consult.jpg">
-    </div>
-  </div>
+  {{/each}}
 
 </template>
