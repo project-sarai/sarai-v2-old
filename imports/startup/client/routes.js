@@ -215,3 +215,12 @@ FlowRouter.route("/services/:_id", {
     BlazeLayout.render('MainLayout', {main: 'ServicesPage'});
   },
 });
+
+FlowRouter.route("/reports", {
+  name: 'reports',
+  action: (params, queryParams) => {
+    BlazeLayout.reset();
+    BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
+  },
+});
+
