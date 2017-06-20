@@ -8,12 +8,16 @@ import { Story } from '../../api/story/story.js';
 import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 import { Crops } from '../../api/crops/crops.js';
+<<<<<<< 1bd571c0d98b307f7643e1ee7526680e09db4d92
 import { About } from '../../api/about/about.js';
 import { Reports } from '../../api/reports/reports.js';
 import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
 import { DSSSettings } from '../../api/weather/sarai-dss-settings.js';
 import { WeatherStations } from '../../api/weather/sarai-weather-stations.js';
+=======
+import { Reports } from '../../api/reports/reports.js';
+>>>>>>> Added reports
 
 Meteor.startup(() => {
   // if the Links collection is empty

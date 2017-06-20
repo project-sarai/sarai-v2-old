@@ -1,6 +1,6 @@
 import './monitoring.html';
 
-Template.Monitoring.onCreated(function() {
+Template.monitoringnitoring.onCreated(function() {
 
   Highcharts.setOptions({
   // This is for all plots, change Date axis to local timezone
