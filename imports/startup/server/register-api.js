@@ -20,3 +20,6 @@ import '../../api/services/server/publications.js';
 
 import '../../api/crops/methods.js';
 import '../../api/crops/server/publications.js';
+
+import '../../api/reports/methods.js';
+import '../../api/reports/server/publications.js';

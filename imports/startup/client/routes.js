@@ -175,8 +175,10 @@ FlowRouter.route("/services/:_id", {
   },
 });
 
-// FlowRouter.route('/services/:_id', function () {
-//   this.render('ServicesPage', {
-//     data: function () { return Services.findOne({_id: this.params._id}); }
-//   });
-// });
+FlowRouter.route("/reports", {
+  name: 'reports',
+  action: (params, queryParams) => {
+    BlazeLayout.reset();
+    BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
+  },
+});
