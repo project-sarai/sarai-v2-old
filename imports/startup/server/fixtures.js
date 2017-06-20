@@ -9,6 +9,7 @@ import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 import { Crops } from '../../api/crops/crops.js';
 import { About } from '../../api/about/about.js';
+import { Advisories } from '../../api/advisories/advisories.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -107,19 +108,19 @@ Meteor.startup(() => {
               links: [
                 {
                   title: 'Alerts and Advisories',
-                  url: 'http://sarai.ph/advisories',
+                  url: '/advisories',
                   rank: '1',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Monitoring',
-                  url: 'http://sarai.ph/weather-monitoring',
+                  url: '/weather-monitoring',
                   rank: '2',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Planting Guide',
-                  url: 'http://sarai.ph/rainfall-distribution',
+                  url: '/rainfall-distribution',
                   rank: '3',
                   createdAt: new Date(),
                 },
@@ -444,4 +445,59 @@ Meteor.startup(() => {
 
     data.forEach(crop => Crops.insert(crop));
   }
+
+  if (Advisories.find().count() === 0) {
+    const data = [
+      {
+        date: '2017,03,02',
+        title: 'General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2016,03,08',
+        title: 'Situation and Outlook',
+        subtitle: '<h6>Philippine Statistics Authority Rice and Corn Situation and Outlook Report, January 2017</h6><h6>Philippine Statistics Authority Performance of Philippine Agriculture, October-December 2016</h6>',
+        body: '<p>Palay and corn production for January-December 2016 were lower than their 2015 levels. The first two quarters decrements in outputs were attributed to dry spell and drought and effects of typhoons Lando and Nona which hit the Philippines in the last quarter of 2015. The last two quarters decrements, on the other hand, were due to the movement of harvest of harvest to the third quarter 2016 and first quarter 2017 and effects of typhoons Karen and Lawin in Luzon regions.</p><div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone"><h5>Advisory</h5><p style="font-size: 1.29em; margin-top: -0.5em;">Rice</p><p style=" margin-top: -1em;">Palay production for January-December 2016 is lower than their 2015 level by 2.88%.</p><p style="font-size: 1.29em; margin-top: -0.5em;">Corn</p><p style=" margin-top: -1em;">Corn production for January-December 2016 is lower than their 2015 level by 3.99%.</p><p style="font-size: 1.29em; margin-top: -0.5em;">Other crops</p><p style=" margin-top: -1em;">In October-December 2016, production gains were noted in banana which grew by 1.57%. Output losses, on the other hand, were recorded in coconut and coffee. Coconut output decreased by 5.22% while coffee production dropped by 3.25%</p></div><div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone"><h5>Outlook</h5><p style="font-size: 1.29em; margin-top: -0.5em;">Rice</p><p style=" margin-top: -1em;">Probable production of palay crops for January-June may surpass its 2016 level by 11.68%.</p><p style="font-size: 1.29em; margin-top: -0.5em;">Corn</p><p style=" margin-top: -1em;">Probable production of corn crops for January-June may surpass its 2016 level by 29.92%.</p></div>',
+      },
+      {
+        date: '2013,03,02',
+        title: '13General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2017,03,02',
+        title: 'General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2017,03,02',
+        title: 'General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2014,03,02',
+        title: '14General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2016,03,02',
+        title: '16General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+      {
+        date: '2017,03,02',
+        title: 'General Advisory based on Weather Forecast',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management, April 16, 2017',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas.</li><li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li>There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li><li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li><li>For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
+      },
+    ];
+
+    data.forEach(advisory => Advisories.insert(advisory));
+  }  
 });

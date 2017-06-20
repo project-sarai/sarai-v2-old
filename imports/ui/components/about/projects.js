@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import './projects.html';
 
 Template.Projects.onCreated(function() {
-  Meteor.subscribe('projects.all');
+  Meteor.subscribe('projects');
 });
 
 Template.Projects.helpers({
