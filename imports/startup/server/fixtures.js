@@ -9,6 +9,7 @@ import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 import { Crops } from '../../api/crops/crops.js';
 import { About } from '../../api/about/about.js';
+import { Reports } from '../../api/reports/reports.js';
 import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
 import { Reports } from '../../api/reports/reports.js';
