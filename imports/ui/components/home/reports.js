@@ -26,3 +26,10 @@ Template.Reports.events({
     FlowRouter.go('/reports');
   }
 });
+
+Template.Reports.events({
+  'click #more-reports': function(e){
+    e.preventDefault();
+    FlowRouter.go('/reports');
+  }
+});

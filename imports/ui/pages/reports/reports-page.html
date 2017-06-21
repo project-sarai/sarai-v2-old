@@ -1,4 +1,5 @@
 <template name="ReportsPage">
+<<<<<<< 5ec7109a3710ee5f33582d41d77d34ec980b1ae8
 	<div class="container reports-header" style="text-align: center">
 		<h2 id="reports-page-title"> Reports </h2>
 	</div>
@@ -15,4 +16,19 @@
 			<hr>
 		{{/navybitsPagination}}
 	</div>
+=======
+	<div class="container report-header" style="text-align: center">
+		<!-- <div class="maintitle"> -->
+			<h1> Reports </h1>
+		<!-- </div> -->
+	</div>
+	{{#navybitsPagination data=reports}}
+		<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="width: 32%; float: bottom;">
+			<h3>Report: {{title}} </h3>
+			<img src="{{thumbnail}}" style="width: 32%">
+			<h4>File: {{file}} </h4>
+			<h4>Date: {{date}} </h4>
+		</div>
+	{{/navybitsPagination}}
+>>>>>>> Added reports page
 </template>

@@ -69,11 +69,14 @@ import '../../ui/pages/advisories/advisories.js';
 
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
+<<<<<<< 5ec7109a3710ee5f33582d41d77d34ec980b1ae8
 
 
 
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
+=======
+>>>>>>> Added reports page
 
 // Set up all routes in the app
 // HOMEPAGE
