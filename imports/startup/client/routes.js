@@ -57,10 +57,13 @@ import '../../ui/pages/services-page/services-page.js';
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
 
+<<<<<<< fba3c3e64bea203a54c5e372be6bc4396394d249
 import '../../ui/pages/advisories/advisories.js';
 
 import '../../ui/pages/monitoring/monitoring.js';
 
+=======
+>>>>>>> Added reports page
 // Set up all routes in the app
 // HOMEPAGE
 FlowRouter.route('/', {
