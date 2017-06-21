@@ -57,8 +57,11 @@ import '../../ui/pages/services-page/services-page.js';
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
 
+<<<<<<< 19e36fb2e2e22c0f34c8206c97f64612cd8a5d78
 import '../../ui/pages/advisories/advisories.js';
 
+=======
+>>>>>>> Added reports page
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
 
