@@ -7,8 +7,8 @@ Template.ReportsPage.onCreated(function() {
 });
 
 Template.ReportsPage.helpers({
-  reports: function() {
-    var data = [];
+	reports: function() {
+    	var data = [];
     result = Reports.find({},{sort: {'date': 1}}).forEach(function(item){
       data.push(item);
     })
