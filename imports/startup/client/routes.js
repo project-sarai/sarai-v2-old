@@ -54,6 +54,9 @@ import '../../ui/pages/crops/cacao/cacao.js';
 
 import '../../ui/pages/services-page/services-page.js';
 
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
+
 import '../../ui/pages/advisories/advisories.js';
 
 <<<<<<< c3be1a3e1b62504b69f098e909b7339b23241fc4
