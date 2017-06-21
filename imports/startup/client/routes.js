@@ -40,6 +40,9 @@ import '../../ui/pages/crops/cacao/cacao.js';
 
 import '../../ui/pages/services-page/services-page.js';
 
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
+
 import '../../ui/pages/advisories/advisories.js';
 
 // Set up all routes in the app
@@ -218,9 +221,8 @@ FlowRouter.route("/services/:_id", {
 
 FlowRouter.route("/reports", {
   name: 'reports',
-  action: (params, queryParams) => {
-    BlazeLayout.reset();
-    BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
+  action() {
+    Blazelayout.render('MainLayout', {main: 'ReportsPage'});
   },
 });
 
