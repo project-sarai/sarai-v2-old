@@ -59,6 +59,9 @@ import '../../ui/pages/monitoring/monitoring.js';
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
 
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
+
 import '../../ui/pages/advisories/advisories.js';
 
 
