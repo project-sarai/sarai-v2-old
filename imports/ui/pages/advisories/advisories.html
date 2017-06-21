@@ -1,34 +1,4 @@
 <template name="Advisories">
-  <nav class="navbar navbar-default nav-container">
-    <div id="sub-navbar" class="container-fluid">
-      <div class="navbar navbar-static-top" role="navigation">
-          <h4 id="advisory-monitoring" class="nav navbar-nav navbar-left">MONITORING</h4>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/weather-monitoring">Weather</a></li>
-              <li><a href="/heat-map-rainfall-outlook">Rainfall Outlook</a></li>
-              <li><a href="https://sarai-satellite-analysis.staging.lkexi.xyz/">Comparative Satellite Images</a></li>
-              <li><a href="/suitability-gallery">Suitability</a></li>
-              <li><a href="/advisories">Advisory</a></li>
-            </ul>
-          </div>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container advisory-header">
-    <h3>Advisories</h3>
-  </div>
-
-  <div>
-    {{#navybitsPagination data=advisories}}
-      <div class="container col">
-        <h4>{{title}}</h4>
-        <h6>{{{subtitle}}}</h6>
-        <div class="advisory-body">{{{body}}}</div>
-      </div>
-      <hr style="width: 70%;">
-    {{/navybitsPagination}}
-  </div>
-
+  {{> AdvisoriesSubheader}}
+  {{> AdvisoriesContent}}
 </template>
