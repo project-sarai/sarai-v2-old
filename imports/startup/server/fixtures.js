@@ -781,6 +781,12 @@ Meteor.startup(() => {
 >>>>>>> Fixed reports part
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
       },
+      {
+        title: 'Sample Report #3',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2017,06,19',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
     ];
       
     data.forEach(report => Reports.insert(report));
