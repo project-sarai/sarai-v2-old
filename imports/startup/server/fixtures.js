@@ -353,56 +353,27 @@ Meteor.startup(() => {
       {
         title: 'Project 1. Model Development and Crop Forecasting',
         description: 'Project 1 aims to develop and evaluate crop models to launch a crop forecasting platform available for the entire country for the six priority crops. In order to achieve these, the project is composed of the following research areas:',
-        subDescription: [
-          'Climate risk assessment in key production areas',
-          'Validated crop models for priority crops',
-          'Integrated Crop Management System (ICMS)',
-          'Optimal nutrient management',
-          'Crop advisories on crop protection and crop forecasts',
-          'Crop early warning systems (EWS)',
-          'Adaptive planting calendar',
-          'Database, validated crop models and forecasts per crop',
-        ],
+        body: '<p><br>– Climate risk assessment in key production areas<br>– Validated crop models for priority crops<br>– Integrated Crop Management System (ICMS)<br>– Optimal nutrient management<br>– Crop advisories on crop protection and crop forecasts<br>– Crop early warning systems (EWS)<br>– Adaptive planting calendar<br>– Database, validated crop models and forecasts per crop</p>',
       },
       {
         title: 'Project 2. Environmental Characterization and Development of Integrated Crop Management',
         description: 'Project 2 aims to provide the near real-time, empirical field data as inputs to the crop models simulated by Project 1. It also aims to provide site-specific nutrient management advisories for the perennials.',
-        subDescription: [
-          'Updated land use and crop suitability maps',
-          'Real time and edaphic data from Automatic Weather Stations (AWS) and sensors',
-          'Integrated Crop Management System (ICMS)',
-          'Vulnerability Studies',
-        ],
+        body: '<p><br>– Updated land use and crop suitability maps<br>– Real time and edaphic data from Automatic Weather Stations (AWS) and sensors<br>– Integrated Crop Management System (ICMS)<br>– Vulnerability Studies<p></p></p>',
       },
       {
         title: 'Project 3. SARAi Knowledge Portal',
         description: 'Project 3 is the online infrastructure of Project SARAi which serves as the database, and the online go-to site of various stakeholders.',
-        subDescription: [
-          'Database platform for Project SARAi outputs',
-          'Crop advisories, crop forecasts, crop EWS',
-          'Information/learning tools',
-          'Planting calendar, ICM, and integrated water management IPM',
-        ],
+        body: '<p><br>– Updated land use and crop suitability maps<br>– Real time and edaphic data from Automatic Weather Stations (AWS) and sensors<br>– Integrated Crop Management System (ICMS)<br>– Vulnerability Studies<p></p></p>',
       },
       {
         title: 'Project 4: Capacity and Knowledge-Building',
         description: 'Project 4 makes sure that the system and the outputs of the research program are shared with the stakeholders through conducting technical trainings, seminars, workshops; developing training modules; and designing various IEC materials.',
-        subDescription: [
-          'Analyzed training needs',
-          'New and complementary training tools and activities',
-          'Conduct of trainings, IEC ad joint learning activities on smarter farming techniques, ICM, DSS, AWS/Sensors',
-        ],
+        body: '<p><p>– Analyzed training needs<br>– New and complementary training tools and activities<br>– Conduct of trainings, IEC ad joint learning activities on smarter farming techniques, ICM, DSS, AWS/Sensors</p></p>',
       },
       {
         title: 'Project 5: SARAi Mainstreaming',
         description: 'Project 5 is in charge of the formulation of science-based recommendations for the agricultural sector. It also makes sure that the partner SUCs are committed into contributing to the consortium, and that the relevant government agencies will take part in building and improving the system.',
-        subDescription: [
-          'Identification of policy issues and formulation of policy papers',
-          'Publication of research results',
-          'Organization of planning and scientific meetings',
-          'Establish: Crop-climate forecasting and modelling laboratory',
-          'Build consortium to ensure sustainability',
-        ],
+        body: '<p><p>– Identification of policy issues and formulation of policy papers<br>– Publication of research results<br>– Organization of planning and scientific meetings<br>– Establish: Crop-climate forecasting and modelling laboratory<br>– Build consortium to ensure sustainability</p></p>',
       },
     ];
 
