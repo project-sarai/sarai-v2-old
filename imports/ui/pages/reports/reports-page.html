@@ -1,8 +1,15 @@
 <template name="ReportsPage">
-	<div class="container report-header">
+	<div class="container report-header" style="text-align: center">
 		<!-- <div class="maintitle"> -->
-			<h3> Reports </h3>
+			<h1> Reports </h1>
 		<!-- </div> -->
 	</div>
-	<div>
+	{{#navybitsPagination data=reports}}
+		<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="width: 32%; float: bottom;">
+			<h3>Report: {{title}} </h3>
+			<img src="{{thumbnail}}" style="width: 32%">
+			<h4>File: {{file}} </h4>
+			<h4>Date: {{date}} </h4>
+		</div>
+	{{/navybitsPagination}}
 </template>
