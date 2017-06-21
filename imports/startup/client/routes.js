@@ -57,6 +57,7 @@ import '../../ui/pages/services-page/services-page.js';
 import '../../ui/pages/reports/reports-page.js';
 import '../../ui/components/home/reports.js';
 
+<<<<<<< 262ec852d6c0baf0f7be66237ca8606be16994bc
 <<<<<<< 02b885ff05db5926485621ee8a6c48e16037b104
 <<<<<<< fba3c3e64bea203a54c5e372be6bc4396394d249
 =======
@@ -64,6 +65,10 @@ import '../../ui/components/home/reports.js';
 import '../../ui/pages/advisories/advisories.js';
 
 import '../../ui/pages/monitoring/monitoring.js';
+=======
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
+>>>>>>> Added reports page
 
 =======
 >>>>>>> Added reports page
