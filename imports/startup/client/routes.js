@@ -65,6 +65,9 @@ import '../../ui/pages/advisories/advisories.js';
 
 
 
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
+
 // Set up all routes in the app
 // HOMEPAGE
 FlowRouter.route('/', {
