@@ -680,13 +680,13 @@ Meteor.startup(() => {
       {
         title: 'Sample Report #1',
         file: 'http://sarai.ph/wp-content/uploads/2016/03/Assessment_basis_Project-SARAI.pdf',
-        date: '2017-06-20',
+        date: '2017,06,20',
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
       },
       {
         title: 'Sample Report #2',
         file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
-        date: '2017-06-20',
+        date: '2017,06,21',
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
       },
     ];
