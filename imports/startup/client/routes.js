@@ -56,7 +56,8 @@ import '../../ui/pages/services-page/services-page.js';
 
 import '../../ui/pages/advisories/advisories.js';
 
-
+import '../../ui/pages/reports/reports-page.js';
+import '../../ui/components/home/reports.js';
 
 // Set up all routes in the app
 // HOMEPAGE
@@ -282,8 +283,7 @@ FlowRouter.route("/services/:_id", {
 
 FlowRouter.route("/reports", {
   name: 'reports',
-  action: (params, queryParams) => {
-    BlazeLayout.reset();
-    BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
+  action() {
+    Blazelayout.render('MainLayout', {main: 'ReportsPage'});
   },
 });

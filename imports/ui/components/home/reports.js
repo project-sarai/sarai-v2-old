@@ -11,3 +11,10 @@ Template.Reports.helpers({
     return Reports.find({});
   }
 });
+
+Template.Reports.events({
+  'click #more-reports': function(e){
+    e.preventDefault();
+    FlowRouter.go('/reports');
+  }
+});
