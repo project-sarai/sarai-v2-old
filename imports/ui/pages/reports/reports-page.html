@@ -1,13 +1,26 @@
 <template name="ReportsPage">
 	<div class="container report-header" style="text-align: center">
-		<h1> Reports </h1>
+		<h2 id="reports-page-title"> Reports </h2>
 	</div>
 	{{#navybitsPagination data=reports}}
 		<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="width: 32%; float: bottom;">
-			<h3>Report: {{title}} </h3>
+			<h3 id="reports-title">Report: {{title}} </h3>
 			<img src="{{thumbnail}}" style="width: 1000px;">
 			<h4>File: {{file}} </h4>
 			<h4>Date: {{dateFormat date}} </h4>
 		</div>
-	{{/navybitsPagination}}
+	</div>
+	<div class="container col">
+		{{#navybitsPagination data=reports}}
+			<div class="container col">
+				<h3 id="reports-title"> {{title}} </h3>
+			</div>
+			<div class="reports-body col">
+				<img src="{{thumbnail}}" id="reportsimage" style="width: 1000px;">
+				<h4>File: {{file}} </h4>
+				<h4>Date: {{dateFormat date}} </h4>
+			</div>
+			<hr>
+		{{/navybitsPagination}}
+	</div>
 </template>

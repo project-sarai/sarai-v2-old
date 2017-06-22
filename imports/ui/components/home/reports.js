@@ -8,8 +8,9 @@ Template.Reports.onCreated(function() {
 });
 
 Template.Reports.helpers({
-  reports: function() {
-    return Reports.find({});
+  reports: function(limit) {
+  	var dl = limit || 2;
+    return Reports.find({}, {limit: dl});
   }
 });
 
@@ -19,4 +20,3 @@ Template.Reports.events({
     FlowRouter.go('/reports');
   }
 });
-
