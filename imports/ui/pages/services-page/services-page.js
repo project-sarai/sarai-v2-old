@@ -75,25 +75,25 @@ Template.ServicesPage.helpers({
   crops: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.crops
+    return service && service.info.crops
   },
 
   experts: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.experts
+    return service && service.info.experts
   },
 
   ura: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.ura
+    return service && service.info.ura
   },
 
   projectLeaders: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.projectLeaders
+    return service && service.info.projectLeaders
   },
 
   mediaLink: function() {
@@ -120,16 +120,16 @@ Template.ServicesPage.helpers({
     return service && service.media.subtitleLink
   },
 
-  challenge: function() {
+  col1: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.challenge
+    return service && service.col1.content
   },
 
-  solution: function() {
+  col2: function() {
     const service = Services.findOne({_id: FlowRouter.current().params._id})
 
-    return service && service.solution
+    return service && service.col2.content
   },
 
   nextservice: function() {
