@@ -18,3 +18,4 @@ Template.ReportsPage.helpers({
  		return moment(date).format('MM-DD-YYYY');
  },
 });
+
