@@ -1,5 +1,5 @@
 <template name="CMSServicesEditForm">
-  <div>
+  <div class="container">
     <form>
       <div class="input-group" id="cms-service-title">
         <span class="input-group-addon">Title</span>
@@ -41,31 +41,29 @@
           <input class="form-control" type="text" id="cms-service-subtitleLink-input" value="{{service.media.subtitleLink}}">
         </div>
     </div>
+    <div>
+
+      <div>
+        <h3>The Challenge</h3>
+        <!-- <div id="cms-service-col1text-editor">{{col1Text}}</div> -->
+      </div>
+
+      <div>
+        <h3>Solution</h3>
+        <!-- <div id="cms-service-col2text-editor">{{col2Text}}</div> -->
+      </div>
+
+      <div align="right">
+        <button class="btn btn-danger" id="cms-services-delete">
+          Delete
+        </button>
+
+        <button class="btn btn-primary" id="cms-services-save-edit">
+          Save
+        </button>
+      </div>
+
+    </div>
 
   </div>
-
-  <div>
-
-    <div>
-      <h3>The Challenge</h3>
-      <!-- <div id="cms-service-col1text-editor">{{col1Text}}</div> -->
-    </div>
-
-    <div>
-      <h3>Solution</h3>
-      <!-- <div id="cms-service-col2text-editor">{{col2Text}}</div> -->
-    </div>
-
-    <div align="right">
-      <button class="btn btn-danger" id="cms-services-delete">
-        Delete
-      </button>
-
-      <button class="btn btn-primary" id="cms-services-save-edit">
-        Save
-      </button>
-    </div>
-
-  </div>
-
 </template>

@@ -1,0 +1,15 @@
+<template name="CMSUpload">
+  <form method="POST" enctype="multipart/form-data">
+    <div style="text-align: center;">
+      <input type="file" style="margin: 0 auto;" class="jqUploadclass" data-form-data='{{ submitData }}'>
+      {{#with infoLabel}}
+          {{ infoLabel}} <button class="start">StartUpload</button>
+          <div style="width: 200px; height: 30px; border: 1px solid black;">
+              <div style="background: red; height: 30px; width: {{ progress }}">
+                  {{ progress }}
+              </div>
+          </div>
+      {{/with}}
+    </div>
+  </form>
+</template>

@@ -2,7 +2,19 @@
   <div class="container">
     <div class="row">
       <div>
-
+        <div align="center">
+          <h1> Header </h1>
+        </div>
+        <div>
+          <div class="cms-block-content-label">
+            <h2> Icon </h2>
+          </div>
+          <div style="text-align:center;">
+            <img src="{{icon}}" class="cms-icon-preview" style="margin-bottom: 10px;">
+          </div>
+            {{> CMSUpload callbacks=myCallbacks}}
+        </div>
+          <h2> Links </h2>
             {{#each list in links}}
               <div>
                 <span class="cms-header-link-name">{{list.title}}</span> - <span class="cms-header-link-href">{{list.url}}</span>
@@ -47,6 +59,20 @@
                 <span class="glyphicon glyphicon-plus"></span> Add Top Level Link
               </button>
             </div>
+          </div>
+          <div>
+          <br>
+            <div class="cms-block-content-label">
+              BETA Label
+              {{#unless buttonEnabled}}
+                <span class="cms-disabled-status"> - [Disabled]</span>
+              {{/unless}}
+            </div>
+            <br>
+            <button id="cms-header-button-toggle" class="btn">
+              {{#if buttonEnabled}} Disable {{else}} Enable {{/if}}
+            </button>
+
           </div>
     </div>
   </div>

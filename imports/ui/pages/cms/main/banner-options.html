@@ -1,29 +1,37 @@
-<template name="BannerOptions">
-  <div class="cms-block-content-label">
+<template name="CMSBannerOptions">
+  <div class="cms-block">
+    <div class="container">
+      <div class="cms-block-header" align="center">
+        <h1> Banner </h1>
+      </div>
+
+       <div class="container">
+        <div {{cmsBlockContentRowClasses}}>
+          <div class="cms-block-content-label">
             Slider Content
           </div>
-          <table class="mdl-data-table mdl-js-data-table" width="100%">
+          <table class="table table-hover" width="100%">
             <thead>
               <tr>
-                <th id="cms-banner-rank-order" class="mdl-data-table__header--sorted-ascending">Rank</th>
-                <th class="mdl-data-table__cell--non-numeric">Image</th>
-                <th class="mdl-data-table__cell--non-numeric">Title</th>
-                <th class="mdl-data-table__cell--non-numeric">Subtitle</th>
-                <th class="mdl-data-table__cell--non-numeric">Text</th>
-                <th class="mdl-data-table__cell--non-numeric ">Actions</th>
+                <th id="cms-banner-rank-order" >Rank</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Text</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {{#each entry in slides}}
                 <tr>
                   <td>{{entry.rank}}</td>
-                  <td class="mdl-data-table__cell--non-numeric"><img src="{{entry.image}}" class="cms-image-preview"></td>
-                  <td class="mdl-data-table__cell--non-numeric">{{truncateTableEntry entry.title}}</td>
-                  <td class="mdl-data-table__cell--non-numeric">{{truncateTableEntry entry.subtitle}}</td>
-                  <td class="mdl-data-table__cell--non-numeric">{{truncateTableEntry entry.text}}</td>
-                  <td class="mdl-data-table__cell--non-numeric">
-                    <a href="" id="slider-edit-{{entry._id}}" class="cms-banner-slider-edit"><i class="material-icons">edit</i></a>
-                    <a href="" id="slider-delete-{{entry._id}}" class="cms-banner-slider-delete"><i class="material-icons">delete</i></a>
+                  <td><img src="{{entry.image}}" height="auto" width="250px" class="cms-image-preview"></td>
+                  <td>{{truncateTableEntry entry.title}}</td>
+                  <td>{{truncateTableEntry entry.subTitle}}</td>
+                  <td>{{truncateTableEntry entry.text}}</td>
+                  <td>
+                    <a href="" id="slider-edit-{{entry._id}}" class="cms-banner-slider-edit" data-toggle="modal" data-target="#cms-banner-dialog"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="" id="slider-delete-{{entry._id}}" class="cms-banner-slider-delete"><i class="glyphicon glyphicon-trash"></i></a>
                   </td>
                 </tr>
               {{/each}}
@@ -31,8 +39,110 @@
           </table>
 
           <div class="cms-block-actions">
-            <button id="cms-banner-slide-add" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-              <i class="material-icons">add</i> Add Slide
+            <button id="cms-banner-slide-add" class="btn">
+              <i class="glyphicon glyphicon-plus"></i> Add Slide
             </button>
           </div>
+        </div>
+
+      </div>
+
+      <!-- <div class="cms-block-actions">
+        <button id="cms-banner-save" class="mdl-button mdl-js-button mdl-button-raised mdl-js-ripple-effect mdl-button-colored">
+          Enable
+        </button>
+
+        <button id="cms-banner-save" class="mdl-button mdl-js-button mdl-button-raised mdl-js-ripple-effect mdl-button-colored">
+          Save
+        </button>
+      </div> -->
+
+    </div>
+  </div>
+
+  <div class="modal fade cms-header-edit-dialog" id="cms-banner-dialog" role="dialog">
+      <div class="modal-dialog modal-lg">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 id="cms-banner-dialog-title" class="mdl-dialog__title"></h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-5">
+
+                <div>
+                  <img id="cms-banner-slide-img" class="cms-image-preview">
+                  {{> CMSUpload callbacks=myCallbacks}}
+                </div>
+
+                <div>
+                  <label for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="banner-text-position" value="left"  {{positionChecked}}>
+                    <span class="mdl-radio__label">Left</span>
+                  </label>
+                  <label for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="banner-text-position" value="right">
+                    <span class="mdl-radio__label">Right</span>
+                  </label>
+                </div>
+
+                <div>
+                  <div  id="cms-banner-slide-rank">
+                    <label for="cms-banner-slide-rank-input">Rank</label>
+                    <input class="form-control" type="text" id="cms-banner-slide-rank-input">
+                  </div>
+                </div>
+
+                <div>
+                  <div>
+                    <div id="cms-banner-slide-title">
+                      <label for="cms-banner-slide-title-input">Title</label>
+                      <input class="form-control" type="text" id="cms-banner-slide-title-input">
+                    </div>
+                  </div>
+
+                  <div>
+                    <div id="cms-banner-slide-subtitle">
+                      <label for="cms-banner-slide-subtitle-input">Subtitle</label>
+                      <input class="form-control" type="text" id="cms-banner-slide-subtitle-input">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-7">
+                <div>
+                  <div id="cms-banner-slide-text">
+                    <label class="mdl-textfield__label" for="cms-banner-slide-text-input">Text</label>
+                    <textarea class="form-control" type="text" rows= "4" id="cms-banner-slide-text-input" ></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <div id="cms-banner-slide-button-text">
+                    <label for="cms-banner-slide-button-text-input">Button Text</label>
+                    <input class="form-control" type="text" id="cms-banner-slide-button-text-input">
+                  </div>
+                </div>
+
+                <div>
+                  <div id="cms-banner-slide-button-href">
+                    <label for="cms-banner-slide-button-href-input">Button Link</label>
+                    <input class="form-control" type="text" id="cms-banner-slide-button-href-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
 </template>

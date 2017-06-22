@@ -1,0 +1,35 @@
+<template name="DownloadForecast">
+
+  <div class="container">
+    <div>
+      <div class="cms-block-header">
+        <h1> Weather Forecast Download </h1>
+      </div>
+
+      <div class="mdl-grid">
+        <div {{cmsBlockContentRowClasses}}>
+          <h4>Click the button below to download the file for SMS weather advisory from 18 SARAi weather stations</h4>
+        
+          <li>Temperature in celsius (high)</li>
+          <li>Percent chance of rain today</li>
+          <li>Rainfall today</li>
+          <li>Total of rainfall for the next 7 days</li>
+          <li>Past 30-day rainfall</li>
+        </div>
+      </div>
+
+
+      <div class="cms-block-actions">
+        <button title="Download" type="button" class="btn btn-default cms-download-rainfall" style="margin:auto;display:block; float:right">
+          <i class="material-icons md-36">get_app</i>
+        </button>
+
+        <h7 style="float:left">*After clicking the download button, it may take a few minutes. Please wait until finished before clicking anything.</h7>
+
+        <div id="cms-download-container">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>

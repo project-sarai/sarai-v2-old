@@ -34,7 +34,6 @@ Template.CMSAboutUsLeaders.onRendered(() => {
       });
     }
   });
-
   $("#cms-about-us-leaders-title-div").addClass("is-dirty");
 })
 

@@ -1,0 +1,50 @@
+<template name="WeatherStationsBlock">
+  <div class="container cms-block">
+    <div>
+      <div align="center" class="cms-block-header">
+        <h1> Weather Stations </h1>
+      </div>
+
+      <div>
+        <div>
+          <!-- <div class="cms-block-content-label">
+            Quick Stats
+          </div> -->
+          <!-- <div>
+            {{saraiStationCount}} SARAI Weather Stations out of {{stationCount}} total registered stations.
+          </div> -->
+          <div>
+            <table class="table table-hover" width="100%" id="cms-weather-stations-quick-list">
+              <thead>
+                <tr>
+                  <td>Station ID</td>
+                  <td>Coords</td>
+                  <td>Label</td>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each station in aFewStations}}
+                  <tr>
+                    <td class="id">{{station.id}}</td>
+                    <td class="coords">{{station.coords}}</td>
+                    <td class="station-label">{{station.label}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="cms-block-actions">
+            <a href="/admin/weather/stations">
+              <button id="cms-banner-slide-add" class="btn">
+                <i class="glyphicon glyphicon-th-list"></i> View More
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</template>

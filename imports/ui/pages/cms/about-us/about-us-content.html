@@ -3,13 +3,13 @@
     <h1> Our Story </h1>
   </div>
 
-  <div align="center">
+  <div class="container" align="center">
     <div>
-      <div {{cmsBlockContentRowClasses}}>
-        <div id="cms-about-us-content-title-div">
+      <div>
+        <div class="form-group" id="cms-about-us-content-title-div">
           <label> Title </label>
           <br />
-          <input type="text" id="cms-about-us-content-title" value="{{title}}">
+          <input class="form-control col-sm-4" type="text" id="cms-about-us-content-title" value="{{title}}">
         </div>
       </div>
     </div>
@@ -18,14 +18,15 @@
       <div id="cms-about-us-content-text-div">
         <label> Content </label>
         <br />
-        <textarea type="text" rows= "7" cols="120" id="cms-about-us-content-text" value="{{content}}"></textarea>
+        <textarea class="form-control" type="text" rows= "7" cols="120" id="cms-about-us-content-text" value="{{content}}"></textarea>
       </div>
     </div>
-  </div>
-
-   <div class="cms-block-actions" align="center">
-      <button id="cms-about-us-content-save" class="btn-success">
+    <br>
+     <div class="cms-block-actions" align="center">
+      <button id="cms-about-us-content-save" class="btn btn-success">
         Save
       </button>
-    </div>
+     </div>
+  </div>
+
 </template>

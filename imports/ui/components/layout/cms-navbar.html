@@ -1,6 +1,6 @@
 <template name="CMSNavbar">
   <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="container-fluid col-sm-10">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">SARAI Admin</a>
     </div>
@@ -13,7 +13,7 @@
           <li><a href="/admin/main-top-header">Top Header</a></li>
           <li><a href="/admin/main-header">Header</a></li>
           <li><a href="/admin/main-banner">Banner</a></li>
-          <li><a href="/admin/main-weather-forecast">Weather Forecast</a></li>
+          <li><a href="/admin/main-download-forecast">Weather Forecast</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -33,11 +33,14 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="/admin/weather">Weather Stations</a></li>
-          <li><a href="/admin/weather">Weather Settings</a></li>
+          <li><a href="/admin/weather-settings">Weather Settings</a></li>
         </ul>
       </li>
       <li><a href="/admin/services">Services</a></li>
     </ul>
+  </div>
+  <div class="col-sm-2">
+    {{ > loginButtons }}
   </div>
 </nav>
 </template>

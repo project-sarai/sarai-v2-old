@@ -1,0 +1,105 @@
+<template name="CMSAboutUsBanner">
+  <div class="cms-block">
+    <div>
+      <div align="center" class="cms-block-header">
+        <h1> About Banner </h1>
+      </div>
+
+       <div>
+        <div {{cmsBlockContentRowClasses}}>
+          <div class="container">
+          <div class="cms-block-content-label">
+            <h2> Slider Content </h2>
+          </div>
+            <table class="table table-hover" width="100%">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Subtitle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img src="{{entry.img}}" length="auto" width="250px" class="cms-image-preview"></td>
+                  <td>{{truncateTableEntry entry.subtext}}</td>
+                  <td>{{truncateTableEntry entry.subtext1}}</td>
+                  <td>
+                    <a href="" id="slider-edit-{{entry._id}}" class="cms-aboutbanner-slider-edit" data-toggle="modal" data-target="#cms-aboutbanner-dialog"><i class="material-icons">edit</i></a>
+                    <a href="" id="slider-delete-{{entry._id}}" class="cms-aboutbanner-slider-delete"><i class="material-icons">delete</i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <div class="cms-block-actions">
+              <button id="cms-aboutbanner-save" class="btn btn-default">
+                Enable
+              </button>
+              <button id="cms-aboutbanner-save" class="btn btn-default">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- <dialog id="cms-aboutbanner-dialog" class="mdl-dialog cms-header-edit-dialog">
+    <h4 class="mdl-dialog__title">{{dialogHeader}}</h4>
+    <div class="mdl-dialog__content">
+      <form action="#">
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfieldfloating-label" id="cms-aboutbanner-slide-title">
+          <input class="mdl-textfield__input" type="text" id="cms-aboutbanner-slide-title-input">
+          <label class="mdl-textfield__label" for="cms-aboutbanner-slide-title-input">Title</label>
+        </div>
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfieldfloating-label" id="cms-aboutbanner-slide-subtitle">
+          <input class="mdl-textfield__input" type="text" id="cms-aboutbanner-slide-subtitle-input">
+          <label class="mdl-textfield__label" for="cms-aboutbanner-slide-subtitle-input">Subtitle</label>
+        </div>
+
+      </form>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button save">Save</button>
+      <button type="button" class="mdl-button cancel">Cancel</button>
+    </div>
+  </dialog> -->
+
+  <div class="modal fade cms-header-edit-dialog" id="cms-aboutbanner-dialog" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{linkAction}}</h4>
+          </div>
+          <div class="modal-body">
+            <form action="#">
+              <div id="cms-about-us-leader-name">
+                <label> Title </label>
+                <input class="form-control" type="text" id="cms-aboutbanner-slide-title-input">
+              </div>
+              <br>
+              <div id="cms-about-us-leader-position">
+                <label> Subtitle </label>
+                <input class="form-control" type="text" id="cms-aboutbanner-slide-subtitle-input">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</template>

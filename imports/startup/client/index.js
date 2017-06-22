@@ -8,6 +8,10 @@ Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY',
 });
 
+Accounts.config({
+  forbidClientAccountCreation: true,
+});
+
 // Meteor.startup(function() {
 //   Uploader.uploadUrl = Meteor.absoluteUrl("upload"); // Cordova needs absolute URL
 // });

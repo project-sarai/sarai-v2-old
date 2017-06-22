@@ -1,0 +1,13 @@
+<template name="WeatherDataRow">
+  <tr>
+    <td class="date">{{formatDate dateUTC}}</td>
+    <td class="weather-value">{{data.temp.min}}</td>
+    <td class="weather-value">{{data.temp.max}}</td>
+    <td class="weather-value">{{data.rainfall}}</td>
+    <td class="actions">
+      <a id="edit-weather-data" href="">
+        <i class="material-icons">mode_edits</i>
+      </a>
+    </td>
+  </tr>
+</template>

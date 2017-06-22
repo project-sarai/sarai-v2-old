@@ -1,0 +1,100 @@
+<template name="WeatherStationsCMS">
+  <div class="container ">
+    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--1-offset-desktop">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-grid cms-block">
+          <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+            <div align="center" class="cms-block-header">
+              <h1> Weather Stations </h1>
+            </div>
+
+            <div class="mdl-grid">
+              <div {{cmsBlockContentRowClasses}}>
+                <div class="cms-block-content-label">
+
+                </div>
+
+                <div>
+                  <table class="table table-hover" width="100%" id="cms-weather-stations-quick-list">
+                    <thead>
+                      <tr>
+                        <td>Station ID</td>
+                        <!-- <td>Region</td> -->
+                        <td>Coords</td>
+                        <td>Label</td>
+                        <td>Actions</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each stations}}
+                        {{> WeatherStationRow}}
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="cms-block-actions">
+                  <!-- <button id="cms-weather-station-add" class="mdl-button mdl-js-button mdl-button-raised mdl-button-colored mdl-js-ripple-effect">
+                    <i class="material-icons">add</i> Add Weather Station
+                  </button> -->
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+    <!-- ======= DIALOG ======== -->
+  <dialog id="cms-weather-station-dialog" class="mdl-dialog">
+    <h4 id="cms-weather-station-dialog-title" class="mdl-dialog__title">Edit {{stationID}}</h4>
+    <div class="mdl-dialog__content">
+
+      <div class="mdl-grid">
+        <!-- ===== LABEL ===== -->
+
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-id" style="display: none;">
+          <input class="mdl-textfield__input" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-id-input">
+          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Station ID</label>
+        </div>
+
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-label">
+          <input class="mdl-textfield__input" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-label-input">
+          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Label</label>
+        </div>
+
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-lat">
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-lat-input">
+          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Lat</label>
+        </div>
+
+        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-long">
+          <input class="mdl-textfield__input" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-long-input">
+          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Long</label>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored save">Save</button>
+      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect cancel">Cancel</button>
+    </div>
+  </dialog>
+  <!-- ======== END DIALOG ========= -->
+
+  <!-- ======== TOAST ======== -->
+  <div id="cms-toast" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
+</template>

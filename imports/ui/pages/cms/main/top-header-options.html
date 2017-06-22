@@ -1,0 +1,49 @@
+<template name="TopHeaderOptions">
+
+  <div class="cms-block">
+    <div class="container">
+      <div class="cms-block-header" align="center">
+        <h1> Top Header
+        {{#unless enabled}}
+          <span class="cms-disabled-status"> - [{{enabledStatus}}]</span>
+        {{/unless}}
+        </h1>
+      </div>
+
+      <div class="mdl-grid">
+        <div class="row">
+          <div id="cms-top-header-message-div">
+            <label for="sample3">Message</label>
+            <input class="form-control" type="text" id="cms-top-header-message" value="{{message}}">
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="cms-top-header-search-text-div">
+            <label for="sample3">Search Text</label>
+            <input class="form-control" type="text" id="cms-top-header-search-text" value="{{searchText}}">
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="cms-block-actions">
+        <br>
+        <button id="cms-top-header-enable" class="btn btn-basic">
+          {{#if enabled}} Disable {{else}} Enable {{/if}}
+        </button>
+
+        <button id="cms-top-header-save" class="btn btn-basic">
+          Save
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <div id="cms-toast" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div> -->
+</template>

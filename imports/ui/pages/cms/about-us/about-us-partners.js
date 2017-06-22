@@ -1,5 +1,12 @@
 import './about-us-partners.html';
 
+import { Meteor } from 'meteor/meteor';
+import { About } from '../../../../api/about/about.js';
+
+Template.CMSAboutUsPartners.onCreated(() => {
+  Meteor.subscribe('about');
+})
+
 Template.CMSAboutUsPartners.onRendered(() => {
 
   $("#cms-about-us-partners-title-div").addClass("is-dirty");
@@ -56,7 +63,7 @@ Template.CMSAboutUsPartners.events({
 Template.CMSAboutUsPartners.helpers({
 
   partners: () => {
-    const record = About.findOne({name: 'partners'})
+    const record = About.findOne({name: 'partners'});
     if(record){
       return record;
     }

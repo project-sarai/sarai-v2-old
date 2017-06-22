@@ -28,7 +28,7 @@ Meteor.methods({
   },
 
   'cms-header-button-toggle': () => {
-    let buttonEnabled = Links.findOne({name: 'mainHeader'}).buttonEnabled
+    let buttonEnabled = Links.findOne({title: 'mainHeader'}).buttonEnabled
 
     buttonEnabled = buttonEnabled ? false : true
 

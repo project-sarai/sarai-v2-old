@@ -1,5 +1,5 @@
 import './header-options.html';
-
+import '../common/cms-upload/cms-upload.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { Links } from '../../../../api/links/links.js';
