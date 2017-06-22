@@ -301,6 +301,7 @@ FlowRouter.route("/reports", {
   name: 'reports',
   action() {
     BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
+<<<<<<< 6a5d7c5bf3f79268f28d9afc92a8efc16cc929b5
   },
 });
 
@@ -308,5 +309,7 @@ FlowRouter.route("/monitoring", {
   name: 'monitoring',
   action() {
     BlazeLayout.render('MainLayout', {main: 'Monitoring'});
+=======
+>>>>>>> Fixed reports page
   },
 });
