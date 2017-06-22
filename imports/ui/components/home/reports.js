@@ -27,4 +27,3 @@ Template.Reports.events({
     FlowRouter.go('/reports');
   }
 });
-
