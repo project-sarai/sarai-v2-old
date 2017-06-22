@@ -31,11 +31,6 @@ fortawesome:fontawesome
 tomi:upload-jquery
 tomi:upload-server
 twbs:bootstrap
-<<<<<<< HEAD
 momentjs:moment
 kurounin:pagination-blaze
 navybits:pagination
-=======
-navybits:pagination
-momentjs:moment
->>>>>>> 73364eb0c96224cc9653c1e71230d51d4811cbb9
