@@ -40,5 +40,46 @@ Meteor.methods({
   
   'cms-service-delete': (_id) => {
     Services.remove({_id})
-  }
+  },
+
+  'cms-service-update': (_id, title, tagline, ura, projectLeaders, crops, experts, challenge, solution, thumbnail) => {
+
+    Services.update(
+      { _id },
+      {
+        $set : {
+          url,
+          title,
+          tagline,
+          ura,
+          projectLeaders,
+          crops,
+          experts,
+          challenge,
+          solution,
+          thumbnail,
+        }
+      },
+      { upsert: true }
+    );
+  },
+
+  'cms-service-update': (_id, title, tagline, thumbnail, info, media, col1, col2) => {
+
+    Services.update(
+      { _id },
+      {
+        $set : {
+          title,
+          tagline,
+          thumbnail,
+          info,
+          media,
+          col1,
+          col2
+        }
+      },
+      { upsert: true }
+    );
+  },
 });

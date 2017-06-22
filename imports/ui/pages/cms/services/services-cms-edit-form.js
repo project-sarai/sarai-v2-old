@@ -13,23 +13,23 @@ Template.CMSServicesEditForm.onCreated(() => {
 });
 
 Template.CMSServicesEditForm.onRendered((a, template) => {
-  // console.log(Template.instance().data) // the service in data is undefined at this point. weird
-  // console.log(this)
-  // $('#cms-service-col1text-editor').summernote();
-  // $('#cms-service-col2text-editor').summernote();
+  console.log(Template.instance().data) // the service in data is undefined at this point. weird
+  console.log(this)
+  $('#cms-service-col1text-editor').summernote();
+  $('#cms-service-col2text-editor').summernote();
 
   //This tracker only works on the first render. Subsequent refreshes have to rely on the helpers. WEIRD.
-  // Tracker.autorun(() => {
-  //   if (Template.instance().data.service) {
-  //     $('#cms-service-col1text-editor').code(Template.instance().data.service.col1.content);
-  //   }
-  // });
+  Tracker.autorun(() => {
+    if (Template.instance().data.service) {
+      $('#cms-service-col1text-editor').code(Template.instance().data.service.col1.content);
+    }
+  });
 
-  // Tracker.autorun(() => {
-  //   if (Template.instance().data.service) {
-  //     $('#cms-service-col2text-editor').code(Template.instance().data.service.col2.content);
-  //   }
-  // });
+  Tracker.autorun(() => {
+    if (Template.instance().data.service) {
+      $('#cms-service-col2text-editor').code(Template.instance().data.service.col2.content);
+    }
+  });
 
   this.serviceID = FlowRouter.current().params._id
 })
@@ -54,13 +54,14 @@ Template.CMSServicesEditForm.events({
     }
     const col1 = {
       title: '',
-      content: $('#cms-service-col1text-editor').code()
+      content: $('#cms-service-col1text-editor').summernote('code')
     }
     const col2 = {
       title: '',
-      content: $('#cms-service-col2text-editor').code()
+      content: $('#cms-service-col2text-editor').summernote('code')
     }
 
+    console.log(col1.content);
 
     if (this.action == 'edit') {
       const currentThumbnail = template.data.service.thumbnail

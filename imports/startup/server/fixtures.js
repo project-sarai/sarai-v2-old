@@ -434,65 +434,86 @@ Meteor.startup(() => {
   if (Services.find().count() == 0) {
   const data = [
     {
-      url: '#',
-      title: 'Integrated Crop Management',
-      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
-      ura: ['Ivy Rose Marajas', 'Kim Nyka Pedeguerra', 'Marck Ferdie Eusebio', 'Yaminah Mochica Pinca'],
-      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
-      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
-      experts: ['Dr. Pompe Sta. Cruz, CA, UPLB', 'Dr. Ronaldo Saludes, CEAT, UPLB'],
-      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
-      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
-      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      name: 'suitability-maps',
+      title: 'Suitability Maps',
+      tagline: 'Maximize your yield by knowing what and where to plant.',
+      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
+      info: {
+        crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
+        experts: ['Prof. Vic Bato, UPLB'],
+        ura: ['Roel Fucio'],
+        projectLeaders: ['Project 1, Dr. Felino Lansigan, Project Leader']
+      },
+      media: {
+        link: '',
+        type: '',
+        subtitle: 'Suitability Maps Application',
+        subtitleLink: 'http://159.203.253.31/suitability-maps/rice'
+      },
+      col1: {
+        title: '',
+        content: '<p>Knowing what and where to plant are important considerations if you want to maximize your productivity and yield. It is also important to identify the parts of the country which are feasible to plant so that the policy makers and the local government unit can be guided on the agricultural programs that they will plan.</p>'
+      },
+      col2: {
+        title: '',
+        content: '<p>The SARAi Suitability Maps can be used to identify the different locations of the country which are highly suitable, moderately suitable, and marginally suitable for its initial six crops. By identifying these areas, resources will not be put to waste and farmers can attain more yield.</p>'
+      },
+      sort: 2
     },
     {
-      url: '#',
-      title: 'Integrated Crop Management # 2',
-      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
-      ura: ['Ivy Rose Marajas', 'Kim Nyka Pedeguerra', 'Marck Ferdie Eusebio', 'Yaminah Mochica Pinca'],
-      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
-      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
-      experts: ['Dr. Pompe Sta. Cruz, CA, UPLB', 'Dr. Ronaldo Saludes, CEAT, UPLB'],
-      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
-      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
-      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      name: 'real-time-data',
+      title: 'Real-Time Weather Monitoring',
+      tagline: 'View real-time weather data from the Automatic Weather Stations installed throughout the country.',
+      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
+      info: {
+        crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
+        experts: ['Prof. Nel Altoveros, CAS, UPLB'],
+        ura: ['Janah Monsanto'],
+        projectLeaders: ['Project 2, Dr. Art Salazar, Project Leader']
+      },
+      media: {
+        link: 'https://www.youtube.com/embed/LgyYBLmmJkA?feature=oembed',
+        type: 'youtube-video',
+        subtitle: '',
+        subtitleLink: '/weather-monitoring'
+      },
+      col1: {
+        title: '',
+        content: '<p>Weather data is vital for managing the right planting schedule for one’s vegetation. Different crops require different levels of rainfall, temperature, humidity and other weather parameters. Farmers and agriculturists alike should be regularly informed about these important weather conditions in order for them to maximize their crop production and profit, use their time and land more efficiently and minimize crop damages caused by the weather.</p>'
+      },
+      col2: {
+        title: '',
+        content: '<p>Weather stations are being set up in various sites all around the country where major crop plantations are found. These stations, along with the satellite data, will be used to inform farmers and agriculturists on previous weather patterns and current weather conditions through our outputs of historical and current weather data. Later on, weather prediction will be available to serve as a guiding tool for future planting.</p>'
+      },
+      sort: 1
     },
     {
-      url: '#',
-      title: 'Integrated Crop Management # 3',
-      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
-      ura: ['Ivy Rose Marajas', 'Kim Nyka Pedeguerra', 'Marck Ferdie Eusebio', 'Yaminah Mochica Pinca'],
-      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
-      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
-      experts: ['Dr. Pompe Sta. Cruz, CA, UPLB', 'Dr. Ronaldo Saludes, CEAT, UPLB'],
-      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
-      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
-      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+      name: 'alerts-and-advisories',
+      title: 'Alerts and Advisories',
+      tagline: 'Receive crop alerts and advisories to help you increase your yield and your profit.',
+      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
+      info: {
+        crops: 'Rice, Corn, Banana, Coconut, Coffee, Cacao',
+        experts: ['Dr. Felino A. Lansigan, CAS, UPLB'],
+        ura: ['Roinand Aguila', 'Monina Gazelle Charina Carandang', 'Jeyneth Ann Mariano'],
+        projectLeaders: []
+      },
+      media: {
+        link: '',
+        type: 'image',
+        subtitle: 'The application is still under development.',
+        subtitleLink: 'http://159.203.253.36:81/'
+      },
+      col1: {
+        title: '',
+        content: ''
+      },
+      col2: {
+        title: '',
+        content: ''
+      },
+      sort: 8
     },
-    {
-      url: '#',
-      title: 'Integrated Crop Management # 4',
-      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
-      ura: ['Ivy Rose Marajas', 'Kim Nyka Pedeguerra', 'Marck Ferdie Eusebio', 'Yaminah Mochica Pinca'],
-      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
-      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
-      experts: ['Dr. Pompe Sta. Cruz, CA, UPLB', 'Dr. Ronaldo Saludes, CEAT, UPLB'],
-      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
-      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
-      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
-    },
-    {
-      url: '#',
-      title: 'Integrated Crop Management # 5',
-      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
-      ura: ['Ivy Rose Marajas', 'Kim Nyka Pedeguerra', 'Marck Ferdie Eusebio', 'Yaminah Mochica Pinca'],
-      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
-      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
-      experts: ['Dr. Pompe Sta. Cruz, CA, UPLB', 'Dr. Ronaldo Saludes, CEAT, UPLB'],
-      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
-      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
-      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
-    }
   ];
     data.forEach(services => Services.insert(services));
   }
