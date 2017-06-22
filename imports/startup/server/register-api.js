@@ -29,3 +29,6 @@ import '../../api/reports/server/publications.js';
 
 import '../../api/advisories/methods.js';
 import '../../api/advisories/server/publications.js';
+
+import '../../api/reports/methods.js';
+import '../../api/reports/server/publications.js';
