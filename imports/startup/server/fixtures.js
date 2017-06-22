@@ -12,7 +12,6 @@ import { About } from '../../api/about/about.js';
 import { Reports } from '../../api/reports/reports.js';
 import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
-import { Reports } from '../../api/reports/reports.js';
 import { DSSSettings } from '../../api/weather/sarai-dss-settings.js';
 import { WeatherStations } from '../../api/weather/sarai-weather-stations.js';
 
@@ -677,7 +676,6 @@ Meteor.startup(() => {
         title: 'Sample Report #2',
         file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
         date: '2017,06,21',
-<<<<<<< 5c5fe560bae2b9b868408c57e472d156416b1abb
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
       },
       {
@@ -690,8 +688,6 @@ Meteor.startup(() => {
         title: 'Sample Report #4',
         file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
         date: '2018,03,19',
-=======
->>>>>>> Fixed reports part
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
       },
       {
