@@ -14,4 +14,7 @@ Template.ReportsPage.helpers({
     })
     return data;
   },
+ 	dateFormat: function(date) {
+ 		return moment(date).format('MM-DD-YYYY');
+ },
 });
