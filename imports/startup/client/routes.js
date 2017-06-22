@@ -222,7 +222,6 @@ FlowRouter.route("/services/:_id", {
 FlowRouter.route("/reports", {
   name: 'reports',
   action() {
-    Blazelayout.render('MainLayout', {main: 'ReportsPage'});
+    BlazeLayout.render('MainLayout', {main: 'ReportsPage'});
   },
 });
-

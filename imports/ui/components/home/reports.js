@@ -13,7 +13,7 @@ Template.Reports.helpers({
 });
 
 Template.Reports.events({
-  'click #more-reports': function(e){
+  'click .more-reports': function(e){
     e.preventDefault();
     FlowRouter.go('/reports');
   }
