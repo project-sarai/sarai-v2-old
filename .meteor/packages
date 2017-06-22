@@ -32,3 +32,4 @@ tomi:upload-jquery
 tomi:upload-server
 twbs:bootstrap
 navybits:pagination
+momentjs:moment
