@@ -1,6 +1,11 @@
 #twitter-feed.max {
-  max-height: 25%;
-  overflow-y: auto;
+  height: 25%;
+  overflow-y: scroll;
+}
+
+#twitter-feed.min {
+  height: 30px;
+  overflow-y: hidden;
 }
 
 #twitter-feed {
@@ -18,14 +23,11 @@
   transition: 0.4s ease;
 }
 
-#twitter-feed #toggle-visibility {
-  transition: 0.4s ease-in-out;
-}
-
 * {
   box-sizing: border-box;
 }
 
 a#twitter-button {
   height: 35px;
+  padding: auto;
 }

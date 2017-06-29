@@ -1,15 +1,14 @@
 <template name="TwitterFeed">
   
-  <div id="twitter-feed" class="max collapse-group">
-    <a id="twitter-button" class="btn" data-toggle="collapse" data-target="#viewdetails">
+  <div id="twitter-feed" class="max">
+    <div id="twitter-button" class="btn">
       <span id="toggle-visibility" class="glyphicon glyphicon-chevron-down col-md-2"></span>
-      <p class="col-md-2">Twitter Feed</p>
-    </a>
+      <span id="twitter-label"></span>
+    </div>
 
-    <div  id="viewdetails" class="collapse">
+    <div id="viewdetails">
       <a class="twitter-timeline" href="https://twitter.com/projectsarai_ph"></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
   </div>
 
 </template>
-  
