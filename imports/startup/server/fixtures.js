@@ -9,9 +9,9 @@ import { Projects } from '../../api/projects/projects.js';
 import { Services } from '../../api/services/services.js';
 import { Crops } from '../../api/crops/crops.js';
 import { About } from '../../api/about/about.js';
+import { Reports } from '../../api/reports/reports.js';
 import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
-import { Reports } from '../../api/reports/reports.js';
 import { DSSSettings } from '../../api/weather/sarai-dss-settings.js';
 import { WeatherStations } from '../../api/weather/sarai-weather-stations.js';
 
@@ -112,19 +112,19 @@ Meteor.startup(() => {
               links: [
                 {
                   title: 'Alerts and Advisories',
-                  url: 'http://sarai.ph/advisories',
+                  url: '/advisories',
                   rank: '1',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Monitoring',
-                  url: 'http://sarai.ph/weather-monitoring',
+                  url: '/monitoring',
                   rank: '2',
                   createdAt: new Date(),
                 },
                 {
                   title: 'Planting Guide',
-                  url: 'http://sarai.ph/rainfall-distribution',
+                  url: '/rainfall-distribution',
                   rank: '3',
                   createdAt: new Date(),
                 },
@@ -555,17 +555,6 @@ Meteor.startup(() => {
     data.forEach(logo => Story.insert(logo));
   }
 
-  if (Reports.find().count() === 0) {
-    const data = [
-      // {
-      //   title:
-      //   file:
-      //   thumbnail:
-      //   date:
-      // }
-    ];
-  }
-
   if (Advisories.find().count() === 0){
     const data = [
       {
@@ -692,6 +681,37 @@ Meteor.startup(() => {
     ];
 
     data.forEach(project => Projects.insert(project));
+  }
+
+  if (Reports.find().count() === 0) {
+    const data = [
+      {
+        title: 'Sample Report #1',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Assessment_basis_Project-SARAI.pdf',
+        date: '2017,06,20',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',
+      },
+      {
+        title: 'Sample Report #2',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2017,06,21',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
+      {
+        title: 'Sample Report #3',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2017,06,19',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
+      {
+        title: 'Sample Report #4',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2018,03,19',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
+    ];
+      
+    data.forEach(report => Reports.insert(report));
   }
 
   if (Crops.find().count() === 0) {

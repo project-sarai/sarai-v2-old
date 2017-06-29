@@ -1,0 +1,16 @@
+<template name="Reports">
+	<div class="divider" style="margin-top: -1%;"> </div>
+	<div class="mdl-grid" style="margin-left: 5%; margin-right: 5%;">
+		<div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="width: 32%; float: left; margin-right: 1%; text-align: center;">
+			<h1 id="maintitle"> Get our reports on events related to rice, corn, banana, coconut, coffee and cacao. </h1><br /><br />
+			<button type="button" class="more-reports"> More Reports </button>
+		</div>
+		{{#each reports}}
+			<div class="reportsection mdl-cell--4-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone" style="width: 32%; float: left; margin-right: 1%; text-align: center;">
+				<img src="{{thumbnail}}" class="reports-image"/><br />
+				<a href="{{file}}" target="blank" class="link">View Report<i class="material-icons">navigate_next</i></a>
+			</div>
+		{{/each}}
+		 <p style="clear: both;"></p>
+	</div>
+</template>

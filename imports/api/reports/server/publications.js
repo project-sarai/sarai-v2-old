@@ -1,3 +1,5 @@
+// All reports-related publications
+
 import { Meteor } from 'meteor/meteor';
 import { Reports } from '../reports.js';
 
