@@ -1,4 +1,6 @@
 import './monitoring.html';
+import '../../components/monitoring/monitoring-charts.js';
+import '../../components/advisories/advisories-subheader.js';
 
 Template.Monitoring.onCreated(function() {
 
@@ -11,6 +13,7 @@ Template.Monitoring.onCreated(function() {
 });
 
 Template.Monitoring.onRendered(function() {
+  
   /****MAP****/
 
   // Settings Bounds of map

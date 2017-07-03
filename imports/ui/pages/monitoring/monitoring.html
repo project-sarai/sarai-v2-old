@@ -1,15 +1,24 @@
 <template name="Monitoring">
+  {{> AdvisoriesSubheader}}
   Weather Monitoring goes here...
 
   <div class="container-fluid">
     <div class="row">
+
+
+    </div>
+    <div class="row">
       <div class="col-sm-12 col-md-3">
+        <select class="selectpicker">
+          <option>Mustard</option>
+          <option>Ketchup</option>
+          <option>Relish</option>
+        </select>
         <div id="weather-map"></div>
       </div>
 
       <div class="col-sm-12 col-md-9">
-        <div id="meteogram-container">
-        </div>
+        {{> MonitoringCharts}}
       </div>
     </div>
   </div>
