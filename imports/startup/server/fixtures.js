@@ -194,7 +194,7 @@ Meteor.startup(() => {
   if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
     DSSSettings.insert({
       name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
+      value: '323d30926107851b'
     });
   }
   if (Main.find().count() === 0) {
