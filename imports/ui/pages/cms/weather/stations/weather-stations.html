@@ -53,48 +53,44 @@
     </div>
   </div>
 
-    <!-- ======= DIALOG ======== -->
-  <dialog id="cms-weather-station-dialog" class="mdl-dialog">
-    <h4 id="cms-weather-station-dialog-title" class="mdl-dialog__title">Edit {{stationID}}</h4>
-    <div class="mdl-dialog__content">
+  <div class="modal fade" id="cms-weather-station-dialog" role="dialog">
+      <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 id="cms-weather-station-dialog-title" class="modal-title">Edit {{stationID}}</h4>
+          </div>
+          <div class="modal-body">
+            <div id="cms-ws-id" style="display: none;">
+              <label for="cms-wd-temp-ave-input">Station ID</label>
+              <input class="form-control" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-id-input">
+            </div>
 
-      <div class="mdl-grid">
-        <!-- ===== LABEL ===== -->
+            <div id="cms-ws-label">
+              <label for="cms-wd-temp-ave-input">Label</label>
+              <input class="form-control" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-label-input">
+            </div>
 
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-id" style="display: none;">
-          <input class="mdl-textfield__input" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-id-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Station ID</label>
+            <div id="cms-ws-lat">
+              <br>
+              <label for="cms-wd-temp-ave-input">Lat</label>
+              <input class="form-control" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-lat-input">
+            </div>
+
+            <div id="cms-ws-long">
+              <br>
+              <label for="cms-wd-temp-ave-input">Long</label>
+              <input class="form-control" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-long-input">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
         </div>
-
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-label">
-          <input class="mdl-textfield__input" type="text" pattern="[a-z,A-Z,0-9,-,\s]*" id="cms-ws-label-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Label</label>
-        </div>
-
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-lat">
-          <input class="mdl-textfield__input" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-lat-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Lat</label>
-        </div>
-
-        <div class="mdl-cell mdl-cell--12-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-ws-long">
-          <input class="mdl-textfield__input" type="text" pattern="[0-9]+(.[0-9]+)*" id="cms-ws-long-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Long</label>
-        </div>
-
-
+        
       </div>
     </div>
-
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored save">Save</button>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect cancel">Cancel</button>
-    </div>
-  </dialog>
-  <!-- ======== END DIALOG ========= -->
-
-  <!-- ======== TOAST ======== -->
-  <div id="cms-toast" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
-  </div>
 </template>

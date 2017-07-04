@@ -55,7 +55,6 @@ Template.CMSBannerOptions.onRendered(() => {
         showToast(toast)
       })
     }
-
 //    dialog.close();
   })
 })
@@ -71,12 +70,11 @@ Template.CMSBannerOptions.events({
   },
 
   'click .cms-banner-slider-edit': (e) => {
-    const id = e.currentTarget.id.split('-')[2]
-    console.log(e.currentTarget.id);
-    console.log(id);
+    const index = e.currentTarget.id.split('-')[2]
 
     this.action = 'edit'
-    this.actionID = id
+    this.actionID = index
+
 
     const dialog = document.querySelector('#cms-banner-dialog');
 //    dialog.showModal();
@@ -85,11 +83,12 @@ Template.CMSBannerOptions.events({
 
     if (record) {
 
-      const slide = record.slides.find((element) => {
-        return element._id == id
-      })
+      const slide = record.slides[index];
+      // const slide = record.slides.find((element) => {
+      //   return element._id == id
+      // })
 
-      this.uploadedFile = slide.image
+      // this.uploadedFile = slide.image
 
       console.log('Setting: ')
       console.log(slide)

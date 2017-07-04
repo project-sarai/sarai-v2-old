@@ -168,18 +168,27 @@ Meteor.startup(() => {
         };
     Links.insert(data);
   }
-
+  
   if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ stationID : 'IZAMBOAN4', label : 'SARAI PCA Zamboanga City (UPLB)', lat : 6.993, long : 121.928, enabled: true, region: 'IX' })
+    WeatherStations.insert({ stationID : 'ILOSBAOS2', label : 'SARAI NCAS UP Los Banos Laguna (UPLB)', lat : 14.166, long : 121.241, enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ stationID : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ stationID : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat :  13.944949, long : 121.369759, enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ stationID : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz Nueva Ecija', lat :  15.738162, long : 120.928391, enabled: true, region: 'III' })
+    WeatherStations.insert({ stationID : 'IWESTERN596', label : 'SARAI La Granja La Carlota City Negros Occidental', lat :  10.404931, long : 122.978889, enabled: true, region: 'VI' })
+    WeatherStations.insert({ stationID : 'INORTHER86', label : 'SARAI MOSCAT Claveria Misamis Oriental (UPLB)', lat :  10.32, long : 123.89, enabled: true, region: 'X' })
+    WeatherStations.insert({ stationID : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat :  11.102, long : 122.415, enabled: true, region: 'VI' })
+    WeatherStations.insert({ stationID : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat :  10.133, long : 123.547,enabled: true, region: 'VII' })
+    WeatherStations.insert({ stationID : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat :  13.193, long : 123.595, enabled: true, region: 'V' })
+    WeatherStations.insert({ stationID : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat :  9.45, long : 118.554, enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ stationID : 'IMIMAROP7', label : 'SARAI MinSCAT Alcate Victoria Oriental Mindoro (UPLB)', lat :  13.149, long : 21.187, enabled: true, region: 'IV-B' })    
+    WeatherStations.insert({ stationID : 'IMIMAROP8', label : 'SARAI PhilRice Sta Cruz Occidental Mindoro (UPLB)', lat :  13.130, long : 120.704, enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ stationID : 'IDAVAORE19', label : 'SARAI SPAMAST Matanao Davao del Sur (UPLB) ', lat :  6.691, long : 125.189, enabled: true, region: 'XI' })
+    WeatherStations.insert({ stationID : 'INORTHER117', label : 'SARAI CMU Musuan Maramag Bukidnon (UPLB) ', lat :  7.856, long : 125.058, enabled: true, region: 'X' })
+    WeatherStations.insert({ stationID : 'IDAVAORE20', label : 'SARAI SPAMAST Buhangin Malita Davao Occidental (UPLB) ', lat : 16.726, long: 121.699, enabled: true, region: 'XI' })
+    WeatherStations.insert({ stationID : 'IREGIONX6', label : 'SARAI USM Kabacan Cotabato (UPLB) ', lat :  7.109, long : 124.847, enabled: true, region: 'XII' })
+    WeatherStations.insert({ stationID : 'ICAGAYAN2', label : 'SARAI ISU Echague Isabela (UPLB) ', lat :  16.726, long : 121.699, enabled: true, region: 'II' })
+    WeatherStations.insert({ stationID : 'ICAGAYAN3', label : 'SARAI ISU Cabagan Isabela (UPLB) ', lat :  17.410, long : 121.814, enabled: true, region: 'II' })
   }
 
   if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
@@ -188,7 +197,6 @@ Meteor.startup(() => {
       value: '94b320c63f858a2b'
     });
   }
-
   if (Main.find().count() === 0) {
     const data = 
       [
@@ -337,7 +345,7 @@ Meteor.startup(() => {
               rank : ''
             },
             {
-              image: '/img/homepage-slider/Real-Time-Monitoring.jpg',
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
               textPosition: 'right',
               title: 'REAL-TIME WEATHER MONITORING',
               subTitle: 'Guide your farming practices with weather data',
@@ -346,41 +354,69 @@ Meteor.startup(() => {
               buttonLink: ''
             },
             {
-              image: '/img/homepage-slider/Crop-Monitoring-and-Forecasting.jpg',
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
               textPosition: 'right',
-              title: 'CROP MONITORING AND FORECASTING',
-              subTitle: 'Plan your planting practices wisely for optimum yield',
-              text: 'View the 30-day cumulative rainfall data and 10-day weather forecast in your area to know the right time to plant.',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
               buttonText: 'EXPLORE',
-              buttonLink: ''
+              buttonLink: '/rainfall-distribution'
             },
             {
-              image: '/img/homepage-slider/Smarter-Crop-Management.jpg',
-              textPosition: 'right',
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
               title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce more with less',
-              text: 'Know the right amount of nutrient, the adequate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'KNOW MORE',
-              buttonLink: ''
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
             },
             {
-              image: '/img/homepage-slider/MOBILE-APP.png',
-              textPosition: 'right',
-              title: 'SARAI MOBILE APP',
-              subTitle: 'Agriculture alerts on-the-go',
-              text: 'A mobile app where users can receive alerts via push notifications to mobile devices.',
-              buttonText: 'CLICK HERE TO DOWNLOAD',
-              buttonLink: 'https://build.phonegap.com/apps/1850892/install/HNYZJ_mtp4V4uSLkgvCK'
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
             },
             {
-              image: '/img/homepage-slider/eskwela.png',
-              textPosition: 'right',
-              title: 'SARAI ESKWELA',
-              subTitle: 'Knowledge sharing for smarter agriculture',
-              text: 'Explore the training modules and information, education, and communication materials to guide you in your farming practice.',
-              buttonText: 'CLICK HERE',
-              buttonLink: ''
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
             }
+
           ],
           enabled: true
         }
@@ -427,6 +463,7 @@ Meteor.startup(() => {
       rank: 4,
       image: 'https://geneticliteracyproject.org/wp-content/uploads/2016/07/n-fix-crops.jpg',
     },
+
   ];
     data.forEach(slide => Slides.insert(slide));
   }
@@ -514,6 +551,30 @@ Meteor.startup(() => {
       },
       sort: 8
     },
+    {
+      url: '#',
+      title: 'Integrated Crop Management # 4',
+      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      ura: 'Ivy Rose Marajas; Kim Nyka Pedeguerra; Marck Ferdie Eusebio; Yaminah Mochica Pinca',
+      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
+      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
+      experts: 'Dr. Pompe Sta. Cruz, CA, UPLB; Dr. Ronaldo Saludes, CEAT, UPLB',
+      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
+      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    },
+    {
+      url: '#',
+      title: 'Integrated Crop Management # 5',
+      tagline: 'Enhance your adaptibility by using SARAi’s integrated crop support system.',
+      ura: 'Ivy Rose Marajas; Kim Nyka Pedeguerra; Marck Ferdie Eusebio; Yaminah Mochica Pinca',
+      projectLeaders: 'Project 2, Dr. Art Salazar, Project Leader',
+      crops: 'Rice, Corn, Banana, Coconut, Coffee, and Cacao',
+      experts: 'Dr. Pompe Sta. Cruz, CA, UPLB; Dr. Ronaldo Saludes, CEAT, UPLB',
+      challenge: 'Nutrient Management is a vital process in farming. It pertains...',
+      solution: 'Using the SARAi Nutrient Manager, registered farmers can get recommendation...',
+      thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg'
+    }
   ];
     data.forEach(services => Services.insert(services));
   }
@@ -560,14 +621,19 @@ Meteor.startup(() => {
       {
         title: 'General Advisory based on Weather Forecast',
         subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management',
-        body: 'Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao. There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable. For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.',
+        body: '<ul><li>Mindanao and Eastern Visayas, rainfall beyond 100mm is already expected in later part of April or early May and it will mostly happen in CARAGA, Davao and Eastern Visayas</li> <li>Corn, and other upland crops including rainfed upland rice, is therefore expected to be planted earlier in these regions. Other regions will experience more rains in June and planting will ensue. Earliest corn harvest (in July) is therefore expected from Mindanao.</li><li> There will be slight drop in rainfall in June but the moistened soil in May and further rain (though less in June) should be enough to sustain the corn/upland crop</li> <li>Rainfall is expected to be heavy in July and August. Drying could be a concern here if corn harvesting happens in these months (wet grains have less market price). Early planting or use of early maturing varieties (of corn and other suitable crops) is therefore advisable.</li> </li> For lowland rice, irrigated and rainfed, soil saturation is expected to happen in July-August. Generally, there is heavier rainfall during these months for Luzon and Visayas. Mindanao has more even rainfall Expect wet season rice harvest to come in earliest by October mostly coming from Mindanao.</li></ul>',
         date: 'April 16, 2017'
-      }
+      },
+      {
+        title: 'iCMF Bulletin # 1 For 2017 Wet Season Crop and Preliminary to the Dry Season Crop',
+        subtitle: 'Dr. Artemio Salazar, SARAI Project Leader - Environmental Characterization and Development of Integrated Crop Management',
+        body: '<ul><li>Summer solstice is on June 21. Expect longer days than night up to September. Coupled with more rains, this is the reason why crop yields are higher these months. Short day plants i.e. plants requiring shorter day length to flower like sorghum, soybeans, some forages and vegetables will tend to be vegetative i.e. with more biomass formation. This will indeed be very advantageous for the northern part of the country like CAR and Cagayan Valley. But again the problem with typhoons. Hence the importance of planting time (early) in those areas to avoid the wraths of typhoon especially at harvest time and sometimes even flowering time (if planted late). This is the reason why you notice the tractors in Isabela are almost in a race at planting time during the wet season viz, to make best use of the weather. The late planters will wail. They might not know these equinoxes and solstices, but they know what they are doing!</li><li>The only concern now is the price of corn at harvest. With 2 million tons of feed wheat imported, equivalent to .7M tons of corn, that will indeed be a huge corn price depressant. Let us export corn to help our farmers!</li><li>Maybe this is the time to promote corn- legume rotation so that the farmers will not be beholden to one crop. We import a lot of those legumes anyway (mungbean, peanut and soybean) so there is local market. The rotation also perks up the corn yield after the legume crop because of the N-fixation capability of the legumes hence saving on N fertilizer. We have the local data to support that. It can also break the corn pest/diseases build up in the farm. Help the farmer, help the soil, help the corn: let us do crop rotation! In some countries that is even legislated.</li><li>Reminder again for the conditioning of mechanical dryers. Also for crops harvestable during dry months of March and April, like cassava. Planting fruit trees and other perennials now would also be ideal. Diversifying the crops in our farms would be good for the environment and farmers’ livelihood</li></ul>',
+        date: 'June 21, 2017'
+      },
     ];
 
     data.forEach(entry => Advisories.insert(entry));
   }
-
   if (About.find().count() === 0) {
     const data = [
       {
@@ -695,6 +761,18 @@ Meteor.startup(() => {
         title: 'Sample Report #2',
         file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
         date: '2017,06,21',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
+      {
+        title: 'Sample Report #3',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2017,06,19',
+        thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
+      },
+      {
+        title: 'Sample Report #4',
+        file: 'http://sarai.ph/wp-content/uploads/2016/03/Pest-Risk-Map-Armyworm.png',
+        date: '2018,03,19',
         thumbnail: 'http://proptera.com/application/files/2314/2420/9499/iStock_000012551695_Lettuce_Large.jpg',      
       },
       {

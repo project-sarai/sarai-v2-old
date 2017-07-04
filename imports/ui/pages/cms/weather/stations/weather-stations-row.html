@@ -4,11 +4,11 @@
     <td class="coords">{{coords}}</td>
     <td class="station-label">{{label}}</td>
     <td class="actions">
-      <a id="edit-weather-station" href="">
-        <i class="material-icons">mode_edits</i>
+      <a id="edit-weather-station" href="" data-toggle="modal" data-target="#cms-weather-station-dialog">
+        <i class="glyphicon glyphicon-pencil"></i>
       </a>
       <a href="/admin/weather/stations/{{id}}">
-        <i class="material-icons">view_list</i>
+        <i class="glyphicon glyphicon-trash"></i>
       </a>
     </td>
   </tr>

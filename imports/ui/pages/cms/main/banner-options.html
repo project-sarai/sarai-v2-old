@@ -30,16 +30,16 @@
                   <td>{{truncateTableEntry entry.subTitle}}</td>
                   <td>{{truncateTableEntry entry.text}}</td>
                   <td>
-                    <a href="" id="slider-edit-{{entry._id}}" class="cms-banner-slider-edit" data-toggle="modal" data-target="#cms-banner-dialog"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a href="" id="slider-delete-{{entry._id}}" class="cms-banner-slider-delete"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="" id="slider-edit-{{@index}}" class="cms-banner-slider-edit" data-toggle="modal" data-target="#cms-banner-dialog"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="" id="slider-delete-{{@index}}" class="cms-banner-slider-delete"><i class="glyphicon glyphicon-trash"></i></a>
                   </td>
                 </tr>
               {{/each}}
             </tbody>
           </table>
 
-          <div class="cms-block-actions">
-            <button id="cms-banner-slide-add" class="btn">
+          <div class="cms-block-actions" align="center">
+            <button id="cms-banner-slide-add" class="btn" data-toggle="modal" data-target="#cms-banner-dialog">
               <i class="glyphicon glyphicon-plus"></i> Add Slide
             </button>
           </div>
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div class="modal fade cms-header-edit-dialog" id="cms-banner-dialog" role="dialog">
+  <div class="modal fade" id="cms-banner-dialog" role="dialog">
       <div class="modal-dialog modal-lg">
       
         <!-- Modal content-->
@@ -73,12 +73,16 @@
             <div class="row">
               <div class="col-sm-5">
 
-                <div>
-                  <img id="cms-banner-slide-img" class="cms-image-preview">
-                  {{> CMSUpload callbacks=myCallbacks}}
+                <div align="center">
+                  <img id="cms-banner-slide-img" width="90%" height="auto" class="cms-image-preview">
+                  <div align="center">
+                    <br>
+                    {{> CMSUpload callbacks=myCallbacks}}
+                  </div>
                 </div>
 
-                <div>
+                <div align="center">
+                  <br>
                   <label for="option-1">
                     <input type="radio" id="option-1" class="mdl-radio__button" name="banner-text-position" value="left"  {{positionChecked}}>
                     <span class="mdl-radio__label">Left</span>
@@ -98,16 +102,10 @@
 
                 <div>
                   <div>
+                    <br>
                     <div id="cms-banner-slide-title">
                       <label for="cms-banner-slide-title-input">Title</label>
                       <input class="form-control" type="text" id="cms-banner-slide-title-input">
-                    </div>
-                  </div>
-
-                  <div>
-                    <div id="cms-banner-slide-subtitle">
-                      <label for="cms-banner-slide-subtitle-input">Subtitle</label>
-                      <input class="form-control" type="text" id="cms-banner-slide-subtitle-input">
                     </div>
                   </div>
                 </div>
@@ -115,6 +113,13 @@
 
               <div class="col-sm-7">
                 <div>
+                  <div id="cms-banner-slide-subtitle">
+                    <label for="cms-banner-slide-subtitle-input">Subtitle</label>
+                    <input class="form-control" type="text" id="cms-banner-slide-subtitle-input">
+                  </div>
+                </div>
+                <div>
+                  <br>
                   <div id="cms-banner-slide-text">
                     <label class="mdl-textfield__label" for="cms-banner-slide-text-input">Text</label>
                     <textarea class="form-control" type="text" rows= "4" id="cms-banner-slide-text-input" ></textarea>
@@ -122,6 +127,7 @@
                 </div>
 
                 <div>
+                  <br>
                   <div id="cms-banner-slide-button-text">
                     <label for="cms-banner-slide-button-text-input">Button Text</label>
                     <input class="form-control" type="text" id="cms-banner-slide-button-text-input">
@@ -129,6 +135,7 @@
                 </div>
 
                 <div>
+                  <br>
                   <div id="cms-banner-slide-button-href">
                     <label for="cms-banner-slide-button-href-input">Button Link</label>
                     <input class="form-control" type="text" id="cms-banner-slide-button-href-input">

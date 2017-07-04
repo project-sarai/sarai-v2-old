@@ -27,7 +27,6 @@ Template.CMSServicesForm.onRendered(() => {
   // $('#cms-service-col1text-editor').summernote();
   // $('#cms-service-col1text-editor').code('<h3>Sample</h3>');
 
-
   // const hiddenCode = $('#hidden-col1text').attr('value')
   // $('#cms-service-col1Text-editor').code(hiddenCode)
 })

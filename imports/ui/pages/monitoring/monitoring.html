@@ -1,7 +1,6 @@
 <template name="Monitoring">
   {{> AdvisoriesSubheader}}
-  Weather Monitoring goes here...
-
+  <br>
   <div class="container-fluid">
     <div class="row">
 
@@ -9,6 +8,9 @@
     </div>
     <div class="row">
       <div class="col-sm-12 col-md-3">
+
+        <select class="form-control" id="monitoring-station-select">
+        </select> 
 
         <div id="weather-map"></div>
       </div>

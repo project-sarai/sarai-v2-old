@@ -1,5 +1,7 @@
 import './weather-stations-row.html';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+import { WeatherStations } from '../../../../../api/weather/sarai-weather-stations.js';
 
 Template.WeatherStationRow.events({
   'click #edit-weather-station': function() {
@@ -9,7 +11,7 @@ Template.WeatherStationRow.events({
 
     fillWeatherStationDialog(this._id)
 
-    dialog.showModal()
+    //dialog.showModal()
   }
 })
 
@@ -18,7 +20,7 @@ const fillWeatherStationDialog = (stationID) => {
   $('#cms-ws-lat').addClass('is-dirty')
   $('#cms-ws-long').addClass('is-dirty')
 
-  Meteor.subscribe('weather-station', stationID, () => {
+  Meteor.subscribe('weather_stations', stationID, () => {
     const record = WeatherStations.findOne()
 
     $('#cms-ws-label-input').val(record.label)

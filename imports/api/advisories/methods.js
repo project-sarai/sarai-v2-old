@@ -19,4 +19,22 @@ Meteor.methods({
       createdAt: new Date(),
     });
   },
+  'advisories.delete'(_id) {
+    Advisories.remove({_id});
+  },
+  'advisories.edit' (_id, title, subtitle, body, date) {
+
+    Advisories.update(
+      { _id },
+      {
+        $set : {
+          title,
+          subtitle,
+          body,
+          date
+        }
+      },
+      { upsert: true }
+    );
+  },
 });

@@ -3,11 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import { WeatherStations } from '../../../../../api/weather/sarai-weather-stations.js';
 
 Template.WeatherStationsBlock.onCreated(() => {
-  Meteor.subscribe('record-counts', 'weather-stations')
-  Meteor.subscribe('record-counts', 'sarai-weather-stations')
+  //Meteor.subscribe('record-counts', 'weather-stations')
+  //Meteor.subscribe('record-counts', 'sarai-weather-stations')
 
-  Meteor.subscribe('quick-weather-stations')
-})
+  //Meteor.subscribe('quick-weather-stations')
+  Meteor.subscribe('weather_stations');
+});
 
 Template.WeatherStationsBlock.helpers({
   stationCount: () => {
@@ -23,7 +24,7 @@ Template.WeatherStationsBlock.helpers({
   },
 
   aFewStations: () => {
-    const stations = WeatherStations.find({}).fetch()
+    const stations = WeatherStations.find({});
 
     return stations
   }
