@@ -1,6 +1,8 @@
+import { Tracker } from 'meteor/tracker'
 import './monitoring.html';
 
-Template.monitoringnitoring.onCreated(function() {
+Template.Monitoring.onCreated(function() {
+  Meteor.subscribe('weather_stations')
 
   Highcharts.setOptions({
   // This is for all plots, change Date axis to local timezone
@@ -28,7 +30,7 @@ Template.Monitoring.onRendered(function() {
       zoom: 5,
       minZoom: 1
   });
-
+  //var marker = L.marker([14.155, 121.248]).addTo(weatherMap);
   weatherMap.zoomControl.setPosition('bottomleft');
 
   L.tileLayer('https://api.mapbox.com/styles/v1/mcarandang/cj1jd9bo2000a2speyi8o7cle/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWNhcmFuZGFuZyIsImEiOiJjaWtxaHgzYTkwMDA4ZHZtM3E3aXMyYnlzIn0.x63VGx2C-BP_ttuEsn2fVg',{
@@ -37,9 +39,60 @@ Template.Monitoring.onRendered(function() {
     accessToken: 'pk.eyJ1IjoibWNhcmFuZGFuZyIsImEiOiJjaWtxaHgzYTkwMDA4ZHZtM3E3aXMyYnlzIn0.x63VGx2C-BP_ttuEsn2fVg'
   }).addTo(weatherMap);
 
+  Meteor.subscribe('weather_stations', () => {
+    Tracker.autorun(() => {
+      const stations = WeatherStations.find().fetch()
+      let defaultStation = null
+
+      for (let a = 0; a < stations.length; a++) {
+        const station = stations[a]
+        const x = station.lat
+        const y = station.long
+        const label = stripTitle(station.label)
+        const stationID = station.stationID
+
+        const marker = new L.marker([x, y])
+        .bindPopup(`<h5>${label}</h5>`)
+        .on('click', L.bind(showWeatherData, null, stationID, label))
+
+        group.addLayer(marker)
+
+        stations[a]['markerID'] = group.getLayerId(marker)
+
+        //save option value, pan to marker, and open popup
+        if (stationID == 'ICALABAR18') {
+          defaultStation = group.getLayerId(marker)
+          weatherMap.setView(marker.getLatLng(), 10)
+          marker.openPopup()
+        }
+      }
+
+      group.addTo(weatherMap)
+
+      //Add stations to dropdown
+      const stationsDropdown = $('#monitoring-station-select')
+
+      //Add stations to dropdown
+      stations.forEach((element, index) => {
+        const option = document.createElement('option')
+
+        option.innerHTML = `${stripTitle(element.label)}`
+        option.setAttribute('value', element.markerID)
+
+        stationsDropdown.append(option)
+      })
+
+      //Set default station in dropdown
+      stationsDropdown.val(defaultStation)
+
+      this.stations = stations
+      this.weatherMap = weatherMap
+      this.group = group
+    })
+  })
+
   var s = $('#meteogram-container');
   console.log(s);
-
 
   // NOTE THAT THIS IS JUST A SAMPLE FROM THE HIGHCHARTS SITE
   Highcharts.chart('meteogram-container', {
@@ -86,8 +139,45 @@ Template.Monitoring.onRendered(function() {
         data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
     }]
 
-});
+  });
 
 });
 
-Template.Monitoring.helpers({});
+Template.Monitoring.helpers({
+  stations: () => {
+    const stations = WeatherStations.find({}).fetch()
+
+    stations.forEach((element, index) => {
+      element.label = stripTitle(element.label)
+    })
+
+  return stations
+  }
+});
+
+Template.Monitoring.events({
+  'change #monitoring-station-select': () => {
+    const markerID = $('#monitoring-station-select').val()
+
+    const station = this.stations.find((element) => {
+      return element.markerID == markerID
+    })
+
+    const marker = this.group.getLayer(markerID)
+
+    this.weatherMap.setView(marker.getLatLng(), 10)
+    marker.openPopup()
+  }
+})
+
+const stripTitle = (title) => {
+  let result = title
+
+  result = result.replace('SARAI', '')
+  result = result.replace('(UPLB)', '')
+  result = result.replace('WFP', '')
+  result = result.replace('WPU', '')
+  result = result.replace('APN', '')
+
+  return result
+}
