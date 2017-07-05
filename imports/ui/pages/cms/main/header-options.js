@@ -3,6 +3,7 @@ import '../common/cms-upload/cms-upload.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { Links } from '../../../../api/links/links.js';
+import { Random } from 'meteor/random';
 
 Template.HeaderOptions.onCreated(() => {
   Meteor.subscribe('links')

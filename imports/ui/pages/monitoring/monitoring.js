@@ -5,6 +5,9 @@ import { WeatherData } from '/imports/api/weather/sarai-weather-data.js';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker'
 import './monitoring.html';
+import './helpers/chart-helpers.js';
+import './helpers/year-chart-helpers.js';
+import './helpers/accumulated-rain-helpers.js';
 import '../../components/advisories/advisories-subheader.js';
 
 Template.Monitoring.onCreated(function() {
@@ -63,7 +66,7 @@ Template.Monitoring.onRendered(function() {
 
   const showWeatherData = (stationID, label, event) => {
     Session.set('stationID', stationID)
-    console.log(Session.get('apiKey'))
+
     displayWeatherData(stationID, Session.get('apiKey'))
   }
 
@@ -113,8 +116,9 @@ Template.Monitoring.onRendered(function() {
       //Set default station in dropdown
       stationsDropdown.val(defaultStation)
 
-      this.stations = stations
-      this.weatherMap = weatherMap
+      Session.set('stations', stations)
+      this.stations = stations;
+      this.weatherMap = weatherMap;
       this.group = group
     })
   })
@@ -124,7 +128,6 @@ Template.Monitoring.onRendered(function() {
 Template.Monitoring.events({
   'click #forecast': () => {
     this.visibleChart = 'forecast'
-    console.log(Session.get('apiKey'))
     activateButton('forecast')
     displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
   },
@@ -150,260 +153,47 @@ Template.Monitoring.events({
       return element.markerID == markerID
     })
 
-    const marker = this.group.getLayer(markerID)
-
+    const marker = Template.instance().group.getLayer(markerID)
     Template.instance().weatherMap.setView(marker.getLatLng(), 10)
     marker.openPopup()
-
-    displayWeatherData(station.id, this.apiKey)
+    displayWeatherData(station.stationID, Template.instance().apiKey)
   }
 });
 
 Template.Monitoring.helpers({
-  
-});
-
-const getPlotLines = (ticks) => {
-  let plotLines = []
-
-  ticks.forEach((element, index) => {
-    plotLines.push({
-      color: '#bfbfbf',
-      width: 1,
-      value: element
-    })
-  })
-
-  return plotLines
-}
-
-const featureURI = (features) => {
-  let result = ''
-
-  features.forEach((element, index) => {
-    result += '/'
-    result += element
-  })
-
-  return result
-}
-
-const getDailySeries = (data) => {
-  let qpf = []
-  let hlTemp = []
-
-  for (let entry of data.forecast.simpleforecast.forecastday) {
-    qpf.push(entry.qpf_allday.mm)
-    hlTemp.push([entry.low.celsius, entry.high.celsius])
-  }
-
-  const dailySeries = {
-    qpf,
-    hlTemp
-  }
-
-  return dailySeries
-}
-
-const getHourlySeries = (data) => {
-  let temp = []
-  let pop = []
-  let windSpd = []
-
-  const forecast = data.hourly_forecast
-
-
-  for (let entry of forecast) {
-
-    const ftc = entry.FCTTIME;
-    const utcDate = Date.UTC(ftc.year, ftc.mon-1, ftc.mday, ftc.hour);
-
-    temp.push([utcDate, parseInt(entry.temp.metric)])
-    pop.push([utcDate, parseInt(entry.pop)])
-    windSpd.push([utcDate, parseInt(entry.wspd.metric)])
-  }
-
-  const result = {
-    temp,
-    pop,
-    windSpd
-  }
-
-  return result
-}
-
-const getTickPositions = (data) => {
-  const df = data.forecast.simpleforecast.forecastday
-
-  const tickPositions = [];
-  let year = 0;
-  let month = 0;
-  let day = 0;
-
-  for (let entry of df) {
-    const date = entry.date;
-    year = date.year;
-    month = date.month - 1;
-    day = date.day;
-
-    tickPositions.push(Date.UTC(year, month, day, 0))
-  }
-
-  const nextDay = day < 31 ? day + 1 : 1
-  tickPositions.push(Date.UTC(year, month, nextDay, 0));
-
-  return tickPositions;
-}
-
-const getAltTickPositions = (data) => {
-  const df = data.forecast.simpleforecast.forecastday
-  const altTickPositions = [];
-  let year = 0;
-  let month = 0;
-  let day = 0;
-
-  for (let entry of df) {
-    const date = entry.date;
-    year = date.year;
-    month = date.month - 1;
-    day = date.day;
-
-    altTickPositions.push(Date.UTC(year, month, day, 12))
-  }
-
-  const nextDay = day < 31 ? day + 1 : 1
-  altTickPositions.push(Date.UTC(year, month, nextDay, 12));
-
-  return altTickPositions;
-}
-
-const getTickQPFMap = (ticks, qpf) => {
-  let tickQPFMap = {}
-
-  for (let a = 0; a < ticks.length - 1; a++) {
-    tickQPFMap[ticks[a]] = qpf[a] + ' mm'
-  }
-
-  return tickQPFMap
-}
-
-const getTickTempMap = (ticks, temp) => {
-  let tickTempMap = {}
-
-  for (let a = 0; a < ticks.length - 1; a++) {
-    tickTempMap[ticks[a]] = '<span style="color: #0853a8;">' + temp[a][0] + '°</span> | <span style="color: #ea7c0e;">' + temp[a][1] + '°</span>'
-  }
-
-  return tickTempMap
-}
-
-const forecast_constructChart = (chart) => {
-  let chartOptions = {
-    chart: {
-      marginLeft: 50,
-      marginRight: 30,
-      // marginTop: 25,
-      height: 200
-    },
-
-    legend: {
-      enabled: false
-    },
-
-    title: {
-      text: chart.title,
-      align: 'left',
-      margin: 0,
-      x: 30
-    },
-
-    xAxis: [
-      {
-
-        crosshair: true,
-        tickPositions: chart.tickPositions,
-        tickPosition: 'inside',
-        // opposite: true,
-        events: {
-          setExtremes: function syncExtremes(e) {
-            var thisChart = this.chart
-            if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
-              Highcharts.each(Highcharts.charts, function (chart) {
-                if (chart !== thisChart) {
-                  if (chart.xAxis[0].setExtremes) { // It is null while updating
-                    chart.xAxis[0].setExtremes(e.min, e.max, undefined, false, { trigger: 'syncExtremes' });
-                  }
-                }
-              });
-            }
-          }
-        },
-        labels: {
-          enabled: false
-        },
-        plotLines: chart.plotLines
-      },
-
-      {
-        tickPositions: chart.altTickPositions, //chart.atpEnabled ? altTickPositions : null,
-        opposite: true,
-        tickWidth: 0,
-        labels: {
-          formatter: function () {
-            var altTickLabels = chart.altTickLabels[this.value.toString()]
-            altTickLabels = (altTickLabels == undefined) ? '' : altTickLabels
-
-            var d = chart.dateTicksEnabled ? Highcharts.dateFormat('%e %b', new Date(this.value)) : ''
-
-            var label =  d + '<br/>' + altTickLabels
-
-            return label
-          }
-        },
-        linkedTo: 0
-      }
-
-    ],
-
-    yAxis: {
-      labels: {
-        format: '{value}' + chart.unit,
-        style: {
-            // color: '#ff1a1a',
-            fontWeight: 'bold'
-        }
-      },
-    },
-
-    series: [{
-      name: chart.name,
-      id: chart.id,
-      data: chart.data,
-      type: 'spline',
-      color: chart.color,
-      tooltip: {
-          valueDecimals: 0
-      }
-    }],
-
-    tooltip: {
-      formatter: function () {
-        let s = '<b>' + Highcharts.dateFormat('%e %b - %H:00', new Date(this.x)) + '</b>';
-
-        s += '<br />' + this.series.name + ': ' + this.y + chart.unit;
-        return s;
-      }
+  forecastIsSelected: () => {
+    if (this.visibleChart == 'forecast' ) {
+      return true
+    } else {
+      return false
     }
+  },
 
+  stationsRainfall: () => {
+    const stationsRainfall = WeatherStations.find({}, {fields: {id: 1}}).fetch()
+
+    stationsRainfall.forEach((element, index) => {
+      const weatherData = WeatherData.find({id: element.id}).fetch()
+
+      const rainfallTotals = Meteor.AccumulatedRainfall.getTotal(weatherData)
+
+      element['rainfall10'] = rainfallTotals[0]
+      element['rainfall30'] = rainfallTotals[1]
+    })
+
+    return stationsRainfall
+  },
+
+  stations: () => {
+    const stations = WeatherStations.find({}).fetch()
+
+    stations.forEach((element, index) => {
+      element.label = stripTitle(element.label)
+    })
+
+    return stations
   }
-
-  // if (chart.atpEnabled) {
-
-  //   chartOptions.xAxis[1][tickPositions] = altTickPositions
-  // }
-
-  return chartOptions
-}
+});
 
 const displayWeatherData = (stationID, apiKey) => {
 
@@ -421,36 +211,23 @@ const displayWeatherData = (stationID, apiKey) => {
   }
 }
 
-const activateButton = (id) => {
-  $(`#${id} > button`).addClass('active')
-
-  const charts = ['forecast', 'accumulated', 'year']
-
-  charts.forEach((element) => {
-    if (element != id) {
-      $(`#${element} > button`).removeClass('active')
-    }
-  })
-}
-
 const displayForecast = (stationID, apiKey) => {
-  console.log(apiKey)
-  console.log(stationID)
+console.log(apiKey + stationID)
   if (apiKey) { //Make sure key is available
     const dataFeatures = [ 'conditions', 'hourly10day', 'forecast10day']
 
-    $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}${featureURI(dataFeatures)}/q/pws:${stationID}.json`, (result) => {
-
-      const dailySeries = getDailySeries(result)
-      const hourlySeries = getHourlySeries(result)
+    $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}${Meteor.chartHelpers.featureURI(dataFeatures)}/q/pws:${stationID}.json`, (result) => {
+      console.log(result)
+      const dailySeries = Meteor.chartHelpers.getDailySeries(result)
+      const hourlySeries = Meteor.chartHelpers.getHourlySeries(result)
       //common data
-      const tickPositions = getTickPositions(result)
-      const altTickPositions = getAltTickPositions(result)
+      const tickPositions = Meteor.chartHelpers.getTickPositions(result)
+      const altTickPositions = Meteor.chartHelpers.getAltTickPositions(result)
 
-      const plotLines = getPlotLines(tickPositions)
+      const plotLines = Meteor.chartHelpers.getPlotLines(tickPositions)
 
-      const tickQPFMap = getTickQPFMap(altTickPositions, dailySeries.qpf)
-      const tickTempMap = getTickTempMap(altTickPositions, dailySeries.hlTemp)
+      const tickQPFMap = Meteor.chartHelpers.getTickQPFMap(altTickPositions, dailySeries.qpf)
+      const tickTempMap = Meteor.chartHelpers.getTickTempMap(altTickPositions, dailySeries.hlTemp)
 
       const charts = [
         {
@@ -506,8 +283,8 @@ const displayForecast = (stationID, apiKey) => {
       // })
 
 
-      Highcharts.chart(tempDiv, forecast_constructChart(charts[0]));
-      Highcharts.chart(rainDiv, forecast_constructChart(charts[1]));
+      Highcharts.chart(tempDiv, Meteor.chartHelpers.constructChart(charts[0]));
+      Highcharts.chart(rainDiv, Meteor.chartHelpers.constructChart(charts[1]));
     })
   }
 
@@ -519,8 +296,7 @@ const displayYear = (stationID) => {
   Meteor.subscribe('heat_map_data', stationID, () => {
     const records = HeatMapData.find({stationID: stationID})
 
-    console.log(records.fetch());
-    const data = constructSeries(records.fetch());
+    const data = Meteor.YearWeather.constructSeries(records.fetch());
     var chartDiv = document.createElement('div');
     var yearDiv = document.createElement('div');
     $(chartDiv).addClass('meteogram');
@@ -528,21 +304,21 @@ const displayYear = (stationID) => {
     $(yearDiv).appendTo(chartDiv);
 
     $('#meteogram-container').append(chartDiv);
-    Highcharts.chart(yearDiv, yearly_constructChart(data[0], data[1]));
+    Highcharts.chart(yearDiv, Meteor.YearWeather.constructChart(data[0], data[1]));
   })
 
 }
 
 const displayAccumulatedRain = (stationID, apiKey) => {
   const weatherData = WeatherData.find({id: stationID}).fetch()
-
   //have to reconcile missing entries
   if (weatherData) {
-    const fixedData = fillMissingEntries(weatherData.reverse())
+    const fixedData = Meteor.AccumulatedRainfall.fillMissingEntries(weatherData.reverse())
 
-    const pastRainfall = getPastRainfall(fixedData)
+    const pastRainfall = Meteor.AccumulatedRainfall.getPastRainfall(fixedData)
 
     if (apiKey) {
+
       $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}/forecast10day/q/pws:${stationID}.json`, (result) => {
 
         // const result = Meteor.RainfallSampleData.sampleData()
@@ -552,9 +328,11 @@ const displayAccumulatedRain = (stationID, apiKey) => {
 
         const runningTotal = pastRainfall.pastAccRainfall[29].y
 
-        const forecast = getForecast(result, runningTotal)
+        const forecast = Meteor.AccumulatedRainfall.getForecast(result, runningTotal)
 
-        const completeData = assembleRainfallData(pastRainfall.pastRainfall, pastRainfall.pastAccRainfall, forecast.forecastRainfall, forecast.forecastAccumulated)
+        const completeData = Meteor.AccumulatedRainfall.assembleRainfallData(pastRainfall.pastRainfall, pastRainfall.pastAccRainfall, forecast.forecastRainfall, forecast.forecastAccumulated)
+
+        console.log(completeData)
 
         var chartDiv = document.createElement('div');
         var rainfallDiv = document.createElement('div');
@@ -563,11 +341,23 @@ const displayAccumulatedRain = (stationID, apiKey) => {
         $(rainfallDiv).appendTo(chartDiv);
 
         $('#meteogram-container').append(chartDiv);
-        Highcharts.chart(rainfallDiv, rainfall_constructChart(completeData.completeRainfall, completeData.completeAccumulatedRainfall, forecast.plotBandStart, forecast.plotBandEnd));
+        Highcharts.chart(rainfallDiv, Meteor.AccumulatedRainfall.constructChart(completeData.completeRainfall, completeData.completeAccumulatedRainfall, forecast.plotBandStart, forecast.plotBandEnd));
 
       })
     }
   }
+}
+
+const activateButton = (id) => {
+  $(`#${id} > button`).addClass('active')
+
+  const charts = ['forecast', 'accumulated', 'year']
+
+  charts.forEach((element) => {
+    if (element != id) {
+      $(`#${element} > button`).removeClass('active')
+    }
+  })
 }
 
 const stripTitle = (title) => {
@@ -580,331 +370,4 @@ const stripTitle = (title) => {
   result = result.replace('APN', '')
 
   return result
-}
-
-//Year chart helpers
-
-const constructSeries = (records) => {
-  const rain = []
-  const temp = []
-
-
-
-  records.forEach((element, index) => {
-    if (!element.dummy) {
-      const rainEntry = []
-      const tempEntry = []
-
-      const date = Date.UTC(element.year, element.month - 1, element.day, 0)
-
-      rainEntry.push(date)
-      rainEntry.push(element.rain)
-
-      tempEntry.push(date)
-      tempEntry.push(element.tempAvg)
-
-      rain.push(rainEntry)
-      temp.push(tempEntry)
-    }
-  })
-
-  rain.sort((a, b) => {
-    return new Date(a[0]) - new Date(b[0])
-  })
-
-  temp.sort((a, b) => {
-    return new Date(a[0]) - new Date(b[0])
-  })
-
-  return [rain, temp]
-}
-
-const yearly_constructChart = (rain, temp) => {
-
-  return {
-    // chart: {
-    //   marginLeft: 20
-    // },
-
-    rangeSelector: {
-      selected: 4
-    },
-
-    yAxis: [
-      {
-        lineWidth: 1,
-        title: {
-          text: 'Rainfall',
-          style: {
-            color: '#0853a8'
-          }
-        },
-        labels: {
-          format: '{value} mm',
-          style: {
-            color: '#0853a8'
-          }
-        }
-      },
-      {
-        lineWidth: 1,
-        labels: {
-          format: '{value}°C',
-          style: {
-            color: '#ea7c0e'
-          }
-        },
-        title: {
-          text: 'Average Temperature',
-          style: {
-            color: '#ea7c0e'
-          }
-        },
-        opposite: false
-      }
-    ],
-
-    tooltip: {
-      xDateFormat: '%Y-%b-%d',
-      split: true
-    },
-
-    series: [
-      {
-        name: 'Rainfall',
-        // type: 'scatter',
-        // lineWidth: 1,
-        type: 'line',
-        data: rain,
-        color: '#0853a8',
-        tooltip: {
-          pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> mm<br/>'
-        }
-      },
-      {
-        name: 'Average Temperature',
-        // type: 'scatter',
-        // lineWidth: 1,
-        type: 'line',
-        data: temp,
-        color: '#ea7c0e',
-        tooltip: {
-          pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> °C<br/>'
-        }
-      }
-    ]
-  }
-}
-
-// Accumulated rain helpers
-
-const fillMissingEntries = (weatherData) => {
-  let oneMonthAgo = new Date()
-  oneMonthAgo.setDate(oneMonthAgo.getDate() - 30)
-  oneMonthAgo.setHours(0,0,0,0)
-
-  //Create array to hold the fixed data (full of empty entries first)
-  let fixedData = []
-
-  for (let a = 0; a < 30; a++) {
-    let d = new Date()
-    d.setDate(d.getDate() - (30 - a))
-    d.setHours(0,0,0,0)
-    const entry = {
-      data: {
-        rainfall: 0
-      },
-      dateUTC: d
-    }
-
-    fixedData.push(entry)
-  }
-
-
-  let b = 0 //counter for existing data in weatherData array
-
-  for (let a = 0; a < 30; a++) {
-    if (weatherData[b] && fixedData[a].dateUTC.getTime() == weatherData[b].dateUTC.getTime()) {
-      //found date match in retrieved weather data
-
-      fixedData[a].data.rainfall = weatherData[b].data.rainfall
-
-      b+=1
-    }
-  }
-
-  return fixedData
-}
-
-const getPastRainfall = (weatherData) => {
-  let pastRainfall = []
-  let pastAccRainfall = []
-  let totalRainfall = 0
-
-  for (let entry of weatherData) {
-    totalRainfall += entry.data.rainfall
-
-    pastRainfall.push({ x: entry.dateUTC, y: entry.data.rainfall})
-    pastAccRainfall.push({ x: entry.dateUTC, y: Math.round(totalRainfall * 10) / 10})
-  }
-
-  return {
-    pastRainfall,
-    pastAccRainfall
-  }
-}
-
-const getForecast = (forecast, runningTotal) => {
-  const dailyRecords = forecast.forecast.simpleforecast.forecastday
-
-  let forecastRainfall = []
-  let forecastAccumulated = []
-  let total = runningTotal
-
-  for (let entry of dailyRecords) {
-    const utcDate = Date.UTC(entry.date.year, entry.date.month - 1, entry.date.day);
-    total += entry.qpf_allday.mm,
-
-    forecastRainfall.push({ x: utcDate, y: entry.qpf_allday.mm})
-    forecastAccumulated.push({ x: utcDate, y: total})
-  }
-
-  const firstEntry = dailyRecords[0]
-  const lastEntry = dailyRecords[9]
-  const plotBandStart = Date.UTC(firstEntry.date.year, firstEntry.date.month - 1, firstEntry.date.day)
-  const plotBandEnd = Date.UTC(lastEntry.date.year, lastEntry.date.month - 1, lastEntry.date.day)
-
-  return {
-    forecastRainfall,
-    forecastAccumulated,
-    plotBandStart,
-    plotBandEnd
-  }
-}
-
-const assembleRainfallData = (pastRain, pastAcc, forecastRain, forecastAcc) => {
-
-  const completeRainfall = pastRain.concat(forecastRain)
-  const completeAccumulatedRainfall = pastAcc.concat(forecastAcc)
-
-  return {
-    completeRainfall,
-    completeAccumulatedRainfall
-  }
-}
-
-const rainfall_constructChart = (completeRainfall, completeAccumulatedRainfall, plotBandStart, plotBandEnd) => {
-  return {
-      title: {
-          text: '30-day rainfall + 10-day forecast'
-      },
-      plotOptions: {
-        line: {
-          marker: {
-            enabled: false
-          }
-        },
-        series: {
-          allowPointSelect: true,
-          point: {
-            events: {
-              select: function(e) {
-                console.log(Highcharts.dateFormat('%e %b', new Date(e.target.x)))
-              }
-            }
-          }
-        }
-      },
-      yAxis: [
-        {
-          title: {
-            text: 'Millimeters of Rain',
-            style: {
-              fontWeight: 'bold'
-            }
-          },
-          labels: {
-            format: '{value}',
-            style: {
-              color: '#0066cc',
-              fontWeight: 'bold'
-            }
-          }
-        }
-      ],
-      xAxis: [
-        {
-          labels: {
-            formatter: function () {
-              var s = Highcharts.dateFormat('%e %b', new Date(this.value + (new Date).getTimezoneOffset()));
-
-              return s;
-            }
-          },
-
-          plotBands: [{
-            color: '#FCFFC5',
-            from: plotBandStart,
-            to: plotBandEnd,
-            label: {
-              text: '10-Day Forecast',
-              align: 'center',
-              style: {
-                fontWeight: 'bold',
-                color: '#707070'
-              }
-            }
-          }],
-        }
-      ],
-      series: [{
-          type: 'column',
-          name: 'Rainfall',
-          data: completeRainfall
-      }, {
-          type: 'line',
-          name: 'Accumulated Rainfall',
-          data: completeAccumulatedRainfall
-      }],
-
-      tooltip: {
-        borderColor: '#cccccc',
-        formatter: function( ) {
-          var s = '<b>' + Highcharts.dateFormat('%e %b', new Date(this.x)) + '</b>';
-
-          s += '<br />' + this.points[0].series.name + ': ' + this.points[0].y + ' mm';
-          s += '<br />' + this.points[1].series.name + ': ' + this.points[1].y + ' mm';
-
-
-          // $.each(this.points, function () {
-          //     s += '<br/>' + this.series.name + ': ' + this.y + 'm';
-          // });
-
-          return s;
-        },
-        shared: true
-      }
-  }
-}
-
-const getTotal = (data) => {
-  let total30 = 0
-  let total10 = 0
-
-  let counter = 0
-
-  data.forEach(function(element, index) {
-    total30 += element.data.rainfall
-
-    if (counter < 10) { // 10 Days
-      total10 += element.data.rainfall
-
-      counter++
-    }
-  })
-
-  total10 = Math.round(total10 * 10) / 10
-  total30 = Math.round(total30 * 10) / 10
-
-  return [total10, total30]
 }

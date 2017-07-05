@@ -1,6 +1,7 @@
 import './banner-options.html';
 import '../common/cms-upload/cms-upload.html'
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 import { Main } from '../../../../api/main/main.js';
 
 Template.CMSBannerOptions.onCreated(() => {
@@ -14,19 +15,15 @@ Template.CMSBannerOptions.onCreated(() => {
 Template.CMSBannerOptions.onRendered(() => {
   const dialog = document.querySelector('#cms-banner-dialog')
 
-  dialog.querySelector('.cancel').addEventListener('click', () => {
-//    dialog.close();
-  });
-
   dialog.querySelector('.save').addEventListener('click', () => {
     let action = this.action
 
-    const textPosition = $('input:radio[name=banner-text-position]:checked').val()
+    // const textPosition = $('input:radio[name=banner-text-position]:checked').val()
 
     console.log(`Text position: ${textPosition}`)
 
     const image = this.uploadedFile
-    // const textPosition = $('#cms-banner-slide-text-position-input').val()
+    const textPosition = $('#cms-banner-slide-text-position-input').val()
     const title = $('#cms-banner-slide-title-input').val()
     const subTitle = $('#cms-banner-slide-subtitle-input').val()
     const text = $('#cms-banner-slide-text-input').val()

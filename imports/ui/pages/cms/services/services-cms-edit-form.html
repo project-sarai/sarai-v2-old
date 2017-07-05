@@ -29,7 +29,7 @@
 
     <div width="50px" align="center">
       <img id="cms-service-thumbnail" width="25%" height="auto" class="cms-service-form-thumbnail" src="{{service.thumbnail}}">
-      {{> upload_bootstrap multiple=false }}
+      {{> upload_bootstrap multiple=false callbacks=myCallbacks}}
 
       <div  id="cms-service-subtitle" class="input-group">
           <span class="input-group-addon"> Subtitle </span>

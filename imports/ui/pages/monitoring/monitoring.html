@@ -1,6 +1,11 @@
 <template name="Monitoring">
-
+  {{> AdvisoriesSubheader}}
+  <br>
   <div class="container-fluid">
+    <div class="row">
+
+
+    </div>
     <div class="row">
       <div class="col-sm-12 col-md-3">
         <select class="form-control" id="monitoring-station-select">
@@ -9,9 +14,27 @@
       </div>
 
       <div class="col-sm-12 col-md-9">
-        
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div id="forecast" class="btn-group" role="group">
+            <button type="button" class="btn btn-default">
+              10-Day Forecast
+            </button>
+          </div>
+          <div id="accumulated" class="btn-group" role="group">
+            <button type="button" class="btn btn-default">
+              Accumulated Rainfall
+            </button>
+          </div>
+          <div id="year" class="btn-group" role="group">
+            <button type="button" class="btn btn-default">
+              Past Year's Data
+            </button>
+          </div>
+        </div>
+        <br>
         <div id="meteogram-container">
         </div>
+
       </div>
     </div>
   </div>
