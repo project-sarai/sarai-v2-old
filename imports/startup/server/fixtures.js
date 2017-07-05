@@ -181,7 +181,7 @@ Meteor.startup(() => {
     WeatherStations.insert({ stationID : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat :  10.133, long : 123.547,enabled: true, region: 'VII' })
     WeatherStations.insert({ stationID : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat :  13.193, long : 123.595, enabled: true, region: 'V' })
     WeatherStations.insert({ stationID : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat :  9.45, long : 118.554, enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ stationID : 'IMIMAROP7', label : 'SARAI MinSCAT Alcate Victoria Oriental Mindoro (UPLB)', lat :  13.149, long : 21.187, enabled: true, region: 'IV-B' })    
+    WeatherStations.insert({ stationID : 'IMIMAROP7', label : 'SARAI MinSCAT Alcate Victoria Oriental Mindoro (UPLB)', lat :  13.149, long : 121.187, enabled: true, region: 'IV-B' })    
     WeatherStations.insert({ stationID : 'IMIMAROP8', label : 'SARAI PhilRice Sta Cruz Occidental Mindoro (UPLB)', lat :  13.130, long : 120.704, enabled: true, region: 'IV-B' })
     WeatherStations.insert({ stationID : 'IDAVAORE19', label : 'SARAI SPAMAST Matanao Davao del Sur (UPLB) ', lat :  6.691, long : 125.189, enabled: true, region: 'XI' })
     WeatherStations.insert({ stationID : 'INORTHER117', label : 'SARAI CMU Musuan Maramag Bukidnon (UPLB) ', lat :  7.856, long : 125.058, enabled: true, region: 'X' })
