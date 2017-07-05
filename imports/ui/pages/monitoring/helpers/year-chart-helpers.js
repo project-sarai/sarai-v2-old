@@ -36,7 +36,7 @@ Meteor.YearWeather = {
   },
 
   constructChart: (rain, temp) => {
-    console.log(rain+" - "+temp)
+    
     return {
       // chart: {
       //   marginLeft: 20

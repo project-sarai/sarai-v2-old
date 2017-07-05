@@ -3,6 +3,7 @@ import './services.html';
 
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+import { Random } from 'meteor/random';
 import { Services } from '../../../../api/services/services.js';
 
 Template.CMSServicesEditForm.onCreated(() => {
@@ -76,7 +77,7 @@ Template.CMSServicesEditForm.events({
 
         if (!error) {
           Session.set('toast', 'Successfully Updated Service')
-          FlowRouter.redirect('/admin/services')
+          FlowRouter.redirect('/admin/services-settings')
         } else {
           showToast('Unable to update service')
         }
@@ -88,7 +89,7 @@ Template.CMSServicesEditForm.events({
 
         if (!error) {
 
-          FlowRouter.redirect('/admin/services')
+          FlowRouter.redirect('/admin/services-settings')
         } else {
           showToast('Unable to save service')
         }
@@ -105,7 +106,7 @@ Template.CMSServicesEditForm.events({
 
       Meteor.call('cms-service-delete', this.serviceID, (error, result) => {
         if (!error) {
-          FlowRouter.redirect('/admin/services')
+          FlowRouter.redirect('/admin/services-settings')
         }
         else {
           showToast('Unable to delete service')

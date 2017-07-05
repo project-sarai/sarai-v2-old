@@ -164,6 +164,7 @@ Meteor.startup(() => {
               createdAt: new Date(),
             },
           ],
+          img: '/img/logos/sarai.png',
           buttonEnabled: true,
         };
     Links.insert(data);

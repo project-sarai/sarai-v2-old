@@ -122,7 +122,6 @@ Template.Monitoring.onRendered(function() {
   })
 });
 
-
 Template.Monitoring.events({
   'click #forecast': () => {
     this.visibleChart = 'forecast'
@@ -146,7 +145,6 @@ Template.Monitoring.events({
 
   'change #monitoring-station-select': () => {
     const markerID = $('#monitoring-station-select').val()
-
     const station = Template.instance().stations.find((element) => {
       return element.markerID == markerID
     })
@@ -293,7 +291,6 @@ const displayYear = (stationID) => {
   $('div.meteogram').remove()
   Meteor.subscribe('heat_map_data', stationID, () => {
     const records = HeatMapData.find({stationID: stationID})
-    console.log(records.fetch())
     const data = Meteor.YearWeather.constructSeries(records.fetch());
     var chartDiv = document.createElement('div');
     var yearDiv = document.createElement('div');

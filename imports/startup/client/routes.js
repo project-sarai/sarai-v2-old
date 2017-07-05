@@ -17,6 +17,7 @@ import '../../ui/pages/about/about.js';
 
 import '../../ui/pages/cms/cms.js';
 import '../../ui/pages/cms/cms-home/cms-home.js';
+import '../../ui/pages/cms/cms-home/cms-login.js';
 import '../../ui/pages/cms/about-us/about-us-content.js';
 import '../../ui/pages/cms/about-us/about-us-title.js';
 import '../../ui/pages/cms/about-us/about-us-partners.js';
@@ -26,6 +27,7 @@ import '../../ui/pages/cms/about-us/about-us-banner.js';
 import '../../ui/pages/cms/services/services-cms-advisories.js';
 import '../../ui/pages/cms/services/services.js';
 import '../../ui/pages/cms/main/main.js';
+import '../../ui/pages/cms/main/reports.js';
 import '../../ui/pages/cms/main/banner-options.js';
 import '../../ui/pages/cms/main/download-forecast.js';
 import '../../ui/pages/cms/main/top-header-options.js';
@@ -136,21 +138,38 @@ FlowRouter.route('/advisories', {
 
 FlowRouter.route('/admin', {
   name: 'admin.home',
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSHome' });
   },
 });
-
+FlowRouter.route('/admin/login',{
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSLogin'});
+  }
+});
 FlowRouter.route('/admin/main', {
   name: 'admin.main',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSMain' });
   },
 });
 FlowRouter.route('/admin/main-header', {
   name: 'admin.main-header',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'HeaderOptions' });
   },
@@ -158,49 +177,88 @@ FlowRouter.route('/admin/main-header', {
 
 FlowRouter.route('/admin/main-banner', {
   name: 'admin.main-banner',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSBannerOptions' });
   },
 });
 FlowRouter.route('/admin/main-download-forecast', {
   name: 'admin.main-download-forecast',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'DownloadForecast' });
   },
 });
 FlowRouter.route('/admin/main-top-header', {
   name: 'admin.main-top-header',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'TopHeaderOptions' });
   },
 });
+FlowRouter.route('/admin/main-reports', {
+  name: 'admin.main-reports',
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSReports' });
+  },
+});
 FlowRouter.route('/admin/about-us-content', {
   name: 'admin.about-us-content',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsContent' });
   },
 });
 FlowRouter.route('/admin/about-us-title', {
   name: 'admin.about-us-title',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsTitle' });
   },
 });
 FlowRouter.route('/admin/about-us-partners', {
   name: 'admin.about-us-partners',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsPartners' });
   },
 });
 FlowRouter.route('/admin/about-us-leaders', {
   name: 'admin.about-us-leaders',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsLeaders' });
   },
@@ -208,42 +266,66 @@ FlowRouter.route('/admin/about-us-leaders', {
 
 FlowRouter.route('/admin/about-us-projects', {
   name: 'admin.about-us-projects',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsProjects' });
   },
 });
 FlowRouter.route('/admin/about-us-banner', {
   name: 'admin.about-us-banner',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAboutUsBanner' });
   },
 });
 FlowRouter.route('/admin/services-settings', {
   name: 'admin.services',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSServices' });
   },
 });
 FlowRouter.route('/admin/services-advisories', {
   name: 'admin.advisories',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSAdvisories' });
   },
 });
 FlowRouter.route('/admin/services/add', {
   name: 'admin.services-add',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSServicesForm' });
   },
 });
 FlowRouter.route("/admin/services/:_id", {
   name: 'services',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action: (params, queryParams) => {
     BlazeLayout.reset();
     BlazeLayout.render("CMSLayout", {main: "CMSServicesForm"});
@@ -251,26 +333,42 @@ FlowRouter.route("/admin/services/:_id", {
 });
 FlowRouter.route('/admin/weather', {
   name: 'admin.weather',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'WeatherCMS' });
   },
 });
 FlowRouter.route('/admin/weather-settings', {
   name: 'admin.weather-settings',
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'WeatherSettingsCMS' });
   },
 });
 FlowRouter.route("/admin/weather/stations", {
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action: (params, queryParams) => {
     BlazeLayout.render("CMSLayout", {main: "WeatherStationsCMS"})
   }
 });
 FlowRouter.route("/admin/weather/stations/:stationID", {
-  triggersEnter: [ isAdminRedirect ],
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
   action: (params, queryParams) => {
     BlazeLayout.render("CMSLayout", {main: "WeatherDataCMS"})
   }
