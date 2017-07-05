@@ -23,7 +23,6 @@ Template.Monitoring.onCreated(function() {
 
     this.visibleChart = 'forecast'
     $('#forecast button').addClass('active')
-    
     displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
 
   })
@@ -76,10 +75,10 @@ Template.Monitoring.onRendered(function() {
 
       for (let a = 0; a < stations.length; a++) {
         const station = stations[a]
-        const x = station.coords[0]
-        const y = station.coords[1]
+        const x = station.lat
+        const y = station.long
         const label = stripTitle(station.label)
-        const stationID = station.id
+        const stationID = station.stationID
 
         const marker = new L.marker([x, y])
         .bindPopup(`<h5>${label}</h5>`)
@@ -128,21 +127,21 @@ Template.Monitoring.events({
   'click #forecast': () => {
     this.visibleChart = 'forecast'
     activateButton('forecast')
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'click #accumulated': () => {
     this.visibleChart = 'accumulated'
     activateButton('accumulated')
 
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'click #year': () => {
     this.visibleChart =  'year'
     activateButton('year')
 
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'change #monitoring-station-select': () => {
@@ -155,7 +154,7 @@ Template.Monitoring.events({
     const marker = Template.instance().group.getLayer(markerID)
     Template.instance().weatherMap.setView(marker.getLatLng(), 10)
     marker.openPopup()
-    displayWeatherData(station.id, Template.instance().apiKey)
+    displayWeatherData(station.stationID, Template.instance().apiKey)
   }
 });
 
@@ -294,7 +293,7 @@ const displayYear = (stationID) => {
   $('div.meteogram').remove()
   Meteor.subscribe('heat_map_data', stationID, () => {
     const records = HeatMapData.find({stationID: stationID})
-
+    console.log(records.fetch())
     const data = Meteor.YearWeather.constructSeries(records.fetch());
     var chartDiv = document.createElement('div');
     var yearDiv = document.createElement('div');

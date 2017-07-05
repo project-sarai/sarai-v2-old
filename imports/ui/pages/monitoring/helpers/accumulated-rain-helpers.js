@@ -95,7 +95,7 @@ Meteor.AccumulatedRainfall = {
   },
 
   constructChart: (completeRainfall, completeAccumulatedRainfall, plotBandStart, plotBandEnd) => {
-    console.log(completeRainfall+" - "+ completeAccumulatedRainfall)
+    console.log(this.points)
     return {
         title: {
             text: '30-day rainfall + 10-day forecast'
