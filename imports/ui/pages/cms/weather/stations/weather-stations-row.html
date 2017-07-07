@@ -1,14 +1,19 @@
 <template name="WeatherStationRow">
   <tr>
-    <td class="id">{{id}}</td>
-    <td class="coords">{{coords}}</td>
+    <td class="id">{{stationID}}</td>
+    <td class="coords">{{lat}} , {{long}}</td>
     <td class="station-label">{{label}}</td>
     <td class="actions">
       <a id="edit-weather-station" href="" data-toggle="modal" data-target="#cms-weather-station-dialog">
         <i class="glyphicon glyphicon-pencil"></i>
       </a>
-      <a href="/admin/weather/stations/{{id}}">
+      &nbsp;
+      <a id="delete-weather-station" href="" data-toggle="modal" data-target="#cms-ws-delete-dialog">
         <i class="glyphicon glyphicon-trash"></i>
+      </a>
+      &nbsp;
+      <a href="/admin/weather/stations/{{stationID}}">
+        <i class="glyphicon glyphicon-th-list"></i>
       </a>
     </td>
   </tr>

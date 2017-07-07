@@ -1,5 +1,6 @@
 import './weather-data-row.html'
 import { Meteor } from 'meteor/meteor';
+import '../../lib/date-helpers.js';
 
 Template.WeatherDataRow.onCreated(() => {
 })

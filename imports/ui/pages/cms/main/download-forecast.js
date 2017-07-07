@@ -1,10 +1,15 @@
 import './download-forecast.html'
+import '../lib/past-rain-helpers.js'
+import { Meteor } from 'meteor/meteor'
+import { WeatherStations } from '../../../../api/weather/sarai-weather-stations.js';
+import { WeatherData } from '../../../../api/weather/sarai-weather-data.js';
+import { DSSSettings } from '../../../../api/weather/sarai-dss-settings.js'
 
 Template.DownloadForecast.onCreated(function() {
   Meteor.subscribe('main', 'topHeader');
-  Meteor.subscribe('sarai-weather-stations');
-  Meteor.subscribe('weather-data-30');
-  Meteor.subscribe('dss-settings');
+  Meteor.subscribe('weather_stations');
+  Meteor.subscribe('weather_data');
+  Meteor.subscribe('dss_settings');
 })
 
 Template.DownloadForecast.events({
@@ -47,7 +52,7 @@ const downloadRainForecast = () => {
     let nextSevenDays = 0
     let dateToday, highTemp, chanceRain, rainfallToday
 
-    const apiKey = DSSSettings.findOne({name: 'wunderground-api-key-download'}).value
+    const apiKey = DSSSettings.findOne({name: 'wunderground-api-key'}).value
     
     // $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}/forecast10day/q/pws:${stationID}.json`, (result) => {
     
