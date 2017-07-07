@@ -1,0 +1,1 @@
+WeatherOutlook = new Mongo.Collection('weather-outlook')

@@ -1,0 +1,1 @@
+Provinces = new Mongo.Collection('provinces')

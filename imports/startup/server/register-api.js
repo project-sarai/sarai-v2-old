@@ -35,3 +35,6 @@ import '../../api/reports/server/publications.js';
 
 import '../../api/weather/methods.js';
 import '../../api/weather/server/publications.js';
+
+import '../../api/rainfall-outlook/methods.js';
+import '../../api/rainfall-outlook/server/publications.js';
