@@ -18,7 +18,11 @@ Template.Monitoring.onCreated(function() {
     this.apiKey = record.value
 
     //display default station
-    Session.set('stationID', 'ICALABAR18')
+    console.log("laman: "+Session.get('stationID'))
+    if(Session.get('stationID') === undefined) {
+      console.log('undefineddd')
+      Session.set('stationID', 'ICALABAR18')
+    }
     Session.set('apiKey', this.apiKey)
 
     this.visibleChart = 'forecast'
@@ -90,7 +94,7 @@ Template.Monitoring.onRendered(function() {
         stations[a]['markerID'] = group.getLayerId(marker)
 
         //save option value, pan to marker, and open popup
-        if (stationID == 'ICALABAR18') {
+        if (stationID == Session.get('stationID')) {
           defaultStation = group.getLayerId(marker)
           weatherMap.setView(marker.getLatLng(), 10)
           marker.openPopup()
