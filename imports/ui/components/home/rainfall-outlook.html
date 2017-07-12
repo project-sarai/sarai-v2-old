@@ -15,13 +15,13 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-2">
-          <label for="preview-select-region">REGION</label><br/>
+          <label for="preview-select-region" id="select-region">REGION</label><br/>
           <div class="select-container">
             <select class="mdl-select" id="preview-select-region">
-              <!-- {{#each region}}
-                <option value="{{region}}">{{region}}</option>
+              {{#each region in regions}}
+                <option value="{{region.region}}">{{region.region}}</option>
                 {{currentlySelectedRegion}}
-              {{/each}} -->
+              {{/each}}
             </select>
           </div>
         </div>
@@ -29,10 +29,10 @@
           <label for="preview-select-province">PROVINCE</label><br/>
           <div class="select-container">
             <select class="mdl-select" id="preview-select-province">
-             <!--  {{#each province in provinces}}
+             {{#each province in provinces}}
                 <option value="{{province.[@index]}}">{{province[@index]}}</option>
                 {{currentlySelectedProvince}}
-              {{//each}} -->
+              {{/each}}
             </select>
           </div>
         </div>
@@ -40,10 +40,10 @@
           <label for="preview-select-municipality">MUNICIPALITY</label><br/>
           <div class="select-container">
             <select class="mdl-select" id="preview-select-municipality">
-              <!-- {{#each province in municipality}}
+              {{#each municipality in municipalities}}
                 <option value="{{municipality.[@index]}}">{{municipality[@index]}}</option>
                 {{currentlySelectedMunicipality}}
-              {{//each}} -->
+              {{/each}}
             </select>
           </div>
         </div>
@@ -54,9 +54,9 @@
   <div class="mdl-grid">
     <div class="mdl-cell">
     </div>
-    <!-- {{#each monthlyRainfall}}
-      {{>PreviewRainfallOutlookCol}}
-    {{//each}} -->
+    {{#each monthlyRainfall}}
+      {{>RainfallOutlookCol}}
+    {{/each}}
     <div class="mdl-cell">
     </div>
     <div class="text-center">

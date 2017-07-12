@@ -1,13 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-//import { WeatherOutlook } from '/imports/api/rainfall-outlook/weather-outlook.js'
-//import { Provinces } from '/imports/api/rainfall-outlook/provinces.js'
-//import { Regions } from '/imports/api/rainfall-outlook/regions.js'
+import { WeatherOutlook } from '/imports/api/weather/sarai-weather-outlook.js'
+import { Provinces } from '/imports/api/rainfall-outlook/provinces.js'
+import { Regions } from '/imports/api/rainfall-outlook/regions.js'
 import './rainfall-outlook.html';
 
 Template.RainfallOutlook.onCreated(() => {
-  //Meteor.subscribe('regions')
-  //Meteor.subscribe('provinces')
-  //Meteor.subscribe('weather-outlook')
+  Meteor.subscribe('regions')
+  Meteor.subscribe('provinces')
+  Meteor.subscribe('weather-outlook')
 
   //default is Region IV-A: CALABARZON, Laguna and Los Baños
   Session.set('region', 'Region IV-A: CALABARZON')
@@ -24,21 +24,6 @@ Template.RainfallOutlook.onRendered(() => {
 
   const municipality = Session.get('municipality')
   $('#preview-select-municipality').val(municipality)
-
-  Meteor.subscribe('weather-outlook', () => {
-    Meteor.autorun(() => {
-      const regions = WeatherOutlook.find({ region : 1 }).fetch()
-
-      const regionsDropdown = $('#preview-select-region')
-
-      regions.forEach((element, index) => {
-        const option = document.createElement('option')
-
-        option.innerHTML = '${()}'
-      })
-
-    })
-  })
 })
 
 Template.RainfallOutlook.events({
