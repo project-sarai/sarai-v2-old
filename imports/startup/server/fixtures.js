@@ -14,6 +14,7 @@ import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
 import { DSSSettings } from '../../api/weather/sarai-dss-settings.js';
 import { WeatherStations } from '../../api/weather/sarai-weather-stations.js';
+import { WeatherData } from '/imports/api/weather/sarai-weather-data.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -4851,5 +4852,25 @@ Meteor.startup(() => {
     ];
 
     data.forEach(advisory => Advisories.insert(advisory));
+  }  
+
+  if (WeatherData.find().count() === 0) {
+    const data = [
+      {
+        "options":{},
+        "indexes":[
+          {
+            "v":1,
+            "key":{
+              "_id":1
+            },
+            "name":"_id_",
+            "ns":"sarai.weather-data"
+          }
+        ]
+      }
+    ];
+
+    data.forEach(weatherData => WeatherData.insert(weatherData));
   }  
 });

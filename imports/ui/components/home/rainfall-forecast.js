@@ -11,23 +11,17 @@ Template.RainfallForecast.onCreated(() => {
   Meteor.subscribe('weather-data-30')
 
   //default is ICALABAR18
-  Session.set('stationID', 'ICALABAR18')
   Meteor.subscribe('dss_settings', () => {
+    Session.set('stationID', 'ICALABAR18')
     getForecast(Session.get('stationID'))
   })
-})
 
-Template.RainfallForecast.onRendered(() => {
-  const stationID = Session.get('stationID')
-  $('#preview-select-station').val(stationID)
 })
 
 Template.RainfallForecast.events({
   'change #preview-select-station': (e) => {
     const stationID = e.currentTarget.value
-    console.log(e.target.value)
     Session.set('stationID', stationID)
-    console.log("eto "+Session.get('stationID'))
     const forecast = getForecast(stationID)
   },
 
@@ -39,7 +33,6 @@ Template.RainfallForecast.events({
   'click .preview-more button': () => {
     // const stationID = Session.get('stationID')
     // FlowRouter.go(`/accumulated-rainfall/${stationID}`)
-    Session.set('stationID')
     FlowRouter.go(`/monitoring`)
   },
 
@@ -103,7 +96,7 @@ Template.RainfallForecast.helpers({
 
   forecastNext4: () => {
     const forecast = Session.get('forecast')
-
+    $('#preview-select-station').val(Session.get('stationID'))
     if (forecast) {
       return forecast.splice(4, 4)
     }
@@ -124,7 +117,7 @@ Template.RainfallForecast.helpers({
 })
 
 const getForecast = (stationID) => {
-
+  
   const apiKey = DSSSettings.findOne({name: 'wunderground-api-key'}).value
 
   $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}/forecast10day/q/pws:${stationID}.json`, (result) => {
