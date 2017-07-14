@@ -1,0 +1,11 @@
+<template name="PreviewCol">
+  <div class="forecast-preview-col col-md-1">
+    <div class="head"><span class="weekday">{{head}}</span> <span class="date">{{date}}</span></div>
+    <div class="icon"><img src="{{icon}}"></div>
+    <div class="qpf"><span class="value">{{formatQPF qpf}}</span> <span class="unit">mm</span></div>
+    <div class="pop"><span class="value">{{pop}}</span><span class="unit">%</span> chance of rain</div>
+    <!-- {{#if today}}
+      <div class="cumulative">Past 30 days: <span class="value">{{cumulative}}</span><span class="unit"> mm</span></div>
+    {{/if}} -->
+  </div>
+</template>

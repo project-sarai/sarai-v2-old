@@ -1,22 +1,23 @@
 <template name="WeatherDataCMS">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--1-offset-desktop">
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col">
-        <div class="mdl-grid cms-block">
-          <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+  <div class="container">
+    <div>
+    <div>
+      <div>
+        <div>
+          <div>
             <div class="cms-block-header">
-              Past 30-day records for {{label}} [{{stationID}}]
+              <h1> Past 30-day records for {{label}} [{{stationID}}] </h1>
+              <br>
             </div>
 
-            <div class="mdl-grid">
+            <div class="container">
               <div {{cmsBlockContentRowClasses}}>
                 <div class="cms-block-content-label">
 
                 </div>
 
                 <div>
-                  <table class="mdl-data-table mdl-js-data-table" width="100%" id="cms-weather-stations-quick-list">
+                  <table class="table table-bordered" width="100%" id="cms-weather-stations-quick-list">
                     <thead>
                       <tr>
                         <td class="date">Date</td>
@@ -52,95 +53,113 @@
   </div>
 
   <!-- ======= DIALOG ======== -->
-  <dialog id="cms-weather-data-dialog" class="mdl-dialog">
-    <h4 id="cms-weather-data-dialog-title" class="mdl-dialog__title">Edit Weather Data</h4>
-    <div class="mdl-dialog__content">
+  <div class="modal fade" id="cms-weather-data-dialog" role="dialog">
+    <div class="modal-dialog">
 
-      <div class="mdl-grid">
+      <div class="modal-content">
         <!-- ===== TEMP ===== -->
-        <div class="mdl-cell mdl-cell--12-col-desktop sub-header">Temp (&deg;C)</div>
-
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-temp-ave">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-ave-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-ave-input">Ave</label>
+        <div class="modal-header">
+          <h4 id="cms-weather-data-dialog-title">Edit Weather Data</h4>
         </div>
+        <div class="modal-body">
+          <div class="sub-header">Temp (&deg;C)</div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-temp-min">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-min-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-min-input">Min</label>
-        </div>
+          <form class="form-horizontal">
+            <div class="form-group" id="cms-wd-temp-ave">
+              <label class="control-label col-sm-2" for="cms-wd-temp-ave-input">Ave</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-ave-input">
+              </div>
+            </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-temp-max">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-max-input">
-          <label class="mdl-textfield__label" for="cms-wd-temp-max-input">Max</label>
-        </div>
+            <div class="form-group" id="cms-wd-temp-min">
+              <label class="control-label col-sm-2" for="cms-wd-temp-min-input">Min</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-min-input">
+              </div>
+            </div>
 
-        <!-- ===== HUMIDITY ===== -->
-        <div class="mdl-cell mdl-cell--12-col-desktop sub-header">Humidity (%)</div>
+            <div class="form-group" id="cms-wd-temp-max">
+              <label class="control-label col-sm-2" for="cms-wd-temp-max-input">Max</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-temp-max-input">
+              </div>
+            </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-hum-ave">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-ave-input">
-          <label class="mdl-textfield__label" for="cms-wd-hum-ave-input">Ave</label>
-        </div>
+            <!-- ===== HUMIDITY ===== -->
+            <div class="sub-header">Humidity (%)</div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-hum-min">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-min-input">
-          <label class="mdl-textfield__label" for="cms-wd-hum-min-input">Min</label>
-        </div>
+            <div class="form-group" id="cms-wd-hum-ave">
+              <label class="control-label col-sm-2" for="cms-wd-hum-ave-input">Ave</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-ave-input">
+              </div>
+            </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-hum-max">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-max-input">
-          <label class="mdl-textfield__label" for="cms-wd-hum-max-input">Max</label>
-        </div>
+            <div class="form-group" id="cms-wd-hum-min">
+              <label class="control-label col-sm-2" for="cms-wd-hum-min-input">Min</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-min-input">
+              </div>
+            </div>
 
-        <!-- ===== WIND ===== -->
-        <div class="mdl-cell mdl-cell--12-col-desktop sub-header">Wind (kph)</div>
+            <div class="form-group" id="cms-wd-hum-max">
+              <label class="control-label col-sm-2" for="cms-wd-hum-max-input">Max</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-hum-max-input">
+              </div>
+            </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-wind-ave">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-wind-ave-input">
-          <label class="mdl-textfield__label" for="cms-wd-wind-ave-input">Ave</label>
-        </div>
+            <!-- ===== WIND ===== -->
+            <div class="sub-header">Wind (kph)</div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-wind-max">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-wind-max-input">
-          <label class="mdl-textfield__label" for="cms-wd-wind-max-input">Max</label>
-        </div>
+            <div class="form-group" id="cms-wd-wind-ave">
+              <label class="control-label col-sm-2" for="cms-wd-wind-ave-input">Ave</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-wind-ave-input">
+              </div>
+            </div>
 
-        <!-- ===== PRESSURE ===== -->
-        <div class="mdl-cell mdl-cell--12-col-desktop sub-header">Pressure (hPa)</div>
+            <div class="form-group" id="cms-wd-wind-max">
+              <label class="control-label col-sm-2" for="cms-wd-wind-max-input">Max</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-wind-max-input">
+              </div>
+            </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-pre-min">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-pre-min-input">
-          <label class="mdl-textfield__label" for="cms-wd-pre-min-input">Min</label>
-        </div>
+            <!-- ===== PRESSURE ===== -->
+          <div class="sub-header">Pressure (hPa)</div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-pre-max">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-pre-max-input">
-          <label class="mdl-textfield__label" for="cms-wd-pre-max-input">Max</label>
-        </div>
+          <div class="form-group" id="cms-wd-pre-min">
+            <label class="control-label col-sm-2" for="cms-wd-pre-min-input">Min</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-pre-min-input">
+            </div>
+          </div>
 
-        <!-- ===== Rainfall ===== -->
-        <div class="mdl-cell mdl-cell--12-col-desktop sub-header">Rainfall (mm)</div>
+          <div class="form-group" id="cms-wd-pre-max">
+            <label class="control-label col-sm-2" for="cms-wd-pre-max-input">Max</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-pre-max-input">
+            </div>
+          </div>
 
-        <div class="mdl-cell mdl-cell--4-col-desktop mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-wd-rain">
-          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-rain-input">
-          <label class="mdl-textfield__label" for="cms-wd-rain-input">Min</label>
-        </div>
+          <!-- ===== Rainfall ===== -->
+            <div class="sub-header">Rainfall (mm)</div>
 
-
+            <div class="form-group" id="cms-wd-rain">
+              <label class="control-label col-sm-2" for="cms-wd-rain-input">Min</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="cms-wd-rain-input">
+              </div>  
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
       </div>
     </div>
-
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored save">Save</button>
-      <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect cancel">Cancel</button>
-    </div>
-  </dialog>
-  <!-- ======== END DIALOG ========= -->
-
-  <!-- ======== TOAST ======== -->
-  <div id="cms-toast" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
   </div>
 </template>

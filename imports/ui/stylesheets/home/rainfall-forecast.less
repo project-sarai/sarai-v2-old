@@ -1,18 +1,135 @@
-.divider{
-  position: relative;
-  border-bottom: 1px solid #D5D8DC;
-  margin-bottom: 30px;
-  margin-top: 30px; 
+.preview-title {
+  text-align: center;
 }
 
-.text-center{
-  font-family: 'Roboto', sans-serif;
-  line-height: 200%;
+#preview-controls {
+  text-align: center;
 }
 
-.card{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
+/*.rainfall-preview-col:nth-child(even) {
+  background-color: blue;
+}*/
+
+/*********SELECT**********/
+
+.select-container {
+  border: 1px solid #ccc;
+  /*width: 120px;*/
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #fafafa url('/icons/triangle-down.gif') no-repeat 99% 70%;
+}
+
+select.mdl-select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+select.mdl-select:focus {
+  outline: none;
+}
+
+.preview-more {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.download, #download-container{
+  float:right;
+}
+
+.download-div {
+  width: 100%;
+  text-align: center;
+}
+
+.download-stub {
+  height: 50px;
+}
+
+
+#view-weather-monitoring {
+  /*float:right; margin-top:-2em; margin-bottom:-2em;*/ color: #59B060; font-size: 1.15em;
+}
+#view-accumulated-rainfall {
+  color: #59B060; font-size: 1.15em;
+}
+
+.form-control-inline {
+  min-width: 0;
+  width: auto;
+  display: inline;
+}
+
+/*********PREVIEW**********/
+
+.forecast-preview-col {
+  padding: 10px;
+  background-image: radial-gradient(#CCC, #FFF), radial-gradient(#CCC, #FFF), radial-gradient(#CCC, #FFF), radial-gradient(#CCC, #FFF);
+  background-size:  1px 100%, 1px 100%, 100% 1px, 100% 1px;
+  background-position: 0 0, 100% 0, 0 0, 0 100%;
+  background-repeat:  no-repeat;
+}
+
+.forecast-preview-col .head {
+  margin-bottom: 15px;
+}
+
+.forecast-preview-col .head .weekday {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.forecast-preview-col .head .date {
+  font-weight: normal;
+  font-size: 1.1em;
+}
+
+.forecast-preview-col .icon {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.forecast-preview-col .qpf {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.qpf .value{
+  font-size: 2em;
+}
+
+.qpf .unit {
+  font-size: 1.1em;
+}
+
+.forecast-preview-col .pop {
+  text-align: center;
+}
+
+.pop {
+  margin-bottom: 15px;
+}
+
+.pop .value {
+  font-size: 1.2em;
+}
+
+.pop .unit {
+  font-size: 1em;
+}
+
+/*.cumulative .value {
+  font-weight: bold;
+  font-size: 1.2em;
+}*/
+
+.weekday {
+  font-weight: bold;
 }

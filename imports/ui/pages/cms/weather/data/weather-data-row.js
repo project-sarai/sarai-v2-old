@@ -1,5 +1,8 @@
 import './weather-data-row.html'
+import './weather-data.html'
 import { Meteor } from 'meteor/meteor';
+import { WeatherData } from '../../../../../api/weather/sarai-weather-data.js';
+import '../../lib/date-helpers.js';
 
 Template.WeatherDataRow.onCreated(() => {
 })
@@ -19,10 +22,8 @@ Template.WeatherDataRow.events({
     Session.set('weather-data-_id', this._id)
 
     const dialog = document.querySelector(`#cms-weather-data-dialog`)
-
+    
     fillWeatherDataDialog(this._id, this.dateUTC)
-
-    dialog.showModal()
   }
 })
 
@@ -48,7 +49,7 @@ const fillWeatherDataDialog = (stationID, dateUTC) => {
   Meteor.subscribe('weather-data-30-by-id', stationID, () => {
     const record = WeatherData.findOne({dateUTC})
     const data = record.data
-
+    
     $('#cms-wd-temp-ave-input').val(data.temp.ave)
     $('#cms-wd-temp-min-input').val(data.temp.min)
     $('#cms-wd-temp-max-input').val(data.temp.max)

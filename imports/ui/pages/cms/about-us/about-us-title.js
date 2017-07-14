@@ -20,7 +20,7 @@ Template.CMSAboutUsTitle.events({
         toast = 'Saved changes to About Us Title'
       }
 
-      //showToast(toast)
+      showToast(toast)
     })
   }
 })

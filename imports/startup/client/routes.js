@@ -31,6 +31,9 @@ import '../../ui/pages/cms/main/reports.js';
 import '../../ui/pages/cms/main/banner-options.js';
 import '../../ui/pages/cms/main/download-forecast.js';
 import '../../ui/pages/cms/main/top-header-options.js';
+import '../../ui/pages/cms/main/weather-outlook.js';
+import '../../ui/pages/cms/main/weather-outlook-data.js';
+import '../../ui/pages/cms/main/weather-outlook-view.js';
 import '../../ui/pages/cms/common/cms-upload/cms-upload.js';
 import '../../ui/pages/cms/weather/weather.js';
 import '../../ui/pages/cms/weather/weather-settings.js';
@@ -217,6 +220,39 @@ FlowRouter.route('/admin/main-reports', {
   }],
   action() {
     BlazeLayout.render('CMSLayout', { main: 'CMSReports' });
+  },
+});
+FlowRouter.route('/admin/main-weather-outlook', {
+  name: 'admin.main-weather-outlook',
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSWeatherOutlook' });
+  },
+});
+FlowRouter.route('/admin/main-weather-outlook/:region', {
+  name: 'admin.main-weather-outlook-data',
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSWeatherOutlookData' });
+  },
+});
+FlowRouter.route('/admin/main-weather-outlook/:region/:province', {
+  name: 'admin.main-weather-outlook-view',
+  triggersEnter: [ function(context, redirect) {
+    if(!isAdmin()){
+      redirect('/admin/login');
+    }
+  }],
+  action() {
+    BlazeLayout.render('CMSLayout', { main: 'CMSWeatherOutlookView' });
   },
 });
 FlowRouter.route('/admin/about-us-content', {

@@ -9,10 +9,6 @@ Template.CMSAdvisories.onCreated(() => {
 Template.CMSAdvisories.onRendered(() => {
   const dialog = document.querySelector('#cms-advisory-dialog')
 
-  dialog.querySelector('.cancel').addEventListener('click', () => {
-//    dialog.close();
-  });
-
   dialog.querySelector('.save').addEventListener('click', () => {
     let action = this.action
 

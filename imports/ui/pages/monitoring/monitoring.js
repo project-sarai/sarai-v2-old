@@ -12,18 +12,19 @@ import '../../components/advisories/advisories-subheader.js';
 
 Template.Monitoring.onCreated(function() {
   Meteor.subscribe('weather_stations')
-  Meteor.subscribe('weather_data')
+  Meteor.subscribe('weather-data-30')
   Meteor.subscribe('dss_settings', () => {
     const record = DSSSettings.findOne({name: 'wunderground-api-key'})
     this.apiKey = record.value
 
     //display default station
-    Session.set('stationID', 'ICALABAR18')
+    if(Session.get('stationID') === undefined) {
+      Session.set('stationID', 'ICALABAR18')
+    }
     Session.set('apiKey', this.apiKey)
 
     this.visibleChart = 'forecast'
     $('#forecast button').addClass('active')
-    
     displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
 
   })
@@ -91,7 +92,7 @@ Template.Monitoring.onRendered(function() {
         stations[a]['markerID'] = group.getLayerId(marker)
 
         //save option value, pan to marker, and open popup
-        if (stationID == 'ICALABAR18') {
+        if (stationID == Session.get('stationID')) {
           defaultStation = group.getLayerId(marker)
           weatherMap.setView(marker.getLatLng(), 10)
           marker.openPopup()
@@ -124,31 +125,29 @@ Template.Monitoring.onRendered(function() {
   })
 });
 
-
 Template.Monitoring.events({
   'click #forecast': () => {
     this.visibleChart = 'forecast'
     activateButton('forecast')
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'click #accumulated': () => {
     this.visibleChart = 'accumulated'
     activateButton('accumulated')
 
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'click #year': () => {
     this.visibleChart =  'year'
     activateButton('year')
 
-    displayWeatherData(Session.get('stationID'), Session.get('apiKey'))
+    displayWeatherData(Session.get('stationID'), Template.instance().apiKey)
   },
 
   'change #monitoring-station-select': () => {
     const markerID = $('#monitoring-station-select').val()
-
     const station = Template.instance().stations.find((element) => {
       return element.markerID == markerID
     })
@@ -293,7 +292,6 @@ const displayYear = (stationID) => {
   $('div.meteogram').remove()
   Meteor.subscribe('heat_map_data', stationID, () => {
     const records = HeatMapData.find({stationID: stationID})
-
     const data = Meteor.YearWeather.constructSeries(records.fetch());
     var chartDiv = document.createElement('div');
     var yearDiv = document.createElement('div');
@@ -329,8 +327,6 @@ const displayAccumulatedRain = (stationID, apiKey) => {
         const forecast = Meteor.AccumulatedRainfall.getForecast(result, runningTotal)
 
         const completeData = Meteor.AccumulatedRainfall.assembleRainfallData(pastRainfall.pastRainfall, pastRainfall.pastAccRainfall, forecast.forecastRainfall, forecast.forecastAccumulated)
-
-        console.log(completeData)
 
         var chartDiv = document.createElement('div');
         var rainfallDiv = document.createElement('div');

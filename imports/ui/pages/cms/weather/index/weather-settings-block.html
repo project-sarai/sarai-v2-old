@@ -5,25 +5,27 @@
         <h1> Settings </h1>
       </div>
 
-      <div class="mdl-grid">
-        <div {{cmsBlockContentRowClasses}}>
+      <div>
+        <div align="center">
           <div class="cms-block-content-label">
-            Weather Undeground API Key
+            <br>
+            <h6> Weather Undeground API Key </h6>
           </div>
 
-          <div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="cms-weather-wu-key">
-                <label for="cms-weather-wu-key-input">key</label>
+          <form class="form-horizontal">
+            <div class="form-group" id="cms-weather-wu-key">
+              <label class="control-label col-sm-1" for="cms-weather-wu-key-input">Key</label>
+              <div class="col-sm-11">
                 <input class="form-control" type="text" id="cms-weather-wu-key-input" value="{{wundergroundKey}}">
               </div>
-          </div>
-
+            </div>
+          </form>
         </div>
       </div>
 
-      <div class="cms-block-actions">
+      <div class="cms-block-actions" align="center">
         <br>
-        <button id="cms-weather-wu-key-save" class="btn">
+        <button id="cms-weather-wu-key-save" class="btn btn-success">
           Save
         </button>
       </div>

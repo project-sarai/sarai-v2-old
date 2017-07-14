@@ -1,0 +1,168 @@
+  <!-- Template used to view provinces and give options to view its municipalities -->
+<template name="CMSWeatherOutlookView">
+  <div class="container">
+    <div align="center">
+      <h1> Viewing Municipalities for Province: {{ provinceName }}</h1>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Municipality</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each municipality in municipalities}}
+        <tr>
+          <td>{{ municipality.municipality }}</td>
+          <td>
+            <a id="weather_municipality_edit_{{municipality._id}}" class="weather-municipality-edit"><span class="glyphicon glyphicon-pencil" data-target="#weather-outlook-municipality-dialog" data-toggle="modal"></span></a>
+            &nbsp;
+            <a id="weather_municipality_add_{{municipality._id}}" class="weather-municipality-add"><span class="glyphicon glyphicon-plus" data-target="#weather-outlook-add-dialog" data-toggle="modal"></span></a>
+            &nbsp;
+            <a id="weather_municipality_delete_{{municipality._id}}" class="weather-municipality-delete"><span class="glyphicon glyphicon-minus" data-target="#weather-outlook-data-delete-dialog" data-toggle="modal"></span></a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+    <div class="modal fade" id="weather-outlook-municipality-dialog" role="dialog">
+      <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit {{municipality}}</h4>
+          </div>
+          <div class="modal-body">
+            <div id="view-region-name">
+              <label>Region</label>
+              <input class="form-control" type="text" id="weather-region-input">
+              <br>
+            </div>
+            <div id="view-province-name">
+              <label>Province</label>
+              <input class="form-control" type="text" id="weather-province-input">
+              <br>
+            </div>
+            <div id="view-municipality-name">
+              <label>Municipality</label>
+              <input class="form-control" type="text" id="weather-municipality-input">
+              <br>
+            </div>
+            <div>
+              <label>Rainfall Data</label>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{#each x in data}}
+                  <tr>
+                    <td><input class="form-control outlook-rainfall-data-months" type="text" id="month-{{@index}}" value="{{x.month}}"></td>
+                    <td><input class="form-control outlook-rainfall-data-values" type="text" id="value-{{@index}}" value="{{x.value}}"></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="modal fade" id="weather-outlook-data-delete-dialog" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Rainfall Data</h4>
+          </div>
+            <div class="modal-body">
+              <div>
+                <label>Rainfall Data</label>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Value</th>
+                      <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {{#each x in data}}
+                    <tr>
+                      <td><input class="form-control outlook-rainfall-data-entry" type="text" id="month-{{x.month}}-{{x.value}}" value="{{x.month}}" disabled></td>
+                      <td><input class="form-control outlook-rainfall-data-value" type="text" id="value-{{x.month}}-{{x.value}}" value="{{x.value}}" disabled></td>
+                      <td><a id="weather-row-{{x.month}}-{{x.value}}" class="data-row-delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="weather-outlook-add-dialog" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Rainfall Data</h4>
+          </div>
+            <div class="modal-body">
+              <div>
+                <label>Current Rainfall Data</label>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Value</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {{#each x in data}}
+                    <tr>
+                      <td><input id="month-{{x.month}}-{{x.value}}" class="form-control outlook-rainfall-data-entry" type="text" value="{{x.month}}" disabled></td>
+                      <td><input id="month-{{x.month}}-{{x.value}}" class="form-control outlook-rainfall-data-value" type="text" value="{{x.value}}" disabled></td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+              <label>New Rainfall Data</label>
+              <div>
+              <label>Month</label>
+              <input class="form-control" type="text" id="new-month-input" placeholder="Enter Month Here">
+              <br>
+            </div>
+            <div>
+              <label>Value</label>
+              <input class="form-control" type="text" id="new-value-input" placeholder="Enter Rainfall Value Here">
+              <br>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

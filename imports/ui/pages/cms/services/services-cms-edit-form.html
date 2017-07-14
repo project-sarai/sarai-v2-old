@@ -1,5 +1,9 @@
 <template name="CMSServicesEditForm">
   <div class="container">
+    <div align="center">
+      <h1> {{serviceTitle}} </h1> 
+    </div>
+    <br>
     <form>
       <div class="input-group" id="cms-service-title">
         <span class="input-group-addon">Title</span>
@@ -28,7 +32,9 @@
     </form>
 
     <div width="50px" align="center">
+      <br>
       <img id="cms-service-thumbnail" width="25%" height="auto" class="cms-service-form-thumbnail" src="{{service.thumbnail}}">
+      <br><br>
       {{> upload_bootstrap multiple=false callbacks=myCallbacks}}
 
       <div  id="cms-service-subtitle" class="input-group">
@@ -64,6 +70,5 @@
       </div>
 
     </div>
-
   </div>
 </template>
