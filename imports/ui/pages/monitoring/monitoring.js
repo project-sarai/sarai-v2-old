@@ -12,15 +12,13 @@ import '../../components/advisories/advisories-subheader.js';
 
 Template.Monitoring.onCreated(function() {
   Meteor.subscribe('weather_stations')
-  Meteor.subscribe('weather_data')
+  Meteor.subscribe('weather-data-30')
   Meteor.subscribe('dss_settings', () => {
     const record = DSSSettings.findOne({name: 'wunderground-api-key'})
     this.apiKey = record.value
 
     //display default station
-    console.log("laman: "+Session.get('stationID'))
     if(Session.get('stationID') === undefined) {
-      console.log('undefineddd')
       Session.set('stationID', 'ICALABAR18')
     }
     Session.set('apiKey', this.apiKey)
@@ -331,8 +329,6 @@ const displayAccumulatedRain = (stationID, apiKey) => {
         const forecast = Meteor.AccumulatedRainfall.getForecast(result, runningTotal)
 
         const completeData = Meteor.AccumulatedRainfall.assembleRainfallData(pastRainfall.pastRainfall, pastRainfall.pastAccRainfall, forecast.forecastRainfall, forecast.forecastAccumulated)
-
-        console.log(completeData)
 
         var chartDiv = document.createElement('div');
         var rainfallDiv = document.createElement('div');

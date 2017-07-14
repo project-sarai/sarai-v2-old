@@ -4852,25 +4852,5 @@ Meteor.startup(() => {
     ];
 
     data.forEach(advisory => Advisories.insert(advisory));
-  }  
-
-  if (WeatherData.find().count() === 0) {
-    const data = [
-      {
-        "options":{},
-        "indexes":[
-          {
-            "v":1,
-            "key":{
-              "_id":1
-            },
-            "name":"_id_",
-            "ns":"sarai.weather-data"
-          }
-        ]
-      }
-    ];
-
-    data.forEach(weatherData => WeatherData.insert(weatherData));
-  }  
+  }
 });
