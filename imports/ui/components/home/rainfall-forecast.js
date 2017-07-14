@@ -11,23 +11,16 @@ Template.RainfallForecast.onCreated(() => {
   Meteor.subscribe('weather-data-30')
 
   //default is ICALABAR18
-  Session.set('stationID', 'ICALABAR18')
   Meteor.subscribe('dss_settings', () => {
-    getForecast('ICALABAR18')
+    Session.set('stationID', 'ICALABAR18')
+    getForecast(Session.get('stationID'))
   })
-})
-
-Template.RainfallForecast.onRendered(() => {
-  const stationID = Session.get('stationID')
-  $('#preview-select-station').val(stationID)
 })
 
 Template.RainfallForecast.events({
   'change #preview-select-station': (e) => {
     const stationID = e.currentTarget.value
-    console.log(e.target.value)
     Session.set('stationID', stationID)
-
     const forecast = getForecast(stationID)
   },
 
@@ -102,7 +95,7 @@ Template.RainfallForecast.helpers({
 
   forecastNext4: () => {
     const forecast = Session.get('forecast')
-
+    $('#preview-select-station').val(Session.get('stationID'))
     if (forecast) {
       return forecast.splice(4, 4)
     }
@@ -128,7 +121,7 @@ const getForecast = (stationID) => {
 
   $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}/forecast10day/q/pws:${stationID}.json`, (result) => {
     // const result = Meteor.PreviewSampleData.sampleData()
-    console.log(stationID+" - "+result)
+
     const completeTxtForecast = result.forecast.txt_forecast.forecastday
 
     const simpleForecast = result.forecast.simpleforecast.forecastday

@@ -1,5 +1,6 @@
 Meteor.AccumulatedRainfall = {
   fillMissingEntries: (weatherData) => {
+
     let oneMonthAgo = new Date()
     oneMonthAgo.setDate(oneMonthAgo.getDate() - 30)
     oneMonthAgo.setHours(0,0,0,0)
