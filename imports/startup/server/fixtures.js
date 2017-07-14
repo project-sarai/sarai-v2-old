@@ -14,7 +14,7 @@ import { Advisories } from '../../api/advisories/advisories.js';
 import { Main } from '../../api/main/main.js';
 import { DSSSettings } from '../../api/weather/sarai-dss-settings.js';
 import { WeatherStations } from '../../api/weather/sarai-weather-stations.js';
-import { WeatherData } from '/imports/api/weather/sarai-weather-data.js';
+import { WeatherData } from '../../api/weather/sarai-weather-data.js';
 
 Meteor.startup(() => {
   // if the Links collection is empty
@@ -202,6 +202,5452 @@ Meteor.startup(() => {
       name: 'wunderground-api-key',
       value: '323d30926107851b'
     });
+    DSSSettings.insert({
+      name : 'wunderground-api-key-download',
+      value : '348fd9a800af4251'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    }),
+    DSSSettings.insert({
+      name : 'wunderground-api-key-download',
+      value : '348fd9a800af4251'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    }),
+    DSSSettings.insert({
+      name : 'wunderground-api-key-download',
+      value : '348fd9a800af4251'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
   }
   if (Main.find().count() === 0) {
     const data = 
@@ -1420,747 +6866,6 @@ Meteor.startup(() => {
   }
 
   if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
-
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
-
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', lat : 13.193, long : 123.595, group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', lat : 10.404931, long : 122.978889, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', lat : 13.944949, long : 121.369759, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', lat : 15.738162, long : 120.928391, group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', lat : 11.102, long : 122.415, group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', lat : 14.156224, long : 121.262199, group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', lat : 9.45, long : 118.554, group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', lat : 17.410467, long : 121.813698, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', lat : 16.726, lot : 121.699, group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', lat : 10.133, long : 123.547, group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
-
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
     WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
     WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
     WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
@@ -2920,6 +7625,7 @@ Meteor.startup(() => {
       value: '9470644e92f975d3'
     });
   }
+
   if (Main.find().count() === 0) {
     const data = 
       [
@@ -3167,747 +7873,7 @@ Meteor.startup(() => {
       value: '9470644e92f975d3'
     });
   }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
 
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
-
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
-  if (Main.find().count() === 0) {
-    const data = 
-      [
-        {
-          name: 'mainHeader',
-          img: '/header_green.png',
-          links: [
-            {
-              name: 'Home',
-              href: '/',
-              links: [],
-              id: 'home-link',
-              withsublinks: false,
-              rank: 1
-            },
-            {
-              name: 'About Us',
-              href: '/about-us',
-              links: [],
-              id: 'about-us-link',
-              withsublinks: false,
-              rank: 2
-            },
-            {
-              name: 'Explore',
-              href: '',
-              links: [
-                {
-                  name: 'Suitability Maps',
-                  href: 'http://sarai.ph:8080/',
-                  rank: 1
-                },
-                {
-                  name: 'Weather Monitoring',
-                  href: '/weather-monitoring',
-                  rank: 2
-                },
-                {
-                  name: 'Accumulated Rainfall',
-                  href: '/accumulated-rainfall',
-                  rank: 2
-                },
-                {
-                  name: 'Crop Production Area',
-                  href: '/crop-production-area',
-                  rank: 3
-                },
-                {
-                  name: 'Normalized Difference Vegetation Index (NDVI)',
-                  href: '/ndvi',
-                  rank: 4
-                },
-                {
-                  name: 'Rainfall',
-                  href: '/rainfall',
-                  rank: 5
-                },
-                {
-                  name: 'Open Data',
-                  href: 'opendata.sarai.ph',
-                  rank: 6
-                }
-              ],
-              id: 'explore-link',
-              withsublinks: true,
-              rank: 3
-            },
-            {
-              name: 'Planning Dates',
-              href: '',
-              links: [],
-              id: 'planning-dates-link',
-              withsublinks: false,
-              rank: 4
-            },
-            {
-              name: 'DSS',
-              href: '',
-              links: [
-                {
-                  name: 'Corn Nutrient Expert',
-                  href: '/dss/corn-nutrient-expert',
-                  rank: 1
-                }
-              ],
-              id: 'dss-link',
-              withsublinks: true,
-              rank: 5
-            },
-            {
-              name: 'Get Involved',
-              href: '',
-              links: [
-                {
-                  name: 'Contact Us',
-                  href: '/get-involved/contact',
-                  rank: 1
-                },
-                {
-                  name: 'Submit a Story',
-                  href: '/get-involved/contact',
-                  rank: 2
-                },
-                {
-                  name: 'Join the Discussion',
-                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
-                  rank: 3
-                }
-              ],
-              id: 'get-involved-link',
-              withsublinks: true,
-              rank: 6
-            }
-          ],
-          buttonText: 'BETA',
-          buttonEnabled: true,
-          enabled: true
-        },
-        {
-          name: 'topHeader',
-          message: 'ENSO-Neutral Condition',
-          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
-          searchText: 'How can we help you?',
-          enabled: true
-        },
-        {
-          name: 'banner',
-          slides: [
-            {
-              image: '/img/homepage-slider/Project-SARAI.png',
-              textPosition: 'left',
-              title: 'PROJECT SARAI',
-              subTitle: 'Smarter Farmers, Smarter Agriculture.',
-              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
-              buttonText: 'MORE',
-              buttonLink: ''
-            },
-            {
-              image : '/img/homepage-slider/Knowledge-Portal.png',
-              textPosition : 'left',
-              title : 'SARAi KNOWLEDGE PORTAL',
-              subTitle : 'One-stop-shop for crop monitoring and forecasting',
-              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
-              buttonText : 'EXPLORE',
-              buttonLink : '#main-preview',
-              rank : ''
-            },
-            {
-              image: '/img/homepage-slider/Real-Time-Monitoring.png',
-              textPosition: 'right',
-              title: 'REAL-TIME WEATHER MONITORING',
-              subTitle: 'Guide your farming practices with weather data',
-              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
-              buttonText: 'EXPLORE',
-              buttonLink: ''
-            },
-            {
-              image: '/img/homepage-slider/SEAMS.png',
-              textPosition: 'left',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Suitability-Maps.png',
-              textPosition: 'right',
-              title: 'SARAI-Enhanced Agricultural Monitoring System',
-              subTitle: '',
-              text: 'Making ways for a more proactive and efficient agriculture sector',
-              buttonText: 'LEARN MORE',
-              buttonLink: 'http://maps.sarai.ph/ndvi/'
-            },
-            {
-              image: '/img/homepage-slider/Planting-Guide.jpg',
-              textPosition: 'right',
-              title: 'SARAi PLANTING GUIDE',
-              subTitle: 'Plan your planting practices for optimum yield',
-              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
-              buttonText: 'EXPLORE',
-              buttonLink: '/rainfall-distribution'
-            },
-            {
-              image: '/img/homepage-slider/SPID.png',
-              textPosition: '',
-              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
-              subTitle: '',
-              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
-              buttonText: 'EXPLORE',
-              buttonLink: 'https://pests.sarai.ph'
-            },
-            {
-              image: '/img/homepage-slider/Crop-Mgt.jpg',
-              textPosition: '',
-              title: 'SMARTER CROP MANAGEMENT',
-              subTitle: 'Helping farmers to produce with less ',
-              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
-              buttonText: 'MORE',
-              buttonLink: '/services/EKStFhkWTstCEboj5'
-            },
-            {
-              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
-              textPosition: '',
-              title: 'ALERTS AND ADVISORIES',
-              subTitle: '', 
-              text: '',
-              buttonText: 'EXPLORE',
-              buttonLink: '/advisories'
-            },
-            {
-              image: '/img/homepage-slider/Eskwela.png',
-              textPosition: '',
-              title: 'CHAMPIONING SARAi',
-              subTitle: '',
-              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
-              buttonText: 'VISIT SARAi ESKWELA',
-              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
-            }
-
-          ],
-          enabled: true
-        }
-      ];
-
-      data.forEach(entry => Main.insert(entry));
-  }
-
-  if (WeatherStations.find().count() === 0) {
-    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
-    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
-    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
-    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
-    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
-    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
-    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
-  }
-
-  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
-    DSSSettings.insert({
-      name: 'wunderground-api-key',
-      value: '9470644e92f975d3'
-    });
-  }
   if (Main.find().count() === 0) {
     const data = 
       [
@@ -4153,6 +8119,3960 @@ Meteor.startup(() => {
     DSSSettings.insert({
       name: 'wunderground-api-key',
       value: '94b320c63f858a2b'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
+    });
+  }
+
+  if (Main.find().count() === 0) {
+    const data = 
+      [
+        {
+          name: 'mainHeader',
+          img: '/header_green.png',
+          links: [
+            {
+              name: 'Home',
+              href: '/',
+              links: [],
+              id: 'home-link',
+              withsublinks: false,
+              rank: 1
+            },
+            {
+              name: 'About Us',
+              href: '/about-us',
+              links: [],
+              id: 'about-us-link',
+              withsublinks: false,
+              rank: 2
+            },
+            {
+              name: 'Explore',
+              href: '',
+              links: [
+                {
+                  name: 'Suitability Maps',
+                  href: 'http://sarai.ph:8080/',
+                  rank: 1
+                },
+                {
+                  name: 'Weather Monitoring',
+                  href: '/weather-monitoring',
+                  rank: 2
+                },
+                {
+                  name: 'Accumulated Rainfall',
+                  href: '/accumulated-rainfall',
+                  rank: 2
+                },
+                {
+                  name: 'Crop Production Area',
+                  href: '/crop-production-area',
+                  rank: 3
+                },
+                {
+                  name: 'Normalized Difference Vegetation Index (NDVI)',
+                  href: '/ndvi',
+                  rank: 4
+                },
+                {
+                  name: 'Rainfall',
+                  href: '/rainfall',
+                  rank: 5
+                },
+                {
+                  name: 'Open Data',
+                  href: 'opendata.sarai.ph',
+                  rank: 6
+                }
+              ],
+              id: 'explore-link',
+              withsublinks: true,
+              rank: 3
+            },
+            {
+              name: 'Planning Dates',
+              href: '',
+              links: [],
+              id: 'planning-dates-link',
+              withsublinks: false,
+              rank: 4
+            },
+            {
+              name: 'DSS',
+              href: '',
+              links: [
+                {
+                  name: 'Corn Nutrient Expert',
+                  href: '/dss/corn-nutrient-expert',
+                  rank: 1
+                }
+              ],
+              id: 'dss-link',
+              withsublinks: true,
+              rank: 5
+            },
+            {
+              name: 'Get Involved',
+              href: '',
+              links: [
+                {
+                  name: 'Contact Us',
+                  href: '/get-involved/contact',
+                  rank: 1
+                },
+                {
+                  name: 'Submit a Story',
+                  href: '/get-involved/contact',
+                  rank: 2
+                },
+                {
+                  name: 'Join the Discussion',
+                  href: 'https://groups.google.com/forum/#!forum/project-sarai-knowledge-hub',
+                  rank: 3
+                }
+              ],
+              id: 'get-involved-link',
+              withsublinks: true,
+              rank: 6
+            }
+          ],
+          buttonText: 'BETA',
+          buttonEnabled: true,
+          enabled: true
+        },
+        {
+          name: 'topHeader',
+          message: 'ENSO-Neutral Condition',
+          href: 'http://www.pagasa.dost.gov.ph/index.php/climate/climate-advisories',
+          searchText: 'How can we help you?',
+          enabled: true
+        },
+        {
+          name: 'banner',
+          slides: [
+            {
+              image: '/img/homepage-slider/Project-SARAI.png',
+              textPosition: 'left',
+              title: 'PROJECT SARAI',
+              subTitle: 'Smarter Farmers, Smarter Agriculture.',
+              text: 'Search through the different SARAI technologies and systems to what, when, and where to plant',
+              buttonText: 'MORE',
+              buttonLink: ''
+            },
+            {
+              image : '/img/homepage-slider/Knowledge-Portal.png',
+              textPosition : 'left',
+              title : 'SARAi KNOWLEDGE PORTAL',
+              subTitle : 'One-stop-shop for crop monitoring and forecasting',
+              text : 'Get comprehensive national, regional, and municipal data to know what, where, and, when to plant.',
+              buttonText : 'EXPLORE',
+              buttonLink : '#main-preview',
+              rank : ''
+            },
+            {
+              image: '/img/homepage-slider/Real-Time-Monitoring.png',
+              textPosition: 'right',
+              title: 'REAL-TIME WEATHER MONITORING',
+              subTitle: 'Guide your farming practices with weather data',
+              text: 'Get information on previous weather patterns and current weather conditions through historical and current weather data.',
+              buttonText: 'EXPLORE',
+              buttonLink: ''
+            },
+            {
+              image: '/img/homepage-slider/SEAMS.png',
+              textPosition: 'left',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Suitability-Maps.png',
+              textPosition: 'right',
+              title: 'SARAI-Enhanced Agricultural Monitoring System',
+              subTitle: '',
+              text: 'Making ways for a more proactive and efficient agriculture sector',
+              buttonText: 'LEARN MORE',
+              buttonLink: 'http://maps.sarai.ph/ndvi/'
+            },
+            {
+              image: '/img/homepage-slider/Planting-Guide.jpg',
+              textPosition: 'right',
+              title: 'SARAi PLANTING GUIDE',
+              subTitle: 'Plan your planting practices for optimum yield',
+              text: 'Determine the optimal time to plant based on computed expected yield and cumulative rainfall.',
+              buttonText: 'EXPLORE',
+              buttonLink: '/rainfall-distribution'
+            },
+            {
+              image: '/img/homepage-slider/SPID.png',
+              textPosition: '',
+              title: 'SMARTER PEST IDENTIFICATION TECHNOLOGY',
+              subTitle: '',
+              text: 'Use SPIDTech to identify the pests in your farm, monitor pest infestations, and know how to manage them',
+              buttonText: 'EXPLORE',
+              buttonLink: 'https://pests.sarai.ph'
+            },
+            {
+              image: '/img/homepage-slider/Crop-Mgt.jpg',
+              textPosition: '',
+              title: 'SMARTER CROP MANAGEMENT',
+              subTitle: 'Helping farmers to produce with less ',
+              text: 'Know the right amount of nutrient, the appropriate management practices for pest and diseases, and the right amount of water for maximum yield.',
+              buttonText: 'MORE',
+              buttonLink: '/services/EKStFhkWTstCEboj5'
+            },
+            {
+              image: '/img/homepage-slider/Alerts-And-Advisories.jpg',
+              textPosition: '',
+              title: 'ALERTS AND ADVISORIES',
+              subTitle: '', 
+              text: '',
+              buttonText: 'EXPLORE',
+              buttonLink: '/advisories'
+            },
+            {
+              image: '/img/homepage-slider/Eskwela.png',
+              textPosition: '',
+              title: 'CHAMPIONING SARAi',
+              subTitle: '',
+              text: ' <div style="width:20em; margin-top:-30px;"> <span style="font-size:0.8em; ">for improving the lives of vulnerable farmers</span> <iframe style="margin-top:15px;" width="560" height="230" src="https://www.youtube.com/embed/UJqs74jqKMM" frameborder="0" allowfullscreen></iframe> </div>',
+              buttonText: 'VISIT SARAi ESKWELA',
+              buttonLink: 'http://portal.sarai.ph/index.php?option=com_content&view=article&id=38&Itemid=319'
+            }
+
+          ],
+          enabled: true
+        }
+      ];
+
+      data.forEach(entry => Main.insert(entry));
+  }
+
+  if (WeatherStations.find().count() === 0) {
+    WeatherStations.insert({ id : 'IBICOLGU2', label : 'SARAI BUCAF Guinobatan Albay (UPLB)', coords : [ 13.193, 123.595 ], group : 'SARAI', enabled: true, region: 'V' })
+    WeatherStations.insert({ id : 'IWESTERN596', label : 'SARAI La Granja La Carlota City, Negros Occidental (UPLB), La Carlota City', coords : [ 10.404931, 122.978889 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICALABAR25', label : 'SARAI DA-QAES Tiaong, Quezon (UPLB), Tiaong', coords : [ 13.944949, 121.369759 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'ICENTRAL91', label : 'SARAI CLSU Science City of Munoz, Nueva Ecija, Science City Of Muñoz', coords : [ 15.738162, 120.928391   ], group : 'SARAI', enabled: true, region: 'III' })
+    WeatherStations.insert({ id : 'IWESTERN635', label : 'SARAI WVSU Lambunao, Iloilo (UPLB)', coords : [ 11.102, 122.415 ], group : 'SARAI', enabled: true, region: 'VI' })
+    WeatherStations.insert({ id : 'ICALABAR18', label : 'SARAI IPB, Laguna (UPLB), Los Baños', coords : [ 14.156224, 121.262199 ], group : 'SARAI', enabled: true, region: 'IV-A' })
+    WeatherStations.insert({ id : 'IMIMAROP6', label : 'SARAI WPU Aborlan Palawan (UPLB)', coords : [ 9.45, 118.554 ], group : 'SARAI', enabled: true, region: 'IV-B' })
+    WeatherStations.insert({ id : 'ICAGAYAN3', label : 'SARAI ISU Cabagan, Isabela (UPLB), Cabagan', coords : [ 17.410467, 121.813698 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICAGAYAN2', label : 'SARAI ISU Echague, Isabela (UPLB) ', coords : [ 16.726, 121.699 ], group : 'SARAI', enabled: true, region: 'II' })
+    WeatherStations.insert({ id : 'ICENTRAL94', label : 'SARAI CTU Barili Cebu (UPLB)', coords : [ 10.133, 123.547 ], group : 'SARAI', enabled: true, region: 'III' })
+  }
+
+  if (!DSSSettings.findOne({name: 'wunderground-api-key'})) {
+    DSSSettings.insert({
+      name: 'wunderground-api-key',
+      value: '9470644e92f975d3'
     });
   }
 
@@ -4573,17 +12493,6 @@ Meteor.startup(() => {
     ];
 
     data.forEach(logo => Story.insert(logo));
-  }
-
-  if (Reports.find().count() === 0) {
-    const data = [
-      // {
-      //   title:
-      //   file:
-      //   thumbnail:
-      //   date:
-      // }
-    ];
   }
 
   if (Advisories.find().count() === 0){

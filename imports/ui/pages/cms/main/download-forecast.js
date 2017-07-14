@@ -1,5 +1,6 @@
 import './download-forecast.html'
 import '../lib/past-rain-helpers.js'
+import CSV from 'papaparse'
 import { Meteor } from 'meteor/meteor'
 import { WeatherStations } from '../../../../api/weather/sarai-weather-stations.js';
 import { WeatherData } from '../../../../api/weather/sarai-weather-data.js';
@@ -46,14 +47,14 @@ const downloadRainForecast = () => {
 
   stations.forEach((element, index) => {
     const location = element.label
-    const stationID = element.id
+    const stationID = element.stationID
     const past30Days = Meteor.pastRain.get30DayRainfall(WeatherData.find({id: stationID}).fetch())
 
     let nextSevenDays = 0
     let dateToday, highTemp, chanceRain, rainfallToday
 
-    const apiKey = DSSSettings.findOne({name: 'wunderground-api-key'}).value
-    
+    const apiKey = DSSSettings.findOne({name: 'wunderground-api-key-download'}).value
+
     // $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}/forecast10day/q/pws:${stationID}.json`, (result) => {
     
     $.ajax({
