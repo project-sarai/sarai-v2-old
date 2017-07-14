@@ -52,7 +52,6 @@ Template.CMSBannerOptions.onRendered(() => {
         showToast(toast)
       })
     }
-//    dialog.close();
   })
 })
 
@@ -61,7 +60,6 @@ Template.CMSBannerOptions.events({
     this.action = 'add'
 
     const dialog = document.querySelector('#cms-banner-dialog');
- //   dialog.showModal();
 
     setBannerDialogContents('Add Slide', '', '', '', '', '', '', '', '')
   },
@@ -74,7 +72,6 @@ Template.CMSBannerOptions.events({
 
 
     const dialog = document.querySelector('#cms-banner-dialog');
-//    dialog.showModal();
 
     const record = Main.findOne({name: 'banner'})
 
@@ -86,9 +83,6 @@ Template.CMSBannerOptions.events({
       // })
 
       // this.uploadedFile = slide.image
-
-      console.log('Setting: ')
-      console.log(slide)
       setBannerDialogContents('Edit Slide', slide.image, slide.textPosition, slide.title, slide.subTitle, slide.text, slide.buttonText, slide.buttonLink, slide.rank)
     }
   },

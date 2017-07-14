@@ -28,9 +28,7 @@ Template.CMSAboutUsLeaders.onRendered(() => {
         if (error) {
           toast = 'Unable to save changes'
         }
-
-        //dialog.close();
-        //showToast(toast)
+        showToast(toast)
       });
     }
   });
@@ -69,8 +67,7 @@ Template.CMSAboutUsLeaders.events({
       if (error) { } else {
         toast = 'Saved changes to About Us Project Leaders'
       }
-
-      //showToast(toast)
+      showToast(toast)
     })
   }
 })

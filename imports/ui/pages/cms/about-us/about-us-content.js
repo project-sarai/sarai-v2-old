@@ -22,8 +22,7 @@ Template.CMSAboutUsContent.events({
       if (error) { } else {
         toast = 'Saved changes to About Us Content'
       }
-
-      //showToast(toast)
+      showToast(toast)
     })
   }
 })

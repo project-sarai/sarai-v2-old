@@ -16,45 +16,47 @@
             <!-- {{> CMSUpload callbacks=myCallbacks}} -->
         </div>
           <h2> Links </h2>
-            {{#each list in links}}
-              <div>
-                <span class="cms-header-link-name">{{list.title}}</span> - <span class="cms-header-link-href">{{list.url}}</span>
-                <div align="right">
-                  <span class="cms-header-link-actions">
-                     <a href="" id="{{@index}}" class="cms-header-link-edit" data-toggle="modal" data-target="#cms-header-dialog"><span class="glyphicon glyphicon-pencil"> </span></a>
-                    <a href="" id="{{@index}}" class="cms-header-link-delete"><span class="glyphicon glyphicon-trash"> </span></a>
-                  </span>
-                </div>
-              </div>
-
-              {{#let parentIndex=@index}}
-                {{#each link in list.links}}
-                  <div class="cms-header-sub-level-link">
-                    <span class="cms-header-link-name">
-                      {{link.title}}
-                    </span> -
-                    <span class="cms-header-link-href">
-                      {{link.url}}
+          <div class="container">
+              {{#each list in links}}
+                <div>
+                  <span style="font-weight: bold" class="cms-header-link-name">{{list.title}}</span> - <span class="cms-header-link-href">{{list.url}}</span>
+                  <div align="right">
+                    <span class="cms-header-link-actions">
+                       <a href="" id="{{@index}}" class="cms-header-link-edit" data-toggle="modal" data-target="#cms-header-dialog"><span class="glyphicon glyphicon-pencil"> </span></a>
+                      <a href="" id="{{@index}}" class="cms-header-link-delete"><span class="glyphicon glyphicon-trash"> </span></a>
                     </span>
-                    <div align="right">
-                      <span class="cms-header-link-actions">
-                        <a href="" id="{{parentIndex}}-{{@index}}" class="cms-header-link-edit" data-toggle="modal" data-target="#cms-header-dialog"><span class="glyphicon glyphicon-pencil"> </span></a>
-                        <a href="" id="{{parentIndex}}-{{@index}}" class="cms-header-link-delete"><span class="glyphicon glyphicon-trash"> </span></a>
-                      </span>
-                    </div>
                   </div>
-                  <div style="clear: both"></div>
-                {{/each}}
-
-
-                <div class="cms-header-sub-level-link">
-                  <button id="add-{{parentIndex}}" class="btn cms-header-link-add" data-toggle="modal" data-target="#cms-header-dialog">
-                    <span class="glyphicon glyphicon-plus"></span>Add Sub Link
-                  </button>
                 </div>
-                <hr>
-              {{/let}}
-            {{/each}}
+
+                {{#let parentIndex=@index}}
+                  {{#each link in list.links}}
+                    <div class="cms-header-sub-level-link">
+                      <span style="font-weight:bold" class="cms-header-link-name">
+                        {{link.title}}
+                      </span> -
+                      <span class="cms-header-link-href">
+                        {{link.url}}
+                      </span>
+                      <div align="right">
+                        <span class="cms-header-link-actions">
+                          <a href="" id="{{parentIndex}}-{{@index}}" class="cms-header-link-edit" data-toggle="modal" data-target="#cms-header-dialog"><span class="glyphicon glyphicon-pencil"> </span></a>
+                          <a href="" id="{{parentIndex}}-{{@index}}" class="cms-header-link-delete"><span class="glyphicon glyphicon-trash"> </span></a>
+                        </span>
+                      </div>
+                    </div>
+                    <div style="clear: both"></div>
+                  {{/each}}
+
+
+                  <div class="cms-header-sub-level-link">
+                    <button id="add-{{parentIndex}}" class="btn cms-header-link-add" data-toggle="modal" data-target="#cms-header-dialog">
+                      <span class="glyphicon glyphicon-plus"></span>Add Sub Link
+                    </button>
+                  </div>
+                  <hr style="height: 2px; border: none; color:#eee;background-color:#eee;">
+                {{/let}}
+              {{/each}}
+              </div>
             <div>
               <button id="add-top-level-link" class="btn cms-header-link-add" data-toggle="modal" data-target="#cms-header-dialog">
                 <span class="glyphicon glyphicon-plus"></span> Add Top Level Link
@@ -64,7 +66,7 @@
           <div>
           <br>
             <div class="cms-block-content-label">
-              BETA Label
+              <span style="font-weight:bold"> BETA Label </span>
               {{#unless buttonEnabled}}
                 <span class="cms-disabled-status"> - [Disabled]</span>
               {{/unless}}

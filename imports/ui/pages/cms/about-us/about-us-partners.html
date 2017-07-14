@@ -6,115 +6,91 @@
         <h1> Partner Institutions </h1>
       </div>
       <div>
-        <div class="row">
-          <div id="cms-about-us-partners-title-div">
-            <label for="cms-about-us-partners-title">Title</label>
-            <br>
+      <form class="form-horizontal">
+        <br>
+        <div class="form-group" id="cms-about-us-partners-title-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners-title">Title:</label>
+          <div class="col-sm-11">
             <input class="form-control" type="text" id="cms-about-us-partners-title" value="{{partners.title1}}">
           </div>
         </div>
-        <div>
-          <br>
-          <br>
-          <h6> Partner Institutions </h6>
-          <div class="row">
-            <div id="cms-about-us-partners1-name-div">
-              <label for="cms-about-us-partners1-name">Name</label>
-              <br>
-              <input class="form-control" type="text" id="cms-about-us-partners1-name" value="{{partners.text11}}">
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners1-text-div">
-              <label for="cms-about-us-partners1-text">Text</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners1-text" value="{{partners.subtext11}}"></textarea>
-            </div>
-          </div>
-           <div class="row"> 
-            <div id="cms-about-us-partners1-description-div">
-              <label for="cms-about-us-partners1-description">Description</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners1-description" value="{{partners.description11}}"></textarea>
-            </div>
+        <hr>
+        <div class="form-group" id="cms-about-us-partners1-name-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners1-name-div">Name:</label>
+          <div class="col-sm-11">
+            <input class="form-control" type="text" id="cms-about-us-partners1-name" value="{{partners.text11}}">
           </div>
         </div>
-
-        <div {{cmsBlockContentRowClasses}}>
-          <div class="row">
-            <div id="cms-about-us-partners2-name-div">
-              <br> <br>
-              <label  for="cms-about-us-partners2-name">Name</label>
-              <br>
-              <input class="form-control" type="text" id="cms-about-us-partners2-name" value="{{partners.text22}}">
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners2-text-div">
-              <label for="cms-about-us-partners2-text">Text</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners2-text" value="{{partners.subtext22}}"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners2-description-div">
-              <label for="cms-about-us-partners2-description">Description</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners2-description" value="{{partners.description22}}"></textarea>
-            </div>
+        <div class="form-group" id="cms-about-us-partners1-text-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners1-text">Text:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners1-text" value="{{partners.subtext11}}"></textarea>
           </div>
         </div>
-
-        <div {{cmsBlockContentRowClasses}}>
-          <div class="row">
-            <div id="cms-about-us-partners3-name-div">
-              <br> <br>
-              <label for="cms-about-us-partners3-name">Name</label>
-              <br>
-              <input class="form-control" type="text" id="cms-about-us-partners3-name" value="{{partners.text33}}">
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners3-text-div">
-              <label for="cms-about-us-partners3-text">Text</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners3-text" value="{{partners.subtext33}}"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners3-description-div">
-              <label for="cms-about-us-partners3-description">Description</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners3-description" value="{{partners.description33}}"></textarea>
-            </div>
+        <div class="form-group" id="cms-about-us-partners1-description-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners1-description">Description:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners1-description" value="{{partners.description11}}"></textarea>
           </div>
         </div>
-
-        <div {{cmsBlockContentRowClasses}}>
-          <div class="row">
-            <div id="cms-about-us-partners4-name-div">
-              <br> <br>
-              <label for="cms-about-us-partners4-name">Name</label>
-              <br>
-              <input class="form-control" type="text" id="cms-about-us-partners4-name" value="{{partners.text44}}">
-            </div>
-          </div>
-           <div class="row"> 
-            <div id="cms-about-us-partners4-text-div">
-              <label for="cms-about-us-partners4-text">Text</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners4-text" value="{{partners.subtext44}}"></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div id="cms-about-us-partners4-description-div">
-              <label for="cms-about-us-partners4-description">Description</label>
-              <br>
-              <textarea class="form-control" type="text" rows= "2" id="cms-about-us-partners4-description" value="{{partners.description44}}"></textarea>
-            </div>
+        <hr>
+        <div class="form-group" id="cms-about-us-partners2-name-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners2-name-div">Name:</label>
+          <div class="col-sm-11">
+            <input class="form-control" type="text" id="cms-about-us-partners2-name" value="{{partners.text22}}">
           </div>
         </div>
-
+        <div class="form-group" id="cms-about-us-partners2-text-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners2-text">Text:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners2-text" value="{{partners.subtext22}}"></textarea>
+          </div>
+        </div>
+        <div class="form-group" id="cms-about-us-partners2-description-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners2-description">Description:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners2-description" value="{{partners.description22}}"></textarea>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group" id="cms-about-us-partners3-name-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners3-name-div">Name:</label>
+          <div class="col-sm-11">
+            <input class="form-control" type="text" id="cms-about-us-partners3-name" value="{{partners.text33}}">
+          </div>
+        </div>
+        <div class="form-group" id="cms-about-us-partners3-text-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners3-text">Text:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners3-text" value="{{partners.subtext33}}"></textarea>
+          </div>
+        </div>
+        <div class="form-group" id="cms-about-us-partners1-description-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners3-description">Description:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners3-description" value="{{partners.description33}}"></textarea>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group" id="cms-about-us-partners4-name-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners4-name-div">Name:</label>
+          <div class="col-sm-11">
+            <input class="form-control" type="text" id="cms-about-us-partners4-name" value="{{partners.text44}}">
+          </div>
+        </div>
+        <div class="form-group" id="cms-about-us-partners4-text-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners4-text">Text:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners4-text" value="{{partners.subtext44}}"></textarea>
+          </div>
+        </div>
+        <div class="form-group" id="cms-about-us-partners4-description-div">
+          <label class="control-label col-sm-1" for="cms-about-us-partners1-description">Description:</label>
+          <div class="col-sm-11">
+            <textarea class="form-control" type="text" rows= "4" id="cms-about-us-partners4-description" value="{{partners.description44}}"></textarea>
+          </div>
+        </div>
+      </form>
       </div>
 
 

@@ -1,0 +1,51 @@
+<!-- Template used to view provinces and give options to view its municipalities -->
+<template name="CMSWeatherOutlookData">
+  <div class="container">
+    <div align="center">
+      <h1> Viewing Provinces for Region: {{ regionName }}</h1>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Province</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each province in provinces}}
+        <tr>
+          <td>{{ province }}</td>
+          <td>
+            <a id="weather_province_edit_{{province}}" class="weather-province-edit"><span class="glyphicon glyphicon-pencil" data-target="#weather-outlook-province-dialog" data-toggle="modal"></span></a>
+            &nbsp;
+            <a id="weather_province_view_{{province}}" class="weather-province-view"><span class="glyphicon glyphicon-th-list"></span></a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+    <div class="modal fade" id="weather-outlook-province-dialog" role="dialog">
+      <div class="modal-dialog">
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit {{provinceName}}</h4>
+          </div>
+          <div class="modal-body">
+            <div id="province-name">
+              <label>Province Name</label>
+              <input class="form-control" type="text" id="weather-province-input">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default save" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</template>

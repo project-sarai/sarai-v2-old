@@ -8,7 +8,6 @@ Template.WeatherDataCMS.onCreated(() => {
   this.stationID = FlowRouter.current().params.stationID
   Meteor.subscribe('weather-data-30-by-id', this.stationID )
   Meteor.subscribe('weather_station', this.stationID)
-  Meteor.subscribe('weather_data')
 })
 
 Template.WeatherDataCMS.onRendered(() => {
@@ -41,10 +40,6 @@ Template.WeatherDataCMS.events({
 const initWeatherDataDialog = (dialogID) => {
   const dialog = document.querySelector(`#${dialogID}`)
 
-  dialog.querySelector('.cancel').addEventListener('click', () => {
-    dialog.close()
-  })
-
   dialog.querySelector('.save').addEventListener('click', () => {
     const tempAve = $('#cms-wd-temp-ave-input').val()
     const tempMin = $('#cms-wd-temp-min-input').val()
@@ -71,7 +66,5 @@ const initWeatherDataDialog = (dialogID) => {
       }
       showToast(toast)
     })
-
-    dialog.close()
   })
 }
