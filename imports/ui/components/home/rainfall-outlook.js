@@ -3,6 +3,8 @@ import { WeatherOutlook } from '/imports/api/weather/sarai-weather-outlook.js'
 import { Provinces } from '/imports/api/rainfall-outlook/provinces.js'
 import { Regions } from '/imports/api/rainfall-outlook/regions.js'
 import './rainfall-outlook.html';
+import './rainfall-outlook-col.html'
+
 
 Template.RainfallOutlook.onCreated(() => {
   Meteor.subscribe('regions')

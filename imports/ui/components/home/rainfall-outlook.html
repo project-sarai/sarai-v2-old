@@ -51,17 +51,24 @@
       </div>
   </div>
 
-  <div class="mdl-grid">
-    <div class="mdl-cell">
-    </div>
-    {{#each monthlyRainfall}}
-      {{>RainfallOutlookCol}}
-    {{/each}}
-    <div class="mdl-cell">
-    </div>
-    <div class="text-center">
-      <button type="button" class="btn btn-secondary">MORE</button>
+  <div class="container" id="rainfall-outlook-data">
+    <div class="row">
+      <div class="mdl-grid" id="data">
+        <div class="col-md-0">
+        </div>
+        {{#each monthlyRainfall}}
+          {{>RainfallOutlookCol}}
+        {{/each}}
+        <div class="col-md-0">
+        </div>
     </div>
   </div>
-  
+  <div class="card">
+    <div class="row">
+      <div class="text-center">
+        <button type="button" class="btn btn-secondary">MORE</button>
+      </div>
+    </div>
+  </div>
+  </div>
 </template>
