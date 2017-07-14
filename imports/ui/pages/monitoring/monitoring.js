@@ -32,8 +32,7 @@ Template.Monitoring.onCreated(function() {
   Highcharts.setOptions({
   // This is for all plots, change Date axis to local timezone
       global : {
-          useUTC : true,
-
+          useUTC : true
       }
   });
 });
@@ -68,6 +67,7 @@ Template.Monitoring.onRendered(function() {
 
   const showWeatherData = (stationID, label, event) => {
     Session.set('stationID', stationID)
+
     displayWeatherData(stationID, Session.get('apiKey'))
   }
 
@@ -211,12 +211,10 @@ const displayWeatherData = (stationID, apiKey) => {
 }
 
 const displayForecast = (stationID, apiKey) => {
-
   if (apiKey) { //Make sure key is available
     const dataFeatures = [ 'conditions', 'hourly10day', 'forecast10day']
 
     $.getJSON(`http:\/\/api.wunderground.com/api/${apiKey}${Meteor.chartHelpers.featureURI(dataFeatures)}/q/pws:${stationID}.json`, (result) => {
-
       const dailySeries = Meteor.chartHelpers.getDailySeries(result)
       const hourlySeries = Meteor.chartHelpers.getHourlySeries(result)
       //common data

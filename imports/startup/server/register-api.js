@@ -27,51 +27,6 @@ import '../../api/about/server/publications.js'
 import '../../api/main/methods.js';
 import '../../api/main/server/publications.js';
 
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
-import '../../api/main/methods.js';
-import '../../api/main/server/publications.js';
-
 import '../../api/advisories/methods.js';
 import '../../api/advisories/server/publications.js';
 
@@ -80,3 +35,6 @@ import '../../api/reports/server/publications.js';
 
 import '../../api/weather/methods.js';
 import '../../api/weather/server/publications.js';
+
+import '../../api/rainfall-outlook/methods.js';
+import '../../api/rainfall-outlook/server/publications.js';

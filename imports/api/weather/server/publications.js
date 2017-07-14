@@ -24,6 +24,7 @@ Meteor.publish('dss_settings', function() {
 Meteor.publish('heat_map_data', function() {
   return HeatMapData.find();
 });
+
 Meteor.publish('weather-outlook', function() {
   return WeatherOutlook.find();
 });
